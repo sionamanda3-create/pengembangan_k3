@@ -2,8 +2,31 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Kuis</title>
-<link rel="stylesheet" href="css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kuis - Media K3 Pemesinan</title>
+<link rel="stylesheet" href="style.css">
+<style>
+  .soal label {
+    display: block;
+    padding: 10px 14px;
+    margin: 6px 0;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 2px solid #e3f2fd;
+    transition: 0.2s;
+  }
+  .soal label:hover {
+    background: #e3f2fd;
+    border-color: #90caf9;
+  }
+  .soal input[type="radio"] {
+    margin-right: 8px;
+  }
+  .soal input[type="radio"]:checked + span {
+    font-weight: 600;
+    color: #1565c0;
+  }
+</style>
 </head>
 <body>
 
@@ -16,44 +39,129 @@
   <a href="index.html">Beranda</a>
   <a href="petunjuk.html">Petunjuk</a>
   <a href="tujuan.html">Tujuan</a>
-  <a href="materi/pengertian-k3.html">Materi K3</a>
+  <a href="pengertian-k3.html">Materi K3</a>
   <a href="video.html">Video</a>
   <a href="latihan.html">Latihan</a>
-  <a href="kuis.html">Kuis</a>
+  <a href="kuis.html" class="active">Kuis</a>
   <a href="evaluasi.html">Evaluasi</a>
   <a href="hasil.html">Hasil</a>
   <a href="profil.html">Profil</a>
 </nav>
 
 <div class="container">
+
+  <!-- ===== INFO ===== -->
+  <div class="card">
+    <h2>📝 Petunjuk Kuis</h2>
+    <ul>
+      <li>Kuis terdiri dari <b>10 soal pilihan ganda</b>.</li>
+      <li>Pilih satu jawaban yang paling benar pada setiap soal.</li>
+      <li>Nilai minimal kelulusan adalah <b>75</b>.</li>
+      <li>Setelah selesai, klik tombol <b>Kirim Jawaban</b>.</li>
+    </ul>
+  </div>
+
+  <!-- ===== FORM KUIS ===== -->
   <div class="card">
     <h2>Kerjakan Soal Berikut</h2>
-    <form id="formKuis">
+    <form id="formKuis" onsubmit="event.preventDefault(); submitKuis();">
 
       <div class="soal">
         <p>1. K3 adalah singkatan dari ...</p>
-        <label><input type="radio" name="q1" value="a"> Keselamatan Kerja Karyawan</label>
-        <label><input type="radio" name="q1" value="b"> Keselamatan dan Kesehatan Kerja</label>
-        <label><input type="radio" name="q1" value="c"> Kesehatan Karyawan Kerja</label>
-        <label><input type="radio" name="q1" value="d"> Kesejahteraan Kerja Karyawan</label>
+        <label><input type="radio" name="q1" value="a"><span>Keselamatan Kerja Karyawan</span></label>
+        <label><input type="radio" name="q1" value="b"><span>Keselamatan dan Kesehatan Kerja</span></label>
+        <label><input type="radio" name="q1" value="c"><span>Kesehatan Karyawan Kerja</span></label>
+        <label><input type="radio" name="q1" value="d"><span>Kesejahteraan Kerja Karyawan</span></label>
       </div>
 
       <div class="soal">
-        <p>2. UU yang mengatur K3 di Indonesia adalah ...</p>
-        <label><input type="radio" name="q2" value="a"> UU No. 13 Tahun 2003</label>
-        <label><input type="radio" name="q2" value="b"> UU No. 20 Tahun 2003</label>
-        <label><input type="radio" name="q2" value="c"> UU No. 1 Tahun 1970</label>
-        <label><input type="radio" name="q2" value="d"> UU No. 2 Tahun 2003</label>
+        <p>2. Undang-Undang yang mengatur K3 di Indonesia adalah ...</p>
+        <label><input type="radio" name="q2" value="a"><span>UU No. 13 Tahun 2003</span></label>
+        <label><input type="radio" name="q2" value="b"><span>UU No. 20 Tahun 2003</span></label>
+        <label><input type="radio" name="q2" value="c"><span>UU No. 1 Tahun 1970</span></label>
+        <label><input type="radio" name="q2" value="d"><span>UU No. 2 Tahun 2003</span></label>
       </div>
 
       <div class="soal">
         <p>3. Alat pelindung diri untuk melindungi mata adalah ...</p>
-        <label><input type="radio" name="q3" value="a"> Kacamata pelindung</label>
-        <label><input type="radio" name="q3" value="b"> Sarung tangan</label>
-        <label><input type="radio" name="q3" value="c"> Helm</label>
-        <label><input type="radio" name="q3" value="d"> Sepatu safety</label>
+        <label><input type="radio" name="q3" value="a"><span>Kacamata pelindung</span></label>
+        <label><input type="radio" name="q3" value="b"><span>Sarung tangan</span></label>
+        <label><input type="radio" name="q3" value="c"><span>Helm</span></label>
+        <label><input type="radio" name="q3" value="d"><span>Sepatu safety</span></label>
       </div>
 
       <div class="soal">
         <p>4. Rambu berwarna hijau menunjukkan ...</p>
-        <label><input type="
+        <label><input type="radio" name="q4" value="a"><span>Larangan</span></label>
+        <label><input type="radio" name="q4" value="b"><span>Peringatan</span></label>
+        <label><input type="radio" name="q4" value="c"><span>Perintah</span></label>
+        <label><input type="radio" name="q4" value="d"><span>Keselamatan / jalur evakuasi</span></label>
+      </div>
+
+      <div class="soal">
+        <p>5. Berikut ini yang <b>bukan</b> termasuk Alat Pelindung Diri (APD) adalah ...</p>
+        <label><input type="radio" name="q5" value="a"><span>Helm</span></label>
+        <label><input type="radio" name="q5" value="b"><span>Kunci pas</span></label>
+        <label><input type="radio" name="q5" value="c"><span>Sarung tangan</span></label>
+        <label><input type="radio" name="q5" value="d"><span>Sepatu safety</span></label>
+      </div>
+
+      <div class="soal">
+        <p>6. Tujuan utama penerapan K3 di bengkel adalah ...</p>
+        <label><input type="radio" name="q6" value="a"><span>Mencegah kecelakaan kerja</span></label>
+        <label><input type="radio" name="q6" value="b"><span>Mempercepat pekerjaan</span></label>
+        <label><input type="radio" name="q6" value="c"><span>Menambah biaya produksi</span></label>
+        <label><input type="radio" name="q6" value="d"><span>Mengurangi jumlah karyawan</span></label>
+      </div>
+
+      <div class="soal">
+        <p>7. Mesin yang digunakan untuk membuat ulir pada benda kerja adalah mesin ...</p>
+        <label><input type="radio" name="q7" value="a"><span>Bor</span></label>
+        <label><input type="radio" name="q7" value="b"><span>Gerinda</span></label>
+        <label><input type="radio" name="q7" value="c"><span>Bubut</span></label>
+        <label><input type="radio" name="q7" value="d"><span>Frais</span></label>
+      </div>
+
+      <div class="soal">
+        <p>8. Saat mengoperasikan mesin bubut, hal yang <b>tidak boleh</b> dilakukan adalah ...</p>
+        <label><input type="radio" name="q8" value="a"><span>Menggunakan kacamata pelindung</span></label>
+        <label><input type="radio" name="q8" value="b"><span>Menggunakan sarung tangan</span></label>
+        <label><input type="radio" name="q8" value="c"><span>Mengikat rambut panjang</span></label>
+        <label><input type="radio" name="q8" value="d"><span>Memastikan benda kerja terpasang kuat</span></label>
+      </div>
+
+      <div class="soal">
+        <p>9. Rambu berwarna merah menunjukkan tanda ...</p>
+        <label><input type="radio" name="q9" value="a"><span>Keselamatan</span></label>
+        <label><input type="radio" name="q9" value="b"><span>Peringatan</span></label>
+        <label><input type="radio" name="q9" value="c"><span>Perintah</span></label>
+        <label><input type="radio" name="q9" value="d"><span>Larangan / bahaya</span></label>
+      </div>
+
+      <div class="soal">
+        <p>10. Alat yang digunakan untuk memadamkan api ringan di bengkel adalah ...</p>
+        <label><input type="radio" name="q10" value="a"><span>APAR</span></label>
+        <label><input type="radio" name="q10" value="b"><span>P3K</span></label>
+        <label><input type="radio" name="q10" value="c"><span>APD</span></label>
+        <label><input type="radio" name="q10" value="d"><span>APBN</span></label>
+      </div>
+
+      <div style="margin-top:20px;">
+        <button type="submit" class="btn">✓ Kirim Jawaban</button>
+        <button type="reset" class="btn btn-back">↺ Reset</button>
+      </div>
+    </form>
+  </div>
+
+  <a href="latihan.html" class="btn btn-back">← Latihan</a>
+  <a href="evaluasi.html" class="btn">Lanjut ke Evaluasi →</a>
+
+</div>
+
+<footer>
+  &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
