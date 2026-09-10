@@ -1,0 +1,241 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, sans-serif;
+}
+
+body {
+  background: #f4f7fb;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== HEADER ===== */
+header {
+  background: linear-gradient(135deg, #1565c0, #1e88e5);
+  color: #fff;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+header h1 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+header p {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* ===== NAVBAR ===== */
+nav {
+  background: #0d47a1;
+  padding: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 5px;
+}
+
+nav a {
+  color: #fff;
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+nav a:hover, nav a.active {
+  background: #ffb300;
+  color: #000;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+  max-width: 1000px;
+  margin: 25px auto;
+  padding: 0 20px;
+  flex: 1;
+  width: 100%;
+}
+
+.card {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  margin-bottom: 20px;
+}
+
+.card h2 {
+  color: #1565c0;
+  margin-bottom: 15px;
+  border-left: 5px solid #ffb300;
+  padding-left: 10px;
+}
+
+.card p, .card li {
+  line-height: 1.7;
+  color: #444;
+}
+
+.card ul, .card ol {
+  padding-left: 25px;
+  margin: 10px 0;
+}
+
+/* ===== MENU GRID (Beranda) ===== */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.menu-item {
+  background: linear-gradient(135deg, #42a5f5, #1e88e5);
+  color: #fff;
+  padding: 25px 15px;
+  border-radius: 12px;
+  text-align: center;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+}
+
+.menu-item:hover {
+  transform: translateY(-5px);
+  background: linear-gradient(135deg, #ffb300, #ff8f00);
+  color: #000;
+}
+
+/* ===== MATERI LIST ===== */
+.materi-list {
+  display: grid;
+  gap: 10px;
+}
+
+.materi-list a {
+  display: block;
+  background: #e3f2fd;
+  padding: 15px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: #0d47a1;
+  font-weight: 500;
+  border-left: 4px solid #1e88e5;
+  transition: 0.3s;
+}
+
+.materi-list a:hover {
+  background: #bbdefb;
+  transform: translateX(5px);
+}
+
+/* ===== BUTTON ===== */
+.btn {
+  display: inline-block;
+  background: #1565c0;
+  color: #fff;
+  padding: 10px 22px;
+  border-radius: 8px;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.3s;
+  margin: 5px 5px 0 0;
+}
+
+.btn:hover {
+  background: #ffb300;
+  color: #000;
+}
+
+.btn-back {
+  background: #78909c;
+}
+
+/* ===== KUIS ===== */
+.soal {
+  margin-bottom: 20px;
+  padding: 15px;
+  background: #f9fbff;
+  border-radius: 8px;
+  border-left: 4px solid #1e88e5;
+}
+
+.soal p {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.soal label {
+  display: block;
+  padding: 8px 10px;
+  margin: 5px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.soal label:hover {
+  background: #e3f2fd;
+}
+
+/* ===== VIDEO ===== */
+.video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  border: 0;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background: #0d47a1;
+  color: #fff;
+  text-align: center;
+  padding: 15px;
+  font-size: 13px;
+  margin-top: auto;
+}
+
+/* ===== HASIL ===== */
+.hasil-box {
+  text-align: center;
+  padding: 30px;
+}
+
+.hasil-box .skor {
+  font-size: 60px;
+  font-weight: bold;
+  color: #1565c0;
+}
+
+.hasil-box .status {
+  font-size: 20px;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  display: inline-block;
+}
+
+.lulus { background: #c8e6c9; color: #2e7d32; }
+.gagal { background: #ffcdd2; color: #c62828; }
