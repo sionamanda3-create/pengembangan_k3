@@ -3,73 +3,288 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Beranda - Media K3 Pemesinan</title>
+<title>Beranda - Media K3 Pemesinan | SMK N 2 Medan</title>
+<meta name="description" content="Media Pembelajaran K3 Berbasis Website untuk Siswa Teknik Pemesinan SMK Negeri 2 Medan">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-  <h1>Media Pembelajaran K3 Berbasis Website</h1>
-  <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p>Memuat Media Pembelajaran...</p>
+</div>
+
+<!-- ============ PROGRESS BAR SCROLL ============ -->
+<div id="progress-bar"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area">
+      <div class="logo-icon">⚙️</div>
+      <div>
+        <h1>Media Pembelajaran K3</h1>
+        <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
+      </div>
+    </div>
+    <div class="header-badge">
+      <i class="fas fa-graduation-cap"></i> Skripsi R&D
+    </div>
+  </div>
 </header>
 
-<nav>
-  <a href="index.html" class="active">Beranda</a>
-  <a href="petunjuk.html">Petunjuk</a>
-  <a href="tujuan.html">Tujuan</a>
-  <a href="pengertian-k3.html">Materi K3</a>
-  <a href="video.html">Video</a>
-  <a href="latihan.html">Latihan</a>
-  <a href="kuis.html">Kuis</a>
-  <a href="evaluasi.html">Evaluasi</a>
-  <a href="hasil.html">Hasil</a>
-  <a href="profil.html">Profil</a>
+<!-- ============ NAVBAR ============ -->
+<nav class="main-nav">
+  <a href="index.html" class="active"><i class="fas fa-home"></i> Beranda</a>
+  <a href="petunjuk.html"><i class="fas fa-book-open"></i> Petunjuk</a>
+  <a href="tujuan.html"><i class="fas fa-bullseye"></i> Tujuan</a>
+  <a href="pengertian-k3.html"><i class="fas fa-tools"></i> Materi K3</a>
+  <a href="video.html"><i class="fas fa-play-circle"></i> Video</a>
+  <a href="latihan.html"><i class="fas fa-pen"></i> Latihan</a>
+  <a href="kuis.html"><i class="fas fa-clipboard-list"></i> Kuis</a>
+  <a href="evaluasi.html"><i class="fas fa-chart-bar"></i> Evaluasi</a>
+  <a href="hasil.html"><i class="fas fa-trophy"></i> Hasil</a>
+  <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
 </nav>
 
+<!-- ============ HERO SECTION ============ -->
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <span class="hero-tag"><i class="fas fa-shield-alt"></i> Keselamatan & Kesehatan Kerja</span>
+    <h1 class="hero-title">Belajar K3 dengan <span class="gradient-text">Cara Modern</span></h1>
+    <p class="hero-subtitle">
+      Media pembelajaran interaktif berbasis website untuk siswa Teknik Pemesinan
+      SMK Negeri 2 Medan. Pelajari K3 dengan materi lengkap, video, latihan, dan kuis.
+    </p>
+    <div class="hero-buttons">
+      <a href="petunjuk.html" class="btn-hero-primary">
+        <i class="fas fa-rocket"></i> Mulai Belajar
+      </a>
+      <a href="pengertian-k3.html" class="btn-hero-secondary">
+        <i class="fas fa-book"></i> Lihat Materi
+      </a>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="#f4f7fb"></path>
+    </svg>
+  </div>
+</section>
+
+<!-- ============ STATISTIK ============ -->
+<section class="stats-section">
+  <div class="stats-grid">
+    <div class="stat-card reveal">
+      <div class="stat-icon"><i class="fas fa-layer-group"></i></div>
+      <div class="stat-number" data-target="10">0</div>
+      <div class="stat-label">Sub-Materi K3</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-icon"><i class="fas fa-video"></i></div>
+      <div class="stat-number" data-target="4">0</div>
+      <div class="stat-label">Video Pembelajaran</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-icon"><i class="fas fa-question-circle"></i></div>
+      <div class="stat-number" data-target="20">0</div>
+      <div class="stat-label">Soal Latihan & Kuis</div>
+    </div>
+    <div class="stat-card reveal">
+      <div class="stat-icon"><i class="fas fa-award"></i></div>
+      <div class="stat-number" data-target="75">0</div>
+      <div class="stat-label">KKM Kelulusan</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KONTEN UTAMA ============ -->
 <div class="container">
 
   <!-- ===== KARTU SAMBUTAN ===== -->
-  <div class="card">
-    <h2>Selamat Datang 👋</h2>
-    <p>Media pembelajaran ini dikembangkan sebagai bagian dari penelitian
-      <b>Research and Development (R&D)</b> dengan judul:</p>
-    <p style="margin-top:10px;">
-      <i>"Pengembangan Media Pembelajaran Berbasis Website pada Materi K3
-      bagi Siswa Teknik Pemesinan SMK Negeri 2 Medan"</i>
-    </p>
-  </div>
-
-  <!-- ===== MENU PEMBELAJARAN ===== -->
-  <div class="card">
-    <h2>Menu Pembelajaran</h2>
-    <div class="menu-grid">
-      <a href="petunjuk.html" class="menu-item">📖 Petunjuk Penggunaan</a>
-      <a href="tujuan.html" class="menu-item">🎯 Tujuan Pembelajaran</a>
-      <a href="pengertian-k3.html" class="menu-item">🛠️ Materi K3</a>
-      <a href="video.html" class="menu-item">🎬 Video Pembelajaran</a>
-      <a href="latihan.html" class="menu-item">✏️ Latihan</a>
-      <a href="kuis.html" class="menu-item">📝 Kuis</a>
-      <a href="evaluasi.html" class="menu-item">📊 Evaluasi</a>
-      <a href="hasil.html" class="menu-item">🏆 Hasil</a>
+  <div class="card reveal">
+    <div class="card-header-with-img">
+      <div class="card-img-box">
+        <img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80"
+             alt="K3 Industri" loading="lazy">
+      </div>
+      <div class="card-text-box">
+        <h2>Selamat Datang 👋</h2>
+        <p>Media pembelajaran ini dikembangkan sebagai bagian dari penelitian
+          <b>Research and Development (R&D)</b> dengan judul:</p>
+        <p class="judul-skripsi">
+          <i class="fas fa-quote-left"></i>
+          Pengembangan Media Pembelajaran Berbasis Website pada Materi K3
+          bagi Siswa Teknik Pemesinan SMK Negeri 2 Medan
+          <i class="fas fa-quote-right"></i>
+        </p>
+        <div class="badge-row">
+          <span class="badge"><i class="fas fa-check-circle"></i> Interaktif</span>
+          <span class="badge"><i class="fas fa-check-circle"></i> Berbasis Website</span>
+          <span class="badge"><i class="fas fa-check-circle"></i> Kurikulum SMK</span>
+        </div>
+      </div>
     </div>
   </div>
 
-  <!-- ===== INFORMASI ===== -->
-  <div class="card">
-    <h2>Tentang Media</h2>
-    <p>Media ini berisi materi Keselamatan dan Kesehatan Kerja (K3) yang
-      mencakup pengertian K3, tujuan dan manfaat, bahaya & risiko kerja,
-      APD, rambu-rambu K3, serta penerapan K3 di bengkel pemesinan
-      (mesin bubut, frais, bor, dan gerinda).</p>
-    <p style="margin-top:10px;">Silakan mulai dari menu
-      <b>Petunjuk Penggunaan</b> lalu lanjut ke <b>Tujuan Pembelajaran</b>,
-      kemudian pelajari <b>Materi K3</b> secara berurutan.</p>
+  <!-- ===== MENU PEMBELAJARAN ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-th-large"></i> Menu Pembelajaran</h2>
+    <p class="section-desc">Pilih menu di bawah untuk memulai pembelajaran K3 secara terstruktur.</p>
+    <div class="menu-grid">
+
+      <a href="petunjuk.html" class="menu-item">
+        <div class="menu-icon"><i class="fas fa-book-open"></i></div>
+        <h3>Petunjuk Penggunaan</h3>
+        <p>Panduan menggunakan media</p>
+      </a>
+
+      <a href="tujuan.html" class="menu-item">
+        <div class="menu-icon"><i class="fas fa-bullseye"></i></div>
+        <h3>Tujuan Pembelajaran</h3>
+        <p>Capaian yang diharapkan</p>
+      </a>
+
+      <a href="pengertian-k3.html" class="menu-item">
+        <div class="menu-icon"><i class="fas fa-tools"></i></div>
+        <h3>Materi K3</h3>
+        <p>10 sub-materi lengkap</p>
+      </a>
+
+      <a href="video.html" class="menu-item">
+        <div class="menu-icon"><i class="fas fa-play-circle"></i></div>
+        <h3>Video Pembelajaran</h3>
+        <p>Visualisasi materi K3</p>
+      </a>
+
+      <a href="latihan.html" class="menu-item">
+        <div class="menu-icon"><i class="fas fa-pen"></i></div>
+        <h3>Latihan</h3>
+        <p>Soal isian pemantapan</p>
+      </a>
+
+      <a href="kuis.html" class="menu-item">
+        <div class="menu-icon"><i class="fas fa-clipboard-list"></i></div>
+        <h3>Kuis</h3>
+        <p>Pilihan ganda 10 soal</p>
+      </a>
+
+      <a href="evaluasi.html" class="menu-item">
+        <div class="menu-icon"><i class="fas fa-chart-bar"></i></div>
+        <h3>Evaluasi</h3>
+        <p>Penilaian akhir</p>
+      </a>
+
+      <a href="hasil.html" class="menu-item">
+        <div class="menu-icon"><i class="fas fa-trophy"></i></div>
+        <h3>Hasil</h3>
+        <p>Nilai & status kelulusan</p>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ===== TENTANG MEDIA ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-info-circle"></i> Tentang Media</h2>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Media ini berisi materi <b>Keselamatan dan Kesehatan Kerja (K3)</b>
+          yang mencakup pengertian K3, tujuan dan manfaat, bahaya & risiko kerja,
+          APD, rambu-rambu K3, serta penerapan K3 di bengkel pemesinan
+          (mesin bubut, frais, bor, dan gerinda).</p>
+        <p style="margin-top:12px;">Silakan mulai dari menu
+          <b>Petunjuk Penggunaan</b>, lanjut ke <b>Tujuan Pembelajaran</b>,
+          kemudian pelajari <b>Materi K3</b> secara berurutan.</p>
+        <ul class="about-list">
+          <li><i class="fas fa-check"></i> Materi lengkap & terstruktur</li>
+          <li><i class="fas fa-check"></i> Video pembelajaran pendukung</li>
+          <li><i class="fas fa-check"></i> Latihan & kuis interaktif</li>
+          <li><i class="fas fa-check"></i> Hasil penilaian otomatis</li>
+        </ul>
+      </div>
+      <div class="about-img">
+        <img src="https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80"
+             alt="Praktik Bengkel" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== GALERI APD ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-shield-alt"></i> Galeri Alat Pelindung Diri (APD)</h2>
+    <p class="section-desc">Kenali APD wajib sebelum praktik di bengkel pemesinan.</p>
+    <div class="apd-gallery">
+      <div class="apd-card">
+        <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=400&q=80" alt="Kacamata Safety">
+        <h4>Kacamata Pelindung</h4>
+      </div>
+      <div class="apd-card">
+        <img src="https://images.unsplash.com/photo-1618354691373-d851c5c3a990?w=400&q=80" alt="Masker">
+        <h4>Masker</h4>
+      </div>
+      <div class="apd-card">
+        <img src="https://images.unsplash.com/photo-1591195853828-11db59a44f6b?w=400&q=80" alt="Sarung Tangan">
+        <h4>Sarung Tangan</h4>
+      </div>
+      <div class="apd-card">
+        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=400&q=80" alt="Sepatu Safety">
+        <h4>Sepatu Safety</h4>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CTA ===== -->
+  <div class="card cta-card reveal">
+    <div class="cta-content">
+      <h2><i class="fas fa-rocket"></i> Siap Memulai Pembelajaran?</h2>
+      <p>Pelajari materi K3 secara bertahap, kerjakan latihan & kuis, lalu lihat hasil Anda!</p>
+      <div class="cta-buttons">
+        <a href="petunjuk.html" class="btn-hero-primary">
+          <i class="fas fa-play"></i> Mulai Sekarang
+        </a>
+        <a href="kuis.html" class="btn-hero-secondary">
+          <i class="fas fa-clipboard-check"></i> Ikuti Kuis
+        </a>
+      </div>
+    </div>
   </div>
 
 </div>
 
+<!-- ============ BACK TO TOP ============ -->
+<button id="backToTop" title="Kembali ke atas">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
+      <p>Media Pembelajaran Berbasis Website pada Materi K3 bagi Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu Cepat</h4>
+      <a href="index.html">Beranda</a>
+      <a href="petunjuk.html">Petunjuk</a>
+      <a href="pengertian-k3.html">Materi K3</a>
+      <a href="kuis.html">Kuis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
+      <p><i class="fas fa-map-marker-alt"></i> Medan, Sumatera Utara</p>
+      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  </div>
 </footer>
 
 <script src="script.js"></script>
