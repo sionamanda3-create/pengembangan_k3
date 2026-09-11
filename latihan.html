@@ -3,179 +3,414 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Latihan - Media K3 Pemesinan</title>
+<title>Latihan Soal - Media K3 Pemesinan</title>
+<meta name="description" content="Latihan soal K3 berbasis website untuk siswa Teknik Pemesinan SMK Negeri 2 Medan">
 <link rel="stylesheet" href="style.css">
-<style>
-  .latihan-input {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #90caf9;
-    border-radius: 6px;
-    margin-top: 8px;
-    font-size: 14px;
-    transition: 0.3s;
-  }
-  .latihan-input:focus {
-    outline: none;
-    border-color: #1565c0;
-    box-shadow: 0 0 5px rgba(21,101,192,0.3);
-  }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-  <h1>Latihan Soal</h1>
-  <p>Media K3 — SMK Negeri 2 Medan</p>
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p>Memuat Halaman...</p>
+</div>
+
+<!-- ============ PROGRESS BAR ============ -->
+<div id="progress-bar"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area">
+      <div class="logo-icon">⚙️</div>
+      <div>
+        <h1>Media Pembelajaran K3</h1>
+        <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
+      </div>
+    </div>
+    <div class="header-badge">
+      <i class="fas fa-graduation-cap"></i> Skripsi R&D
+    </div>
+  </div>
 </header>
 
-<nav>
-  <a href="index.html">Beranda</a>
-  <a href="petunjuk.html">Petunjuk</a>
-  <a href="tujuan.html">Tujuan</a>
-  <a href="pengertian-k3.html">Materi K3</a>
-  <a href="video.html">Video</a>
-  <a href="latihan.html" class="active">Latihan</a>
-  <a href="kuis.html">Kuis</a>
-  <a href="evaluasi.html">Evaluasi</a>
-  <a href="hasil.html">Hasil</a>
-  <a href="profil.html">Profil</a>
+<!-- ============ NAVBAR ============ -->
+<nav class="main-nav">
+  <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+  <a href="petunjuk.html"><i class="fas fa-book-open"></i> Petunjuk</a>
+  <a href="tujuan.html"><i class="fas fa-bullseye"></i> Tujuan</a>
+  <a href="pengertian-k3.html"><i class="fas fa-tools"></i> Materi K3</a>
+  <a href="video.html"><i class="fas fa-play-circle"></i> Video</a>
+  <a href="latihan.html" class="active"><i class="fas fa-pen"></i> Latihan</a>
+  <a href="kuis.html"><i class="fas fa-clipboard-list"></i> Kuis</a>
+  <a href="evaluasi.html"><i class="fas fa-chart-bar"></i> Evaluasi</a>
+  <a href="hasil.html"><i class="fas fa-trophy"></i> Hasil</a>
+  <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
 </nav>
+
+<!-- ============ MINI HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-icon">
+      <i class="fas fa-pen"></i>
+    </div>
+    <h1>Latihan Soal</h1>
+    <p>Uji pemahaman Anda dengan 10 soal isian tentang K3</p>
+    <div class="breadcrumb">
+      <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+      <span>/</span>
+      <span class="current">Latihan</span>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="#f4f7fb"></path>
+    </svg>
+  </div>
+</section>
 
 <div class="container">
 
-  <!-- ===== INFO ===== -->
-  <div class="card">
-    <h2>✏️ Latihan Soal Isian</h2>
-    <p>Isilah jawaban pada kolom yang tersedia. Setelah selesai, klik tombol
-      <b>Cek Jawaban</b> untuk mengetahui jumlah jawaban benar Anda.</p>
+  <!-- ===== PROGRESS TRACKER ===== -->
+  <div class="card reveal progress-card">
+    <div class="progress-info">
+      <div class="progress-item">
+        <i class="fas fa-list-ol"></i>
+        <div>
+          <span class="progress-label">Total Soal</span>
+          <strong id="totalSoal">10</strong>
+        </div>
+      </div>
+      <div class="progress-item">
+        <i class="fas fa-check-circle"></i>
+        <div>
+          <span class="progress-label">Terjawab</span>
+          <strong id="terjawab">0</strong>
+        </div>
+      </div>
+      <div class="progress-item">
+        <i class="fas fa-clock"></i>
+        <div>
+          <span class="progress-label">Waktu</span>
+          <strong id="timer">00:00</strong>
+        </div>
+      </div>
+    </div>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
   </div>
 
-  <!-- ===== SOAL-SOAL ===== -->
-  <div class="card">
-    <h2>Soal Latihan</h2>
+  <!-- ===== INFO ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-info-circle"></i> Petunjuk Latihan</h2>
+    <p class="section-desc">Isilah jawaban pada kolom yang tersedia. Setelah selesai, klik tombol <b>Cek Jawaban</b> untuk mengetahui jumlah jawaban benar Anda.</p>
+    <ul class="info-list">
+      <li><i class="fas fa-check"></i> Terdapat <b>10 soal isian</b> terkait materi K3.</li>
+      <li><i class="fas fa-check"></i> Jawaban <b>tidak case-sensitive</b> (besar/kecil sama).</li>
+      <li><i class="fas fa-check"></i> Nilai minimal kelulusan adalah <b>75</b>.</li>
+    </ul>
+  </div>
 
-    <div class="soal">
-      <p>1. Alat pelindung diri yang melindungi mata saat menggerinda adalah ...</p>
-      <input class="latihan-input" data-kunci="kacamata|goggles|kacamata pelindung|kacamata safety">
-    </div>
+  <!-- ===== SOAL LATIHAN ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-pencil-alt"></i> Soal Latihan</h2>
 
-    <div class="soal">
-      <p>2. Rambu berwarna kuning menunjukkan tanda ...</p>
-      <input class="latihan-input" data-kunci="peringatan|warning">
-    </div>
+    <div class="latihan-list">
 
-    <div class="soal">
-      <p>3. Kotak yang berisi obat-obatan untuk pertolongan pertama disebut ...</p>
-      <input class="latihan-input" data-kunci="p3k|kotak p3k|kotak obat">
-    </div>
+      <!-- Soal 1 -->
+      <div class="soal-item">
+        <div class="soal-num">1</div>
+        <div class="soal-content">
+          <p>Alat pelindung diri yang melindungi mata saat menggerinda adalah ...</p>
+          <input class="latihan-input" data-kunci="kacamata|goggles|kacamata pelindung|kacamata safety" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
 
-    <div class="soal">
-      <p>4. Singkatan dari Alat Pelindung Diri adalah ...</p>
-      <input class="latihan-input" data-kunci="apd">
-    </div>
+      <!-- Soal 2 -->
+      <div class="soal-item">
+        <div class="soal-num">2</div>
+        <div class="soal-content">
+          <p>Rambu berwarna kuning menunjukkan tanda ...</p>
+          <input class="latihan-input" data-kunci="peringatan|warning" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
 
-    <div class="soal">
-      <p>5. Mesin yang digunakan untuk membuat ulir pada benda kerja adalah mesin ...</p>
-      <input class="latihan-input" data-kunci="bubut|mesin bubut">
-    </div>
+      <!-- Soal 3 -->
+      <div class="soal-item">
+        <div class="soal-num">3</div>
+        <div class="soal-content">
+          <p>Kotak yang berisi obat-obatan untuk pertolongan pertama disebut ...</p>
+          <input class="latihan-input" data-kunci="p3k|kotak p3k|kotak obat" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
 
-    <div class="soal">
-      <p>6. Undang-Undang yang mengatur K3 di Indonesia adalah UU No. ... Tahun 1970.</p>
-      <input class="latihan-input" data-kunci="1|satu">
-    </div>
+      <!-- Soal 4 -->
+      <div class="soal-item">
+        <div class="soal-num">4</div>
+        <div class="soal-content">
+          <p>Singkatan dari Alat Pelindung Diri adalah ...</p>
+          <input class="latihan-input" data-kunci="apd" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
 
-    <div class="soal">
-      <p>7. Rambu berwarna hijau menunjukkan tanda ...</p>
-      <input class="latihan-input" data-kunci="keselamatan|evakuasi|jalur evakuasi|selamat">
-    </div>
+      <!-- Soal 5 -->
+      <div class="soal-item">
+        <div class="soal-num">5</div>
+        <div class="soal-content">
+          <p>Mesin yang digunakan untuk membuat ulir pada benda kerja adalah mesin ...</p>
+          <input class="latihan-input" data-kunci="bubut|mesin bubut" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
 
-    <div class="soal">
-      <p>8. Mesin yang digunakan untuk membuat alur/permukaan rata pada benda kerja adalah mesin ...</p>
-      <input class="latihan-input" data-kunci="frais|mesin frais|milling">
-    </div>
+      <!-- Soal 6 -->
+      <div class="soal-item">
+        <div class="soal-num">6</div>
+        <div class="soal-content">
+          <p>Undang-Undang yang mengatur K3 di Indonesia adalah UU No. ... Tahun 1970.</p>
+          <input class="latihan-input" data-kunci="1|satu" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
 
-    <div class="soal">
-      <p>9. Alat pelindung diri untuk melindungi kaki saat bekerja di bengkel adalah ...</p>
-      <input class="latihan-input" data-kunci="sepatu safety|sepatu|safety shoes">
-    </div>
+      <!-- Soal 7 -->
+      <div class="soal-item">
+        <div class="soal-num">7</div>
+        <div class="soal-content">
+          <p>Rambu berwarna hijau menunjukkan tanda ...</p>
+          <input class="latihan-input" data-kunci="keselamatan|evakuasi|jalur evakuasi|selamat" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
 
-    <div class="soal">
-      <p>10. Singkatan dari Keselamatan dan Kesehatan Kerja adalah ...</p>
-      <input class="latihan-input" data-kunci="k3">
+      <!-- Soal 8 -->
+      <div class="soal-item">
+        <div class="soal-num">8</div>
+        <div class="soal-content">
+          <p>Mesin yang digunakan untuk membuat alur/permukaan rata pada benda kerja adalah mesin ...</p>
+          <input class="latihan-input" data-kunci="frais|mesin frais|milling" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Soal 9 -->
+      <div class="soal-item">
+        <div class="soal-num">9</div>
+        <div class="soal-content">
+          <p>Alat pelindung diri untuk melindungi kaki saat bekerja di bengkel adalah ...</p>
+          <input class="latihan-input" data-kunci="sepatu safety|sepatu|safety shoes" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
+
+      <!-- Soal 10 -->
+      <div class="soal-item">
+        <div class="soal-num">10</div>
+        <div class="soal-content">
+          <p>Singkatan dari Keselamatan dan Kesehatan Kerja adalah ...</p>
+          <input class="latihan-input" data-kunci="k3" placeholder="Ketik jawaban Anda di sini...">
+          <div class="soal-feedback"></div>
+        </div>
+      </div>
+
     </div>
 
     <!-- TOMBOL -->
-    <div style="margin-top:20px;">
-      <button class="btn" onclick="cekLatihan()">✓ Cek Jawaban</button>
-      <button class="btn btn-back" onclick="resetLatihan()">↺ Reset</button>
+    <div class="latihan-actions">
+      <button class="btn btn-check" onclick="cekLatihan()">
+        <i class="fas fa-check-circle"></i> Cek Jawaban
+      </button>
+      <button class="btn btn-reset" onclick="resetLatihan()">
+        <i class="fas fa-redo"></i> Reset
+      </button>
     </div>
   </div>
 
-  <!-- ===== HASIL SEMENTARA ===== -->
-  <div class="card" id="hasilLatihan" style="display:none;">
-    <h2>📊 Hasil Latihan</h2>
-    <p id="pesanHasil" style="font-size:18px; font-weight:600;"></p>
+  <!-- ===== HASIL ===== -->
+  <div class="card reveal hasil-card" id="hasilLatihan" style="display:none;">
+    <h2><i class="fas fa-chart-bar"></i> Hasil Latihan</h2>
+    <div class="hasil-latihan">
+      <div class="hasil-skor-box">
+        <div class="hasil-skor" id="skorLatihan">0</div>
+        <div class="hasil-label">Nilai Anda</div>
+      </div>
+      <div class="hasil-detail">
+        <p id="pesanHasil"></p>
+        <div class="predikat-box" id="predikatBox"></div>
+      </div>
+    </div>
   </div>
 
-  <!-- ===== NAVIGASI ===== -->
-  <a href="video.html" class="btn btn-back">← Video</a>
-  <a href="kuis.html" class="btn">Lanjut ke Kuis →</a>
+  <!-- ===== NAVIGASI BAWAH ===== -->
+  <div class="nav-bottom">
+    <a href="video.html" class="btn btn-back">
+      <i class="fas fa-arrow-left"></i> Video
+    </a>
+    <a href="kuis.html" class="btn">
+      Lanjut ke Kuis <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
 
 </div>
 
+<!-- ============ BACK TO TOP ============ -->
+<button id="backToTop" title="Kembali ke atas">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
+      <p>Media Pembelajaran Berbasis Website pada Materi K3 bagi Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu Cepat</h4>
+      <a href="index.html">Beranda</a>
+      <a href="petunjuk.html">Petunjuk</a>
+      <a href="pengertian-k3.html">Materi K3</a>
+      <a href="kuis.html">Kuis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
+      <p><i class="fas fa-map-marker-alt"></i> Medan, Sumatera Utara</p>
+      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  </div>
 </footer>
 
 <script src="script.js"></script>
 <script>
-// ===== Fungsi cek jawaban latihan (versi lebih baik) =====
-function cekLatihan() {
-  const inputs = document.querySelectorAll('.latihan-input');
-  let benar = 0;
+/* ============================================================
+   SCRIPT KHUSUS HALAMAN LATIHAN
+   ============================================================ */
 
-  inputs.forEach((inp) => {
+// ===== TIMER =====
+let detik = 0;
+const timerEl = document.getElementById('timer');
+setInterval(() => {
+  detik++;
+  const m = String(Math.floor(detik / 60)).padStart(2, '0');
+  const s = String(detik % 60).padStart(2, '0');
+  if (timerEl) timerEl.textContent = `${m}:${s}`;
+}, 1000);
+
+// ===== UPDATE PROGRESS =====
+const inputs = document.querySelectorAll('.latihan-input');
+const terjawabEl = document.getElementById('terjawab');
+const progressFill = document.getElementById('progressFill');
+
+inputs.forEach(inp => {
+  inp.addEventListener('input', updateProgress);
+});
+
+function updateProgress() {
+  const terisi = [...inputs].filter(i => i.value.trim() !== '').length;
+  if (terjawabEl) terjawabEl.textContent = terisi;
+  const percent = (terisi / inputs.length) * 100;
+  if (progressFill) progressFill.style.width = percent + '%';
+}
+
+// ===== CEK JAWABAN =====
+function cekLatihan() {
+  let benar = 0;
+  const total = inputs.length;
+
+  inputs.forEach((inp, idx) => {
     const kunci = inp.dataset.kunci.toLowerCase().split('|');
     const val = inp.value.trim().toLowerCase();
+    const parent = inp.closest('.soal-item');
+    const feedback = parent.querySelector('.soal-feedback');
+    const soalNum = parent.querySelector('.soal-num');
 
     if (val && kunci.includes(val)) {
-      inp.style.borderColor = '#4caf50';
-      inp.style.background = '#e8f5e9';
       benar++;
+      inp.classList.add('benar');
+      inp.classList.remove('salah');
+      soalNum.classList.add('benar');
+      soalNum.classList.remove('salah');
+      if (feedback) {
+        feedback.innerHTML = '<i class="fas fa-check-circle"></i> Benar!';
+        feedback.className = 'soal-feedback feedback-benar';
+      }
     } else {
-      inp.style.borderColor = '#f44336';
-      inp.style.background = '#ffebee';
+      inp.classList.add('salah');
+      inp.classList.remove('benar');
+      soalNum.classList.add('salah');
+      soalNum.classList.remove('benar');
+      if (feedback) {
+        feedback.innerHTML = '<i class="fas fa-times-circle"></i> Jawaban belum tepat';
+        feedback.className = 'soal-feedback feedback-salah';
+      }
     }
   });
 
-  const total = inputs.length;
   const nilai = Math.round((benar / total) * 100);
+  const hasilCard = document.getElementById('hasilLatihan');
+  const skorEl = document.getElementById('skorLatihan');
+  const pesanEl = document.getElementById('pesanHasil');
+  const predikatEl = document.getElementById('predikatBox');
 
-  const hasilBox = document.getElementById('hasilLatihan');
-  const pesan = document.getElementById('pesanHasil');
-  hasilBox.style.display = 'block';
+  hasilCard.style.display = 'block';
 
-  let predikat = '';
-  if (nilai >= 90) predikat = '🌟 Sangat Baik';
-  else if (nilai >= 75) predikat = '👍 Baik';
-  else if (nilai >= 60) predikat = '📖 Cukup';
-  else predikat = '💪 Perlu Belajar Lagi';
+  // Animasi skor
+  let current = 0;
+  const step = Math.max(1, Math.ceil(nilai / 40));
+  const timerSkor = setInterval(() => {
+    current += step;
+    if (current >= nilai) { current = nilai; clearInterval(timerSkor); }
+    skorEl.textContent = current;
+  }, 25);
 
-  pesan.innerHTML = `Jawaban benar: <b>${benar}</b> dari <b>${total}</b> soal<br>
-                     Nilai: <b>${nilai}</b> — ${predikat}`;
+  pesanEl.innerHTML = `Jawaban benar: <b>${benar}</b> dari <b>${total}</b> soal`;
 
-  hasilBox.scrollIntoView({ behavior: 'smooth' });
+  // Predikat
+  let predikat, warna, icon;
+  if (nilai >= 90) { predikat = 'Sangat Baik'; warna = 'predikat-a'; icon = 'fa-star'; }
+  else if (nilai >= 75) { predikat = 'Baik'; warna = 'predikat-b'; icon = 'fa-thumbs-up'; }
+  else if (nilai >= 60) { predikat = 'Cukup'; warna = 'predikat-c'; icon = 'fa-book'; }
+  else { predikat = 'Perlu Belajar Lagi'; warna = 'predikat-d'; icon = 'fa-book-reader'; }
+
+  predikatEl.innerHTML = `<i class="fas ${icon}"></i> ${predikat}`;
+  predikatEl.className = `predikat-box ${warna}`;
+
+  // Auto scroll
+  setTimeout(() => {
+    hasilCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
 }
 
-// ===== Reset latihan =====
+// ===== RESET =====
 function resetLatihan() {
-  document.querySelectorAll('.latihan-input').forEach((inp) => {
+  inputs.forEach(inp => {
     inp.value = '';
-    inp.style.borderColor = '#90caf9';
-    inp.style.background = '#fff';
+    inp.classList.remove('benar', 'salah');
   });
+
+  document.querySelectorAll('.soal-num').forEach(n => n.classList.remove('benar', 'salah'));
+  document.querySelectorAll('.soal-feedback').forEach(f => {
+    f.innerHTML = '';
+    f.className = 'soal-feedback';
+  });
+
   document.getElementById('hasilLatihan').style.display = 'none';
+  updateProgress();
+  detik = 0;
+  if (timerEl) timerEl.textContent = '00:00';
+
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 </script>
 </body>
