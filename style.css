@@ -1899,3 +1899,337 @@ footer {
     justify-content: center;
   }
 }
+/* ============================================================
+   MATERI HERO CARD — Halaman Materi K3
+   ============================================================ */
+.materi-hero-card {
+  padding: 0 !important;
+  overflow: hidden;
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+}
+
+.materi-hero-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  gap: 0;
+  align-items: stretch;
+}
+
+.materi-hero-img {
+  position: relative;
+  min-height: 320px;
+  overflow: hidden;
+}
+
+.materi-hero-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s;
+}
+
+.materi-hero-card:hover .materi-hero-img img {
+  transform: scale(1.05);
+}
+
+.materi-hero-badge {
+  position: absolute;
+  top: 20px; left: 20px;
+  background: var(--accent);
+  color: var(--dark);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 4px 15px rgba(255,179,0,0.4);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.materi-hero-text {
+  padding: 40px 35px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.materi-tag {
+  display: inline-block;
+  background: rgba(21,101,192,0.12);
+  color: var(--primary-dark);
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  width: fit-content;
+}
+
+.materi-hero-text h2 {
+  color: var(--primary-dark);
+  font-size: 28px;
+  border-left: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 15px;
+}
+
+.materi-hero-text p {
+  font-size: 14px;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 12px;
+}
+
+.materi-highlight {
+  background: #fff8e1;
+  border-left: 4px solid var(--accent);
+  padding: 14px 18px;
+  border-radius: 8px;
+  margin-top: 12px;
+  font-style: italic;
+  font-size: 13px;
+  color: #e65100;
+  display: flex;
+  gap: 10px;
+}
+
+.materi-highlight i {
+  color: var(--accent);
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   MATERI GRID — Daftar Sub-Materi
+   ============================================================ */
+.materi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.materi-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: #fff;
+  padding: 16px 18px;
+  border-radius: 12px;
+  text-decoration: none;
+  border: 2px solid #e3f2fd;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.materi-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--primary);
+  transition: width 0.3s;
+}
+
+.materi-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 25px rgba(21,101,192,0.12);
+}
+
+.materi-card:hover::before {
+  width: 6px;
+  background: var(--accent);
+}
+
+.materi-card.active-materi {
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+  border-color: var(--primary);
+}
+
+.materi-card.active-materi::before {
+  background: var(--accent);
+  width: 6px;
+}
+
+.materi-num {
+  flex-shrink: 0;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 13px;
+  box-shadow: 0 4px 12px rgba(21,101,192,0.25);
+  transition: all 0.3s;
+}
+
+.materi-card:hover .materi-num {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+  transform: rotate(-6deg) scale(1.08);
+}
+
+.materi-icon {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  background: #e3f2fd;
+  color: var(--primary);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.3s;
+}
+
+.materi-card:hover .materi-icon {
+  background: var(--primary);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+.materi-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.materi-info h4 {
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.materi-info p {
+  color: var(--gray);
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.materi-arrow {
+  color: var(--gray);
+  font-size: 14px;
+  transition: all 0.3s;
+  flex-shrink: 0;
+}
+
+.materi-card:hover .materi-arrow {
+  color: var(--accent);
+  transform: translateX(5px);
+}
+
+/* ============================================================
+   RINGKASAN — Grid Box
+   ============================================================ */
+.ringkasan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 18px;
+}
+
+.ringkasan-box {
+  background: linear-gradient(135deg, #fff, #f0f7ff);
+  padding: 22px 20px;
+  border-radius: 14px;
+  border: 2px solid #e3f2fd;
+  transition: all 0.3s;
+  text-align: center;
+}
+
+.ringkasan-box:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+  box-shadow: 0 12px 30px rgba(255,179,0,0.15);
+}
+
+.ringkasan-icon {
+  width: 55px;
+  height: 55px;
+  margin: 0 auto 14px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.ringkasan-box:hover .ringkasan-icon {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+  transform: rotate(-8deg) scale(1.1);
+}
+
+.ringkasan-box h4 {
+  color: var(--primary-dark);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.ringkasan-box p {
+  color: var(--gray);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   RESPONSIVE — Halaman Materi
+   ============================================================ */
+@media (max-width: 850px) {
+  .materi-hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .materi-hero-img {
+    min-height: 220px;
+  }
+
+  .materi-hero-text {
+    padding: 25px 22px;
+  }
+
+  .materi-hero-text h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 600px) {
+  .materi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .materi-info h4 {
+    font-size: 13px;
+  }
+
+  .ringkasan-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .ringkasan-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 18px;
+  }
+
+  .ringkasan-box h4 { font-size: 13px; }
+  .ringkasan-box p { font-size: 12px; }
+}
