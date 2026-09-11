@@ -1554,3 +1554,348 @@ footer {
   .capaian-info h4 { font-size: 14px; }
   .capaian-info p { font-size: 11px; }
 }
+/* ============================================================
+   PROGRESS TRACKER — Halaman Latihan
+   ============================================================ */
+.progress-card {
+  padding: 20px 25px !important;
+}
+
+.progress-info {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+.progress-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.progress-item > i {
+  font-size: 22px;
+  color: var(--primary);
+  background: #e3f2fd;
+  width: 45px;
+  height: 45px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.progress-label {
+  display: block;
+  font-size: 11px;
+  color: var(--gray);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+}
+
+.progress-item strong {
+  font-size: 18px;
+  color: var(--primary-dark);
+  font-weight: 700;
+}
+
+.progress-bar-wrapper {
+  width: 100%;
+  height: 10px;
+  background: #e3f2fd;
+  border-radius: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--primary), var(--accent));
+  border-radius: 50px;
+  transition: width 0.4s ease;
+  box-shadow: 0 0 10px rgba(255,179,0,0.4);
+}
+
+/* ============================================================
+   INFO LIST — Halaman Latihan
+   ============================================================ */
+.info-list {
+  list-style: none !important;
+  padding-left: 0 !important;
+  margin-top: 12px !important;
+}
+
+.info-list li {
+  padding: 8px 0;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+}
+
+.info-list i {
+  color: var(--success);
+  background: #e8f5e9;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+/* ============================================================
+   SOAL ITEM — Halaman Latihan
+   ============================================================ */
+.latihan-list {
+  display: grid;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.soal-item {
+  display: flex;
+  gap: 15px;
+  background: #f9fbff;
+  padding: 20px;
+  border-radius: 14px;
+  border-left: 4px solid var(--primary);
+  transition: all 0.4s;
+  animation: fadeIn 0.6s ease;
+}
+
+.soal-item:hover {
+  background: #f0f7ff;
+  box-shadow: 0 6px 20px rgba(21,101,192,0.08);
+}
+
+.soal-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(21,101,192,0.25);
+  transition: all 0.3s;
+}
+
+.soal-num.benar {
+  background: linear-gradient(135deg, var(--success), #66bb6a);
+  animation: pulse 0.6s;
+}
+
+.soal-num.salah {
+  background: linear-gradient(135deg, var(--danger), #ef5350);
+  animation: shake 0.5s;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.soal-content {
+  flex: 1;
+}
+
+.soal-content p {
+  font-size: 14px;
+  color: var(--primary-dark);
+  font-weight: 600;
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.latihan-input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #90caf9;
+  border-radius: 10px;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s;
+  background: #fff;
+}
+
+.latihan-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(21,101,192,0.12);
+}
+
+.latihan-input.benar {
+  border-color: var(--success);
+  background: #e8f5e9;
+  color: #2e7d32;
+  font-weight: 600;
+}
+
+.latihan-input.salah {
+  border-color: var(--danger);
+  background: #ffebee;
+  color: #c62828;
+  font-weight: 600;
+}
+
+.soal-feedback {
+  margin-top: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  display: none;
+  align-items: center;
+  gap: 6px;
+}
+
+.soal-feedback.feedback-benar {
+  display: flex;
+  color: var(--success);
+}
+
+.soal-feedback.feedback-salah {
+  display: flex;
+  color: var(--danger);
+}
+
+/* ============================================================
+   TOMBOL AKSI — Halaman Latihan
+   ============================================================ */
+.latihan-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 25px;
+  flex-wrap: wrap;
+}
+
+.btn-check {
+  background: var(--success) !important;
+  box-shadow: 0 4px 15px rgba(76,175,80,0.35) !important;
+}
+
+.btn-check:hover {
+  background: #388e3c !important;
+  color: #fff !important;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 25px rgba(76,175,80,0.5) !important;
+}
+
+.btn-reset {
+  background: #78909c !important;
+}
+
+.btn-reset:hover {
+  background: #546e7a !important;
+  color: #fff !important;
+}
+
+/* ============================================================
+   HASIL LATIHAN — Halaman Latihan
+   ============================================================ */
+.hasil-card {
+  animation: fadeInUp 0.6s ease;
+}
+
+.hasil-latihan {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+  border-radius: 14px;
+}
+
+.hasil-skor-box {
+  text-align: center;
+  background: #fff;
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: var(--shadow-md);
+}
+
+.hasil-skor {
+  font-size: 72px;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1;
+}
+
+.hasil-label {
+  font-size: 13px;
+  color: var(--gray);
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.hasil-detail p {
+  font-size: 16px;
+  color: var(--primary-dark);
+  margin-bottom: 15px;
+}
+
+.predikat-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 26px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.predikat-a { background: linear-gradient(135deg, #c8e6c9, #81c784); color: #1b5e20; }
+.predikat-b { background: linear-gradient(135deg, #bbdefb, #64b5f6); color: #0d47a1; }
+.predikat-c { background: linear-gradient(135deg, #fff9c4, #fff176); color: #f57f17; }
+.predikat-d { background: linear-gradient(135deg, #ffcdd2, #ef9a9a); color: #b71c1c; }
+
+/* ============================================================
+   RESPONSIVE — Halaman Latihan
+   ============================================================ */
+@media (max-width: 700px) {
+  .hasil-latihan {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .hasil-skor { font-size: 56px; }
+
+  .soal-item {
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .soal-num {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .latihan-actions {
+    flex-direction: column;
+  }
+
+  .latihan-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
