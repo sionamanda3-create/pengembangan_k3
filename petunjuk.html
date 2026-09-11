@@ -4,100 +4,297 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Petunjuk Penggunaan - Media K3 Pemesinan</title>
+<meta name="description" content="Petunjuk penggunaan media pembelajaran K3 berbasis website untuk siswa Teknik Pemesinan SMK Negeri 2 Medan">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-  <h1>Petunjuk Penggunaan</h1>
-  <p>Media K3 — SMK Negeri 2 Medan</p>
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p>Memuat Halaman...</p>
+</div>
+
+<!-- ============ PROGRESS BAR ============ -->
+<div id="progress-bar"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area">
+      <div class="logo-icon">⚙️</div>
+      <div>
+        <h1>Media Pembelajaran K3</h1>
+        <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
+      </div>
+    </div>
+    <div class="header-badge">
+      <i class="fas fa-graduation-cap"></i> Skripsi R&D
+    </div>
+  </div>
 </header>
 
-<nav>
-  <a href="index.html">Beranda</a>
-  <a href="petunjuk.html" class="active">Petunjuk</a>
-  <a href="tujuan.html">Tujuan</a>
-  <a href="pengertian-k3.html">Materi K3</a>
-  <a href="video.html">Video</a>
-  <a href="latihan.html">Latihan</a>
-  <a href="kuis.html">Kuis</a>
-  <a href="evaluasi.html">Evaluasi</a>
-  <a href="hasil.html">Hasil</a>
-  <a href="profil.html">Profil</a>
+<!-- ============ NAVBAR ============ -->
+<nav class="main-nav">
+  <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+  <a href="petunjuk.html" class="active"><i class="fas fa-book-open"></i> Petunjuk</a>
+  <a href="tujuan.html"><i class="fas fa-bullseye"></i> Tujuan</a>
+  <a href="pengertian-k3.html"><i class="fas fa-tools"></i> Materi K3</a>
+  <a href="video.html"><i class="fas fa-play-circle"></i> Video</a>
+  <a href="latihan.html"><i class="fas fa-pen"></i> Latihan</a>
+  <a href="kuis.html"><i class="fas fa-clipboard-list"></i> Kuis</a>
+  <a href="evaluasi.html"><i class="fas fa-chart-bar"></i> Evaluasi</a>
+  <a href="hasil.html"><i class="fas fa-trophy"></i> Hasil</a>
+  <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
 </nav>
+
+<!-- ============ MINI HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-icon">
+      <i class="fas fa-book-open"></i>
+    </div>
+    <h1>Petunjuk Penggunaan</h1>
+    <p>Panduan lengkap menggunakan media pembelajaran K3</p>
+    <div class="breadcrumb">
+      <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+      <span>/</span>
+      <span class="current">Petunjuk</span>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="#f4f7fb"></path>
+    </svg>
+  </div>
+</section>
 
 <div class="container">
 
-  <!-- ===== CARA MENGGUNAKAN ===== -->
-  <div class="card">
-    <h2>📖 Cara Menggunakan Media</h2>
-    <p>Ikuti langkah-langkah berikut agar Anda dapat menggunakan media
-      pembelajaran ini secara optimal:</p>
-    <ol>
-      <li>Buka halaman <b>Beranda</b> untuk melihat gambaran umum media.</li>
-      <li>Baca <b>Petunjuk Penggunaan</b> agar dapat menggunakan media dengan benar.</li>
-      <li>Pelajari <b>Tujuan Pembelajaran</b> agar mengetahui capaian yang diharapkan.</li>
-      <li>Pilih menu <b>Materi K3</b> dan pelajari tiap sub-materi secara berurutan:
-        <ul>
-          <li>Pengertian K3</li>
-          <li>Tujuan dan Manfaat K3</li>
-          <li>Bahaya dan Risiko Kerja</li>
-          <li>Alat Pelindung Diri (APD)</li>
-          <li>Rambu-Rambu K3</li>
-          <li>K3 di Bengkel Pemesinan</li>
-          <li>K3 Mesin Bubut</li>
-          <li>K3 Mesin Frais</li>
-          <li>K3 Mesin Bor</li>
-          <li>K3 Mesin Gerinda</li>
-        </ul>
-      </li>
-      <li>Tonton <b>Video Pembelajaran</b> untuk memperkuat pemahaman materi.</li>
-      <li>Kerjakan <b>Latihan</b> sebagai pemantapan materi.</li>
-      <li>Kerjakan <b>Kuis</b> untuk mengukur pemahaman Anda.</li>
-      <li>Lakukan <b>Evaluasi</b> sebagai penilaian akhir pembelajaran.</li>
-      <li>Lihat menu <b>Hasil</b> untuk mengetahui nilai dan status kelulusan Anda.</li>
-    </ol>
+  <!-- ===== 1. CARA MENGGUNAKAN — TIMELINE ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-list-ol"></i> Cara Menggunakan Media</h2>
+    <p class="section-desc">Ikuti langkah-langkah berikut agar Anda dapat menggunakan media pembelajaran ini secara optimal.</p>
+
+    <div class="step-timeline">
+
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-body">
+          <h3>Buka Halaman Beranda</h3>
+          <p>Lihat gambaran umum media pembelajaran dan menu-menu yang tersedia.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-body">
+          <h3>Baca Petunjuk Penggunaan</h3>
+          <p>Pahami cara menggunakan media dengan benar agar pembelajaran berjalan lancar.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-body">
+          <h3>Pelajari Tujuan Pembelajaran</h3>
+          <p>Ketahui capaian yang diharapkan setelah mempelajari materi K3.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">4</div>
+        <div class="step-body">
+          <h3>Pelajari Materi K3</h3>
+          <p>Pilih menu <b>Materi K3</b> dan pelajari 10 sub-materi secara berurutan:</p>
+          <div class="sub-materi-grid">
+            <a href="pengertian-k3.html"><i class="fas fa-book"></i> Pengertian K3</a>
+            <a href="tujuan-manfaat-k3.html"><i class="fas fa-bullseye"></i> Tujuan & Manfaat K3</a>
+            <a href="bahaya-risiko.html"><i class="fas fa-exclamation-triangle"></i> Bahaya & Risiko Kerja</a>
+            <a href="apd.html"><i class="fas fa-shield-alt"></i> Alat Pelindung Diri</a>
+            <a href="rambu-k3.html"><i class="fas fa-traffic-light"></i> Rambu-Rambu K3</a>
+            <a href="k3-bengkel.html"><i class="fas fa-industry"></i> K3 Bengkel Pemesinan</a>
+            <a href="k3-bubut.html"><i class="fas fa-cog"></i> K3 Mesin Bubut</a>
+            <a href="k3-frais.html"><i class="fas fa-cogs"></i> K3 Mesin Frais</a>
+            <a href="k3-bor.html"><i class="fas fa-screwdriver"></i> K3 Mesin Bor</a>
+            <a href="k3-gerinda.html"><i class="fas fa-circle-notch"></i> K3 Mesin Gerinda</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">5</div>
+        <div class="step-body">
+          <h3>Tonton Video Pembelajaran</h3>
+          <p>Perkuat pemahaman Anda dengan video yang tersedia di menu <b>Video</b>.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">6</div>
+        <div class="step-body">
+          <h3>Kerjakan Latihan</h3>
+          <p>Uji pemahaman Anda dengan soal isian di menu <b>Latihan</b>.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">7</div>
+        <div class="step-body">
+          <h3>Kerjakan Kuis</h3>
+          <p>Ukur pemahaman Anda dengan 10 soal pilihan ganda di menu <b>Kuis</b>.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">8</div>
+        <div class="step-body">
+          <h3>Lakukan Evaluasi</h3>
+          <p>Lakukan penilaian akhir di menu <b>Evaluasi</b> sebagai tolak ukur ketercapaian.</p>
+        </div>
+      </div>
+
+      <div class="step-item">
+        <div class="step-number">9</div>
+        <div class="step-body">
+          <h3>Lihat Hasil</h3>
+          <p>Cek nilai dan status kelulusan Anda di menu <b>Hasil</b>. Nilai minimal kelulusan adalah <b>75</b>.</p>
+        </div>
+      </div>
+
+    </div>
   </div>
 
-  <!-- ===== TOMBOL NAVIGASI ===== -->
-  <div class="card">
-    <h2>🧭 Navigasi</h2>
-    <p>Gunakan <b>menu navigasi</b> di bagian atas halaman untuk berpindah
-      antar menu. Tombol <b>← Kembali</b> di bagian bawah akan membawa Anda
-      ke halaman sebelumnya.</p>
+  <!-- ===== 2. NAVIGASI ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-compass"></i> Navigasi</h2>
+    <p class="section-desc">Pelajari cara berpindah antar halaman dengan mudah.</p>
+    <div class="info-grid">
+      <div class="info-box">
+        <div class="info-icon"><i class="fas fa-bars"></i></div>
+        <h4>Menu Navigasi Atas</h4>
+        <p>Gunakan menu di bagian atas halaman untuk berpindah antar menu utama.</p>
+      </div>
+      <div class="info-box">
+        <div class="info-icon"><i class="fas fa-arrow-left"></i></div>
+        <h4>Tombol Kembali</h4>
+        <p>Tombol <b>← Kembali</b> di bagian bawah akan membawa Anda ke halaman sebelumnya.</p>
+      </div>
+      <div class="info-box">
+        <div class="info-icon"><i class="fas fa-arrow-right"></i></div>
+        <h4>Tombol Selanjutnya</h4>
+        <p>Tombol <b>Selanjutnya →</b> akan membawa Anda ke halaman berikutnya secara berurutan.</p>
+      </div>
+    </div>
   </div>
 
-  <!-- ===== PERSYARATAN ===== -->
-  <div class="card">
-    <h2>💻 Persyaratan Penggunaan</h2>
-    <ul>
-      <li><b>Perangkat:</b> Laptop, komputer, atau smartphone.</li>
-      <li><b>Browser:</b> Google Chrome, Microsoft Edge, atau Mozilla Firefox versi terbaru.</li>
-      <li><b>Koneksi internet:</b> Diperlukan untuk menonton video pembelajaran.</li>
-      <li><b>Audio:</b> Gunakan speaker atau earphone saat menonton video.</li>
-    </ul>
+  <!-- ===== 3. PERSYARATAN ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-laptop"></i> Persyaratan Penggunaan</h2>
+    <p class="section-desc">Pastikan perangkat dan koneksi Anda memenuhi syarat berikut.</p>
+    <div class="req-grid">
+      <div class="req-item">
+        <i class="fas fa-desktop"></i>
+        <div>
+          <h4>Perangkat</h4>
+          <p>Laptop, komputer, atau smartphone</p>
+        </div>
+      </div>
+      <div class="req-item">
+        <i class="fas fa-globe"></i>
+        <div>
+          <h4>Browser</h4>
+          <p>Chrome, Edge, atau Firefox versi terbaru</p>
+        </div>
+      </div>
+      <div class="req-item">
+        <i class="fas fa-wifi"></i>
+        <div>
+          <h4>Internet</h4>
+          <p>Koneksi stabil untuk menonton video</p>
+        </div>
+      </div>
+      <div class="req-item">
+        <i class="fas fa-headphones"></i>
+        <div>
+          <h4>Audio</h4>
+          <p>Speaker atau earphone untuk video</p>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <!-- ===== TIPS BELAJAR ===== -->
-  <div class="card">
-    <h2>💡 Tips Belajar Efektif</h2>
-    <ul>
-      <li>Pelajari materi secara berurutan dari awal hingga akhir.</li>
-      <li>Catat hal-hal penting yang Anda temukan di setiap materi.</li>
-      <li>Kerjakan latihan tanpa melihat kunci jawaban terlebih dahulu.</li>
-      <li>Ulangi materi yang belum Anda pahami.</li>
-      <li>Diskusikan dengan guru atau teman jika ada yang kurang jelas.</li>
-    </ul>
+  <!-- ===== 4. TIPS BELAJAR ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-lightbulb"></i> Tips Belajar Efektif</h2>
+    <p class="section-desc">Agar pembelajaran Anda lebih maksimal, ikuti tips berikut.</p>
+    <div class="tips-list">
+      <div class="tip-item">
+        <div class="tip-icon"><i class="fas fa-check"></i></div>
+        <p>Pelajari materi secara <b>berurutan</b> dari awal hingga akhir.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon"><i class="fas fa-check"></i></div>
+        <p>Catat hal-hal penting yang Anda temukan di setiap materi.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon"><i class="fas fa-check"></i></div>
+        <p>Kerjakan latihan <b>tanpa melihat kunci jawaban</b> terlebih dahulu.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon"><i class="fas fa-check"></i></div>
+        <p>Ulangi materi yang belum Anda pahami sampai benar-benar mengerti.</p>
+      </div>
+      <div class="tip-item">
+        <div class="tip-icon"><i class="fas fa-check"></i></div>
+        <p>Diskusikan dengan guru atau teman jika ada yang kurang jelas.</p>
+      </div>
+    </div>
   </div>
 
-  <!-- ===== TOMBOL NAVIGASI BAWAH ===== -->
-  <a href="index.html" class="btn btn-back">← Beranda</a>
-  <a href="tujuan.html" class="btn">Selanjutnya →</a>
+  <!-- ===== NAVIGASI BAWAH ===== -->
+  <div class="nav-bottom">
+    <a href="index.html" class="btn btn-back">
+      <i class="fas fa-arrow-left"></i> Beranda
+    </a>
+    <a href="tujuan.html" class="btn">
+      Selanjutnya <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
 
 </div>
 
+<!-- ============ BACK TO TOP ============ -->
+<button id="backToTop" title="Kembali ke atas">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
+      <p>Media Pembelajaran Berbasis Website pada Materi K3 bagi Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu Cepat</h4>
+      <a href="index.html">Beranda</a>
+      <a href="petunjuk.html">Petunjuk</a>
+      <a href="pengertian-k3.html">Materi K3</a>
+      <a href="kuis.html">Kuis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
+      <p><i class="fas fa-map-marker-alt"></i> Medan, Sumatera Utara</p>
+      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  </div>
 </footer>
 
 <script src="script.js"></script>
