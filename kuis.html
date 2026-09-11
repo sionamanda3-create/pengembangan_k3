@@ -3,165 +3,458 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kuis - Media K3 Pemesinan</title>
+<title>Kuis K3 - Media K3 Pemesinan</title>
+<meta name="description" content="Kuis pilihan ganda K3 untuk siswa Teknik Pemesinan SMK Negeri 2 Medan">
 <link rel="stylesheet" href="style.css">
-<style>
-  .soal label {
-    display: block;
-    padding: 10px 14px;
-    margin: 6px 0;
-    border-radius: 8px;
-    cursor: pointer;
-    border: 2px solid #e3f2fd;
-    transition: 0.2s;
-  }
-  .soal label:hover {
-    background: #e3f2fd;
-    border-color: #90caf9;
-  }
-  .soal input[type="radio"] {
-    margin-right: 8px;
-  }
-  .soal input[type="radio"]:checked + span {
-    font-weight: 600;
-    color: #1565c0;
-  }
-</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-  <h1>Kuis K3</h1>
-  <p>Pilihan Ganda — 10 Soal</p>
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p>Memuat Halaman...</p>
+</div>
+
+<!-- ============ PROGRESS BAR ============ -->
+<div id="progress-bar"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area">
+      <div class="logo-icon">⚙️</div>
+      <div>
+        <h1>Media Pembelajaran K3</h1>
+        <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
+      </div>
+    </div>
+    <div class="header-badge">
+      <i class="fas fa-graduation-cap"></i> Skripsi R&D
+    </div>
+  </div>
 </header>
 
-<nav>
-  <a href="index.html">Beranda</a>
-  <a href="petunjuk.html">Petunjuk</a>
-  <a href="tujuan.html">Tujuan</a>
-  <a href="pengertian-k3.html">Materi K3</a>
-  <a href="video.html">Video</a>
-  <a href="latihan.html">Latihan</a>
-  <a href="kuis.html" class="active">Kuis</a>
-  <a href="evaluasi.html">Evaluasi</a>
-  <a href="hasil.html">Hasil</a>
-  <a href="profil.html">Profil</a>
+<!-- ============ NAVBAR ============ -->
+<nav class="main-nav">
+  <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+  <a href="petunjuk.html"><i class="fas fa-book-open"></i> Petunjuk</a>
+  <a href="tujuan.html"><i class="fas fa-bullseye"></i> Tujuan</a>
+  <a href="pengertian-k3.html"><i class="fas fa-tools"></i> Materi K3</a>
+  <a href="video.html"><i class="fas fa-play-circle"></i> Video</a>
+  <a href="latihan.html"><i class="fas fa-pen"></i> Latihan</a>
+  <a href="kuis.html" class="active"><i class="fas fa-clipboard-list"></i> Kuis</a>
+  <a href="evaluasi.html"><i class="fas fa-chart-bar"></i> Evaluasi</a>
+  <a href="hasil.html"><i class="fas fa-trophy"></i> Hasil</a>
+  <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
 </nav>
+
+<!-- ============ MINI HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-icon">
+      <i class="fas fa-clipboard-list"></i>
+    </div>
+    <h1>Kuis K3</h1>
+    <p>Pilihan Ganda — 10 Soal untuk menguji pemahaman Anda</p>
+    <div class="breadcrumb">
+      <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+      <span>/</span>
+      <span class="current">Kuis</span>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="#f4f7fb"></path>
+    </svg>
+  </div>
+</section>
 
 <div class="container">
 
-  <!-- ===== INFO ===== -->
-  <div class="card">
-    <h2>📝 Petunjuk Kuis</h2>
-    <ul>
-      <li>Kuis terdiri dari <b>10 soal pilihan ganda</b>.</li>
-      <li>Pilih satu jawaban yang paling benar pada setiap soal.</li>
-      <li>Nilai minimal kelulusan adalah <b>75</b>.</li>
-      <li>Setelah selesai, klik tombol <b>Kirim Jawaban</b>.</li>
+  <!-- ===== PROGRESS TRACKER ===== -->
+  <div class="card reveal progress-card">
+    <div class="progress-info">
+      <div class="progress-item">
+        <i class="fas fa-list-ol"></i>
+        <div>
+          <span class="progress-label">Total Soal</span>
+          <strong id="totalSoal">10</strong>
+        </div>
+      </div>
+      <div class="progress-item">
+        <i class="fas fa-check-circle"></i>
+        <div>
+          <span class="progress-label">Terjawab</span>
+          <strong id="terjawab">0</strong>
+        </div>
+      </div>
+      <div class="progress-item">
+        <i class="fas fa-clock"></i>
+        <div>
+          <span class="progress-label">Waktu</span>
+          <strong id="timer">00:00</strong>
+        </div>
+      </div>
+    </div>
+    <div class="progress-bar-wrapper">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+  </div>
+
+  <!-- ===== PETUNJUK ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-info-circle"></i> Petunjuk Kuis</h2>
+    <ul class="info-list">
+      <li><i class="fas fa-check"></i> Kuis terdiri dari <b>10 soal pilihan ganda</b>.</li>
+      <li><i class="fas fa-check"></i> Pilih satu jawaban yang paling benar pada setiap soal.</li>
+      <li><i class="fas fa-check"></i> Nilai minimal kelulusan adalah <b>75</b>.</li>
+      <li><i class="fas fa-check"></i> Setelah selesai, klik tombol <b>Kirim Jawaban</b>.</li>
     </ul>
   </div>
 
   <!-- ===== FORM KUIS ===== -->
-  <div class="card">
-    <h2>Kerjakan Soal Berikut</h2>
+  <div class="card reveal">
+    <h2><i class="fas fa-pencil-alt"></i> Kerjakan Soal Berikut</h2>
+
     <form id="formKuis" onsubmit="event.preventDefault(); submitKuis();">
 
-      <div class="soal">
-        <p>1. K3 adalah singkatan dari ...</p>
-        <label><input type="radio" name="q1" value="a"><span>Keselamatan Kerja Karyawan</span></label>
-        <label><input type="radio" name="q1" value="b"><span>Keselamatan dan Kesehatan Kerja</span></label>
-        <label><input type="radio" name="q1" value="c"><span>Kesehatan Karyawan Kerja</span></label>
-        <label><input type="radio" name="q1" value="d"><span>Kesejahteraan Kerja Karyawan</span></label>
+      <!-- SOAL 1 -->
+      <div class="soal-item-kuis" data-soal="q1">
+        <div class="soal-num">1</div>
+        <div class="soal-content">
+          <p>K3 adalah singkatan dari ...</p>
+          <label class="opsi"><input type="radio" name="q1" value="a"><span>Keselamatan Kerja Karyawan</span></label>
+          <label class="opsi"><input type="radio" name="q1" value="b"><span>Keselamatan dan Kesehatan Kerja</span></label>
+          <label class="opsi"><input type="radio" name="q1" value="c"><span>Kesehatan Karyawan Kerja</span></label>
+          <label class="opsi"><input type="radio" name="q1" value="d"><span>Kesejahteraan Kerja Karyawan</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>2. Undang-Undang yang mengatur K3 di Indonesia adalah ...</p>
-        <label><input type="radio" name="q2" value="a"><span>UU No. 13 Tahun 2003</span></label>
-        <label><input type="radio" name="q2" value="b"><span>UU No. 20 Tahun 2003</span></label>
-        <label><input type="radio" name="q2" value="c"><span>UU No. 1 Tahun 1970</span></label>
-        <label><input type="radio" name="q2" value="d"><span>UU No. 2 Tahun 2003</span></label>
+      <!-- SOAL 2 -->
+      <div class="soal-item-kuis" data-soal="q2">
+        <div class="soal-num">2</div>
+        <div class="soal-content">
+          <p>Undang-Undang yang mengatur K3 di Indonesia adalah ...</p>
+          <label class="opsi"><input type="radio" name="q2" value="a"><span>UU No. 13 Tahun 2003</span></label>
+          <label class="opsi"><input type="radio" name="q2" value="b"><span>UU No. 20 Tahun 2003</span></label>
+          <label class="opsi"><input type="radio" name="q2" value="c"><span>UU No. 1 Tahun 1970</span></label>
+          <label class="opsi"><input type="radio" name="q2" value="d"><span>UU No. 2 Tahun 2003</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>3. Alat pelindung diri untuk melindungi mata adalah ...</p>
-        <label><input type="radio" name="q3" value="a"><span>Kacamata pelindung</span></label>
-        <label><input type="radio" name="q3" value="b"><span>Sarung tangan</span></label>
-        <label><input type="radio" name="q3" value="c"><span>Helm</span></label>
-        <label><input type="radio" name="q3" value="d"><span>Sepatu safety</span></label>
+      <!-- SOAL 3 -->
+      <div class="soal-item-kuis" data-soal="q3">
+        <div class="soal-num">3</div>
+        <div class="soal-content">
+          <p>Alat pelindung diri untuk melindungi mata adalah ...</p>
+          <label class="opsi"><input type="radio" name="q3" value="a"><span>Kacamata pelindung</span></label>
+          <label class="opsi"><input type="radio" name="q3" value="b"><span>Sarung tangan</span></label>
+          <label class="opsi"><input type="radio" name="q3" value="c"><span>Helm</span></label>
+          <label class="opsi"><input type="radio" name="q3" value="d"><span>Sepatu safety</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>4. Rambu berwarna hijau menunjukkan ...</p>
-        <label><input type="radio" name="q4" value="a"><span>Larangan</span></label>
-        <label><input type="radio" name="q4" value="b"><span>Peringatan</span></label>
-        <label><input type="radio" name="q4" value="c"><span>Perintah</span></label>
-        <label><input type="radio" name="q4" value="d"><span>Keselamatan / jalur evakuasi</span></label>
+      <!-- SOAL 4 -->
+      <div class="soal-item-kuis" data-soal="q4">
+        <div class="soal-num">4</div>
+        <div class="soal-content">
+          <p>Rambu berwarna hijau menunjukkan ...</p>
+          <label class="opsi"><input type="radio" name="q4" value="a"><span>Larangan</span></label>
+          <label class="opsi"><input type="radio" name="q4" value="b"><span>Peringatan</span></label>
+          <label class="opsi"><input type="radio" name="q4" value="c"><span>Perintah</span></label>
+          <label class="opsi"><input type="radio" name="q4" value="d"><span>Keselamatan / jalur evakuasi</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>5. Berikut ini yang <b>bukan</b> termasuk Alat Pelindung Diri (APD) adalah ...</p>
-        <label><input type="radio" name="q5" value="a"><span>Helm</span></label>
-        <label><input type="radio" name="q5" value="b"><span>Kunci pas</span></label>
-        <label><input type="radio" name="q5" value="c"><span>Sarung tangan</span></label>
-        <label><input type="radio" name="q5" value="d"><span>Sepatu safety</span></label>
+      <!-- SOAL 5 -->
+      <div class="soal-item-kuis" data-soal="q5">
+        <div class="soal-num">5</div>
+        <div class="soal-content">
+          <p>Berikut ini yang <b>bukan</b> termasuk Alat Pelindung Diri (APD) adalah ...</p>
+          <label class="opsi"><input type="radio" name="q5" value="a"><span>Helm</span></label>
+          <label class="opsi"><input type="radio" name="q5" value="b"><span>Kunci pas</span></label>
+          <label class="opsi"><input type="radio" name="q5" value="c"><span>Sarung tangan</span></label>
+          <label class="opsi"><input type="radio" name="q5" value="d"><span>Sepatu safety</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>6. Tujuan utama penerapan K3 di bengkel adalah ...</p>
-        <label><input type="radio" name="q6" value="a"><span>Mencegah kecelakaan kerja</span></label>
-        <label><input type="radio" name="q6" value="b"><span>Mempercepat pekerjaan</span></label>
-        <label><input type="radio" name="q6" value="c"><span>Menambah biaya produksi</span></label>
-        <label><input type="radio" name="q6" value="d"><span>Mengurangi jumlah karyawan</span></label>
+      <!-- SOAL 6 -->
+      <div class="soal-item-kuis" data-soal="q6">
+        <div class="soal-num">6</div>
+        <div class="soal-content">
+          <p>Tujuan utama penerapan K3 di bengkel adalah ...</p>
+          <label class="opsi"><input type="radio" name="q6" value="a"><span>Mencegah kecelakaan kerja</span></label>
+          <label class="opsi"><input type="radio" name="q6" value="b"><span>Mempercepat pekerjaan</span></label>
+          <label class="opsi"><input type="radio" name="q6" value="c"><span>Menambah biaya produksi</span></label>
+          <label class="opsi"><input type="radio" name="q6" value="d"><span>Mengurangi jumlah karyawan</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>7. Mesin yang digunakan untuk membuat ulir pada benda kerja adalah mesin ...</p>
-        <label><input type="radio" name="q7" value="a"><span>Bor</span></label>
-        <label><input type="radio" name="q7" value="b"><span>Gerinda</span></label>
-        <label><input type="radio" name="q7" value="c"><span>Bubut</span></label>
-        <label><input type="radio" name="q7" value="d"><span>Frais</span></label>
+      <!-- SOAL 7 -->
+      <div class="soal-item-kuis" data-soal="q7">
+        <div class="soal-num">7</div>
+        <div class="soal-content">
+          <p>Mesin yang digunakan untuk membuat ulir pada benda kerja adalah mesin ...</p>
+          <label class="opsi"><input type="radio" name="q7" value="a"><span>Bor</span></label>
+          <label class="opsi"><input type="radio" name="q7" value="b"><span>Gerinda</span></label>
+          <label class="opsi"><input type="radio" name="q7" value="c"><span>Bubut</span></label>
+          <label class="opsi"><input type="radio" name="q7" value="d"><span>Frais</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>8. Saat mengoperasikan mesin bubut, hal yang <b>tidak boleh</b> dilakukan adalah ...</p>
-        <label><input type="radio" name="q8" value="a"><span>Menggunakan kacamata pelindung</span></label>
-        <label><input type="radio" name="q8" value="b"><span>Menggunakan sarung tangan</span></label>
-        <label><input type="radio" name="q8" value="c"><span>Mengikat rambut panjang</span></label>
-        <label><input type="radio" name="q8" value="d"><span>Memastikan benda kerja terpasang kuat</span></label>
+      <!-- SOAL 8 -->
+      <div class="soal-item-kuis" data-soal="q8">
+        <div class="soal-num">8</div>
+        <div class="soal-content">
+          <p>Saat mengoperasikan mesin bubut, hal yang <b>tidak boleh</b> dilakukan adalah ...</p>
+          <label class="opsi"><input type="radio" name="q8" value="a"><span>Menggunakan kacamata pelindung</span></label>
+          <label class="opsi"><input type="radio" name="q8" value="b"><span>Menggunakan sarung tangan</span></label>
+          <label class="opsi"><input type="radio" name="q8" value="c"><span>Mengikat rambut panjang</span></label>
+          <label class="opsi"><input type="radio" name="q8" value="d"><span>Memastikan benda kerja terpasang kuat</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>9. Rambu berwarna merah menunjukkan tanda ...</p>
-        <label><input type="radio" name="q9" value="a"><span>Keselamatan</span></label>
-        <label><input type="radio" name="q9" value="b"><span>Peringatan</span></label>
-        <label><input type="radio" name="q9" value="c"><span>Perintah</span></label>
-        <label><input type="radio" name="q9" value="d"><span>Larangan / bahaya</span></label>
+      <!-- SOAL 9 -->
+      <div class="soal-item-kuis" data-soal="q9">
+        <div class="soal-num">9</div>
+        <div class="soal-content">
+          <p>Rambu berwarna merah menunjukkan tanda ...</p>
+          <label class="opsi"><input type="radio" name="q9" value="a"><span>Keselamatan</span></label>
+          <label class="opsi"><input type="radio" name="q9" value="b"><span>Peringatan</span></label>
+          <label class="opsi"><input type="radio" name="q9" value="c"><span>Perintah</span></label>
+          <label class="opsi"><input type="radio" name="q9" value="d"><span>Larangan / bahaya</span></label>
+        </div>
       </div>
 
-      <div class="soal">
-        <p>10. Alat yang digunakan untuk memadamkan api ringan di bengkel adalah ...</p>
-        <label><input type="radio" name="q10" value="a"><span>APAR</span></label>
-        <label><input type="radio" name="q10" value="b"><span>P3K</span></label>
-        <label><input type="radio" name="q10" value="c"><span>APD</span></label>
-        <label><input type="radio" name="q10" value="d"><span>APBN</span></label>
+      <!-- SOAL 10 -->
+      <div class="soal-item-kuis" data-soal="q10">
+        <div class="soal-num">10</div>
+        <div class="soal-content">
+          <p>Alat yang digunakan untuk memadamkan api ringan di bengkel adalah ...</p>
+          <label class="opsi"><input type="radio" name="q10" value="a"><span>APAR</span></label>
+          <label class="opsi"><input type="radio" name="q10" value="b"><span>P3K</span></label>
+          <label class="opsi"><input type="radio" name="q10" value="c"><span>APD</span></label>
+          <label class="opsi"><input type="radio" name="q10" value="d"><span>APBN</span></label>
+        </div>
       </div>
 
-      <div style="margin-top:20px;">
-        <button type="submit" class="btn">✓ Kirim Jawaban</button>
-        <button type="reset" class="btn btn-back">↺ Reset</button>
+      <!-- TOMBOL -->
+      <div class="latihan-actions">
+        <button type="submit" class="btn btn-check" id="btnSubmit">
+          <i class="fas fa-paper-plane"></i> Kirim Jawaban
+        </button>
+        <button type="reset" class="btn btn-reset" onclick="resetKuis()">
+          <i class="fas fa-redo"></i> Reset
+        </button>
       </div>
+
     </form>
   </div>
 
-  <a href="latihan.html" class="btn btn-back">← Latihan</a>
-  <a href="evaluasi.html" class="btn">Lanjut ke Evaluasi →</a>
+  <!-- ===== HASIL SEMENTARA ===== -->
+  <div class="card reveal hasil-card" id="hasilKuisCard" style="display:none;">
+    <h2><i class="fas fa-chart-bar"></i> Hasil Kuis Anda</h2>
+    <div class="hasil-latihan">
+      <div class="hasil-skor-box">
+        <div class="hasil-skor" id="skorKuis">0</div>
+        <div class="hasil-label">Nilai Anda</div>
+      </div>
+      <div class="hasil-detail">
+        <p id="pesanHasilKuis"></p>
+        <div class="predikat-box" id="predikatKuis"></div>
+        <a href="hasil.html" class="btn" style="margin-top:15px;">
+          <i class="fas fa-trophy"></i> Lihat Halaman Hasil
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NAVIGASI BAWAH ===== -->
+  <div class="nav-bottom">
+    <a href="latihan.html" class="btn btn-back">
+      <i class="fas fa-arrow-left"></i> Latihan
+    </a>
+    <a href="evaluasi.html" class="btn">
+      Lanjut ke Evaluasi <i class="fas fa-arrow-right"></i>
+    </a>
+  </div>
 
 </div>
 
+<!-- ============ BACK TO TOP ============ -->
+<button id="backToTop" title="Kembali ke atas">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
+      <p>Media Pembelajaran Berbasis Website pada Materi K3 bagi Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu Cepat</h4>
+      <a href="index.html">Beranda</a>
+      <a href="petunjuk.html">Petunjuk</a>
+      <a href="pengertian-k3.html">Materi K3</a>
+      <a href="kuis.html">Kuis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
+      <p><i class="fas fa-map-marker-alt"></i> Medan, Sumatera Utara</p>
+      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  </div>
 </footer>
 
 <script src="script.js"></script>
+<script>
+/* ============================================================
+   SCRIPT KHUSUS HALAMAN KUIS
+   ============================================================ */
+
+// ===== KUNCI JAWABAN =====
+const kunciJawaban = {
+  q1: 'b', q2: 'c', q3: 'a', q4: 'd', q5: 'b',
+  q6: 'a', q7: 'c', q8: 'b', q9: 'd', q10: 'a'
+};
+
+// ===== TIMER =====
+let detik = 0;
+const timerEl = document.getElementById('timer');
+setInterval(() => {
+  detik++;
+  const m = String(Math.floor(detik / 60)).padStart(2, '0');
+  const s = String(detik % 60).padStart(2, '0');
+  if (timerEl) timerEl.textContent = `${m}:${s}`;
+}, 1000);
+
+// ===== PROGRESS =====
+const radios = document.querySelectorAll('input[type="radio"]');
+const terjawabEl = document.getElementById('terjawab');
+const progressFill = document.getElementById('progressFill');
+const totalSoal = 10;
+
+radios.forEach(r => r.addEventListener('change', updateProgress));
+
+function updateProgress() {
+  const dijawab = new Set();
+  radios.forEach(r => { if (r.checked) dijawab.add(r.name); });
+  const jumlah = dijawab.size;
+
+  if (terjawabEl) terjawabEl.textContent = jumlah;
+  const percent = (jumlah / totalSoal) * 100;
+  if (progressFill) progressFill.style.width = percent + '%';
+}
+
+// ===== SUBMIT KUIS =====
+function submitKuis() {
+  let benar = 0;
+  let belumDijawab = 0;
+
+  for (let key in kunciJawaban) {
+    const dipilih = document.querySelector(`input[name="${key}"]:checked`);
+    if (!dipilih) belumDijawab++;
+    else if (dipilih.value === kunciJawaban[key]) benar++;
+  }
+
+  if (belumDijawab > 0) {
+    if (!confirm(`Masih ada ${belumDijawab} soal yang belum dijawab. Yakin ingin mengirim?`)) return;
+  }
+
+  // Review per soal
+  for (let key in kunciJawaban) {
+    const parent = document.querySelector(`.soal-item-kuis[data-soal="${key}"]`);
+    if (!parent) continue;
+
+    const dipilih = parent.querySelector(`input[name="${key}"]:checked`);
+    const nomor = parent.querySelector('.soal-num');
+    const labels = parent.querySelectorAll('.opsi');
+
+    // Reset dulu
+    nomor.classList.remove('benar', 'salah');
+
+    labels.forEach(label => {
+      const val = label.querySelector('input').value;
+      label.classList.remove('opsi-benar', 'opsi-salah', 'opsi-kunci');
+      if (val === kunciJawaban[key]) {
+        label.classList.add('opsi-kunci');
+      }
+    });
+
+    if (dipilih) {
+      const dipilihLabel = dipilih.closest('.opsi');
+      if (dipilih.value === kunciJawaban[key]) {
+        nomor.classList.add('benar');
+        dipilihLabel.classList.add('opsi-benar');
+      } else {
+        nomor.classList.add('salah');
+        dipilihLabel.classList.add('opsi-salah');
+      }
+    }
+  }
+
+  const total = Object.keys(kunciJawaban).length;
+  const nilai = Math.round((benar / total) * 100);
+
+  // Simpan ke localStorage untuk halaman hasil.html
+  localStorage.setItem('skorK3', nilai);
+  localStorage.setItem('benarK3', benar);
+  localStorage.setItem('totalK3', total);
+
+  // Tampilkan hasil di halaman
+  const hasilCard = document.getElementById('hasilKuisCard');
+  const skorEl = document.getElementById('skorKuis');
+  const pesanEl = document.getElementById('pesanHasilKuis');
+  const predikatEl = document.getElementById('predikatKuis');
+  hasilCard.style.display = 'block';
+
+  let current = 0;
+  const step = Math.max(1, Math.ceil(nilai / 40));
+  const timerSkor = setInterval(() => {
+    current += step;
+    if (current >= nilai) { current = nilai; clearInterval(timerSkor); }
+    skorEl.textContent = current;
+  }, 25);
+
+  pesanEl.innerHTML = `Jawaban benar: <b>${benar}</b> dari <b>${total}</b> soal`;
+
+  let predikat, warna, icon;
+  if (nilai >= 90) { predikat = 'Sangat Baik'; warna = 'predikat-a'; icon = 'fa-star'; }
+  else if (nilai >= 75) { predikat = 'Baik'; warna = 'predikat-b'; icon = 'fa-thumbs-up'; }
+  else if (nilai >= 60) { predikat = 'Cukup'; warna = 'predikat-c'; icon = 'fa-book'; }
+  else { predikat = 'Perlu Belajar Lagi'; warna = 'predikat-d'; icon = 'fa-book-reader'; }
+
+  predikatEl.innerHTML = `<i class="fas ${icon}"></i> ${predikat}`;
+  predikatEl.className = `predikat-box ${warna}`;
+
+  setTimeout(() => {
+    hasilCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }, 300);
+
+  document.getElementById('btnSubmit').disabled = true;
+  document.getElementById('btnSubmit').innerHTML = '<i class="fas fa-check"></i> Sudah Dikirim';
+}
+
+// ===== RESET =====
+function resetKuis() {
+  document.querySelectorAll('.soal-num').forEach(n => n.classList.remove('benar', 'salah'));
+  document.querySelectorAll('.opsi').forEach(o => o.classList.remove('opsi-benar', 'opsi-salah', 'opsi-kunci'));
+  document.getElementById('hasilKuisCard').style.display = 'none';
+  document.getElementById('btnSubmit').disabled = false;
+  document.getElementById('btnSubmit').innerHTML = '<i class="fas fa-paper-plane"></i> Kirim Jawaban';
+  updateProgress();
+  detik = 0;
+  if (timerEl) timerEl.textContent = '00:00';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+</script>
 </body>
 </html>
