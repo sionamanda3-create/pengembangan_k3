@@ -2491,3 +2491,182 @@ footer {
     padding-right: 10px;
   }
 }
+/* ============================================================
+   SOAL KUIS — Halaman Kuis
+   ============================================================ */
+.soal-item-kuis {
+  display: flex;
+  gap: 15px;
+  background: #f9fbff;
+  padding: 20px;
+  border-radius: 14px;
+  border-left: 4px solid var(--primary);
+  margin-bottom: 18px;
+  transition: all 0.4s;
+  animation: fadeIn 0.6s ease;
+}
+
+.soal-item-kuis:hover {
+  background: #f0f7ff;
+  box-shadow: 0 6px 20px rgba(21,101,192,0.08);
+}
+
+.soal-item-kuis .soal-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.soal-item-kuis .soal-content > p {
+  font-size: 14px;
+  color: var(--primary-dark);
+  font-weight: 600;
+  margin-bottom: 15px;
+  line-height: 1.6;
+}
+
+/* ===== OPSI JAWABAN ===== */
+.opsi {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 18px;
+  margin: 8px 0;
+  background: #fff;
+  border: 2px solid #e3f2fd;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 14px;
+  color: #444;
+  position: relative;
+}
+
+.opsi:hover {
+  background: #f0f7ff;
+  border-color: var(--primary-light);
+  transform: translateX(5px);
+}
+
+.opsi input[type="radio"] {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 2px solid #b0bec5;
+  border-radius: 50%;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.2s;
+}
+
+.opsi input[type="radio"]:checked {
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: inset 0 0 0 4px #fff;
+}
+
+.opsi:has(input:checked) {
+  background: linear-gradient(135deg, #e3f2fd, #f0f7ff);
+  border-color: var(--primary);
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+/* ===== REVIEW JAWABAN (setelah submit) ===== */
+.opsi.opsi-kunci {
+  background: #e8f5e9 !important;
+  border-color: var(--success) !important;
+  color: #2e7d32 !important;
+  font-weight: 600;
+}
+
+.opsi.opsi-kunci::after {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 15px;
+  color: var(--success);
+  font-size: 16px;
+}
+
+.opsi.opsi-salah {
+  background: #ffebee !important;
+  border-color: var(--danger) !important;
+  color: #c62828 !important;
+  font-weight: 600;
+}
+
+.opsi.opsi-salah::after {
+  content: '\f00d';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 15px;
+  color: var(--danger);
+  font-size: 16px;
+}
+
+.opsi.opsi-benar {
+  background: #e8f5e9 !important;
+  border-color: var(--success) !important;
+  color: #2e7d32 !important;
+}
+
+.opsi.opsi-benar::after {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  right: 15px;
+  color: var(--success);
+  font-size: 16px;
+}
+
+/* ===== NOMOR SOAL KUIS ===== */
+.soal-item-kuis .soal-num {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 16px;
+  box-shadow: 0 4px 12px rgba(21,101,192,0.25);
+  transition: all 0.3s;
+}
+
+.soal-item-kuis .soal-num.benar {
+  background: linear-gradient(135deg, var(--success), #66bb6a);
+  animation: pulse 0.6s;
+}
+
+.soal-item-kuis .soal-num.salah {
+  background: linear-gradient(135deg, var(--danger), #ef5350);
+  animation: shake 0.5s;
+}
+
+/* ===== RESPONSIVE KUIS ===== */
+@media (max-width: 600px) {
+  .soal-item-kuis {
+    flex-direction: column;
+    gap: 12px;
+    padding: 15px;
+  }
+
+  .soal-item-kuis .soal-num {
+    width: 34px;
+    height: 34px;
+    font-size: 14px;
+  }
+
+  .opsi {
+    font-size: 13px;
+    padding: 11px 14px;
+  }
+}
