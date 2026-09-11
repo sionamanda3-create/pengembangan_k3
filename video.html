@@ -4,103 +4,270 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Video Pembelajaran - Media K3 Pemesinan</title>
+<meta name="description" content="Kumpulan video pembelajaran K3 untuk siswa Teknik Pemesinan SMK Negeri 2 Medan">
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<header>
-  <h1>Video Pembelajaran</h1>
-  <p>Media K3 — SMK Negeri 2 Medan</p>
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p>Memuat Halaman...</p>
+</div>
+
+<!-- ============ PROGRESS BAR ============ -->
+<div id="progress-bar"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area">
+      <div class="logo-icon">⚙️</div>
+      <div>
+        <h1>Media Pembelajaran K3</h1>
+        <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
+      </div>
+    </div>
+    <div class="header-badge">
+      <i class="fas fa-graduation-cap"></i> Skripsi R&D
+    </div>
+  </div>
 </header>
 
-<nav>
-  <a href="index.html">Beranda</a>
-  <a href="petunjuk.html">Petunjuk</a>
-  <a href="tujuan.html">Tujuan</a>
-  <a href="pengertian-k3.html">Materi K3</a>
-  <a href="video.html" class="active">Video</a>
-  <a href="latihan.html">Latihan</a>
-  <a href="kuis.html">Kuis</a>
-  <a href="evaluasi.html">Evaluasi</a>
-  <a href="hasil.html">Hasil</a>
-  <a href="profil.html">Profil</a>
+<!-- ============ NAVBAR ============ -->
+<nav class="main-nav">
+  <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+  <a href="petunjuk.html"><i class="fas fa-book-open"></i> Petunjuk</a>
+  <a href="tujuan.html"><i class="fas fa-bullseye"></i> Tujuan</a>
+  <a href="pengertian-k3.html"><i class="fas fa-tools"></i> Materi K3</a>
+  <a href="video.html" class="active"><i class="fas fa-play-circle"></i> Video</a>
+  <a href="latihan.html"><i class="fas fa-pen"></i> Latihan</a>
+  <a href="kuis.html"><i class="fas fa-clipboard-list"></i> Kuis</a>
+  <a href="evaluasi.html"><i class="fas fa-chart-bar"></i> Evaluasi</a>
+  <a href="hasil.html"><i class="fas fa-trophy"></i> Hasil</a>
+  <a href="profil.html"><i class="fas fa-user"></i> Profil</a>
 </nav>
+
+<!-- ============ MINI HERO ============ -->
+<section class="page-hero">
+  <div class="page-hero-content">
+    <div class="page-hero-icon">
+      <i class="fas fa-play-circle"></i>
+    </div>
+    <h1>Video Pembelajaran</h1>
+    <p>Kumpulan video K3 untuk memperkuat pemahaman Anda</p>
+    <div class="breadcrumb">
+      <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+      <span>/</span>
+      <span class="current">Video</span>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+      <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="#f4f7fb"></path>
+    </svg>
+  </div>
+</section>
 
 <div class="container">
 
-  <div class="card">
-    <h2>🎬 Kumpulan Video Pembelajaran K3</h2>
-    <p>Silakan tonton video berikut untuk memperkuat pemahaman Anda tentang
-      Keselamatan dan Kesehatan Kerja (K3) di bengkel pemesinan.</p>
+  <!-- ===== INFO ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-info-circle"></i> Petunjuk Menonton</h2>
+    <p class="section-desc">Klik salah satu video di bawah untuk memutar. Video akan terbuka di jendela popup.</p>
+    <ul class="info-list">
+      <li><i class="fas fa-check"></i> Tonton video secara <b>berurutan</b> agar pemahaman lebih optimal.</li>
+      <li><i class="fas fa-check"></i> Gunakan <b>earphone</b> agar suara lebih jelas.</li>
+      <li><i class="fas fa-check"></i> Catat hal-hal penting dari setiap video.</li>
+    </ul>
   </div>
 
-  <!-- ===== VIDEO 1 ===== -->
-  <div class="card">
-    <h2>Video 1 — Pengenalan K3</h2>
-    <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_1"
-        title="Pengenalan K3"
-        allowfullscreen>
-      </iframe>
+  <!-- ===== GALERI VIDEO ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-video"></i> Galeri Video Pembelajaran</h2>
+    <p class="section-desc">Klik salah satu kartu video untuk memutar.</p>
+
+    <div class="video-grid">
+
+      <!-- VIDEO 1 -->
+      <div class="video-card" onclick="openVideo('VIDEO_ID_1', 'Pengenalan K3')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/VIDEO_ID_1/maxresdefault.jpg"
+               alt="Pengenalan K3" loading="lazy"
+               onerror="this.src='https://img.youtube.com/vi/VIDEO_ID_1/hqdefault.jpg'">
+          <div class="video-play">
+            <i class="fas fa-play"></i>
+          </div>
+          <div class="video-category">Dasar</div>
+        </div>
+        <div class="video-info">
+          <h4>Video 1 — Pengenalan K3</h4>
+          <p>Dasar-dasar Keselamatan dan Kesehatan Kerja</p>
+          <div class="video-meta">
+            <span><i class="fas fa-clock"></i> 5 menit</span>
+            <span><i class="fas fa-eye"></i> 1.2K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 2 -->
+      <div class="video-card" onclick="openVideo('VIDEO_ID_2', 'Alat Pelindung Diri')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/VIDEO_ID_2/maxresdefault.jpg"
+               alt="Alat Pelindung Diri" loading="lazy"
+               onerror="this.src='https://img.youtube.com/vi/VIDEO_ID_2/hqdefault.jpg'">
+          <div class="video-play">
+            <i class="fas fa-play"></i>
+          </div>
+          <div class="video-category">APD</div>
+        </div>
+        <div class="video-info">
+          <h4>Video 2 — Alat Pelindung Diri</h4>
+          <p>Cara menggunakan APD dengan benar</p>
+          <div class="video-meta">
+            <span><i class="fas fa-clock"></i> 7 menit</span>
+            <span><i class="fas fa-eye"></i> 980</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 3 -->
+      <div class="video-card" onclick="openVideo('VIDEO_ID_3', 'K3 Mesin Bubut')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/VIDEO_ID_3/maxresdefault.jpg"
+               alt="K3 Mesin Bubut" loading="lazy"
+               onerror="this.src='https://img.youtube.com/vi/VIDEO_ID_3/hqdefault.jpg'">
+          <div class="video-play">
+            <i class="fas fa-play"></i>
+          </div>
+          <div class="video-category">Mesin</div>
+        </div>
+        <div class="video-info">
+          <h4>Video 3 — K3 Mesin Bubut</h4>
+          <p>Prosedur keselamatan mengoperasikan mesin bubut</p>
+          <div class="video-meta">
+            <span><i class="fas fa-clock"></i> 8 menit</span>
+            <span><i class="fas fa-eye"></i> 1.5K</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- VIDEO 4 -->
+      <div class="video-card" onclick="openVideo('VIDEO_ID_4', 'K3 Mesin Frais, Bor, Gerinda')">
+        <div class="video-thumb">
+          <img src="https://img.youtube.com/vi/VIDEO_ID_4/maxresdefault.jpg"
+               alt="K3 Mesin Frais Bor Gerinda" loading="lazy"
+               onerror="this.src='https://img.youtube.com/vi/VIDEO_ID_4/hqdefault.jpg'">
+          <div class="video-play">
+            <i class="fas fa-play"></i>
+          </div>
+          <div class="video-category">Mesin</div>
+        </div>
+        <div class="video-info">
+          <h4>Video 4 — K3 Frais, Bor & Gerinda</h4>
+          <p>K3 pada mesin frais, bor, dan gerinda</p>
+          <div class="video-meta">
+            <span><i class="fas fa-clock"></i> 10 menit</span>
+            <span><i class="fas fa-eye"></i> 2.1K</span>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <p><b>Deskripsi:</b> Video penjelasan mengenai dasar-dasar Keselamatan
-      dan Kesehatan Kerja (K3), mulai dari pengertian, tujuan, hingga
-      manfaat penerapannya di dunia industri.</p>
   </div>
 
-  <!-- ===== VIDEO 2 ===== -->
-  <div class="card">
-    <h2>Video 2 — Alat Pelindung Diri (APD)</h2>
-    <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_2"
-        title="Alat Pelindung Diri"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <p><b>Deskripsi:</b> Cara menggunakan Alat Pelindung Diri (APD) yang
-      benar saat praktik di bengkel pemesinan, seperti kacamata pelindung,
-      masker, sarung tangan, dan sepatu safety.</p>
+  <!-- ===== NAVIGASI BAWAH ===== -->
+  <div class="nav-bottom">
+    <a href="pengertian-k3.html" class="btn btn-back">
+      <i class="fas fa-arrow-left"></i> Materi K3
+    </a>
+    <a href="latihan.html" class="btn">
+      Lanjut ke Latihan <i class="fas fa-arrow-right"></i>
+    </a>
   </div>
 
-  <!-- ===== VIDEO 3 ===== -->
-  <div class="card">
-    <h2>Video 3 — K3 Mesin Bubut</h2>
-    <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_3"
-        title="K3 Mesin Bubut"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <p><b>Deskripsi:</b> Prosedur keselamatan kerja saat mengoperasikan
-      mesin bubut, mulai dari persiapan, proses pembubutan, hingga
-      pembersihan mesin.</p>
-  </div>
-
-  <!-- ===== VIDEO 4 ===== -->
-  <div class="card">
-    <h2>Video 4 — K3 Mesin Frais, Bor, dan Gerinda</h2>
-    <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/VIDEO_ID_4"
-        title="K3 Mesin Frais, Bor, dan Gerinda"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <p><b>Deskripsi:</b> Penerapan K3 pada mesin frais, mesin bor, dan
-      mesin gerinda, termasuk penggunaan APD dan penanganan tatal (serpihan)
-      yang benar.</p>
-  </div>
-
-  <a href="index.html" class="btn btn-back">← Kembali ke Beranda</a>
 </div>
 
+<!-- ============ MODAL PLAYER ============ -->
+<div class="video-modal" id="videoModal">
+  <div class="video-modal-overlay" onclick="closeVideo()"></div>
+  <div class="video-modal-content">
+    <div class="video-modal-header">
+      <h3 id="modalTitle">Judul Video</h3>
+      <button class="video-modal-close" onclick="closeVideo()">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+    <div class="video-modal-body">
+      <div class="video-wrapper">
+        <iframe id="modalIframe" src="" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ BACK TO TOP ============ -->
+<button id="backToTop" title="Kembali ke atas">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<!-- ============ FOOTER ============ -->
 <footer>
-  &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
+      <p>Media Pembelajaran Berbasis Website pada Materi K3 bagi Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu Cepat</h4>
+      <a href="index.html">Beranda</a>
+      <a href="petunjuk.html">Petunjuk</a>
+      <a href="pengertian-k3.html">Materi K3</a>
+      <a href="kuis.html">Kuis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
+      <p><i class="fas fa-map-marker-alt"></i> Medan, Sumatera Utara</p>
+      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  </div>
 </footer>
 
 <script src="script.js"></script>
+<script>
+/* ============================================================
+   MODAL VIDEO — Buka & Tutup
+   ============================================================ */
+function openVideo(videoId, title) {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('modalIframe');
+  const modalTitle = document.getElementById('modalTitle');
+
+  modalTitle.textContent = title;
+  iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeVideo() {
+  const modal = document.getElementById('videoModal');
+  const iframe = document.getElementById('modalIframe');
+
+  iframe.src = '';
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+}
+
+// ESC untuk close
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeVideo();
+});
+</script>
 </body>
 </html>
