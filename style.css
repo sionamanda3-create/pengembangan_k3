@@ -1345,3 +1345,212 @@ footer {
   .nav-bottom { flex-direction: column; }
   .nav-bottom .btn { width: 100%; justify-content: center; }
 }
+/* ============================================================
+   TUJUAN UMUM — Highlight Box
+   ============================================================ */
+.tujuan-umum-box {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd);
+  padding: 25px;
+  border-radius: 14px;
+  border-left: 5px solid var(--primary);
+  margin-top: 10px;
+}
+
+.tujuan-umum-icon {
+  flex-shrink: 0;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  color: #fff;
+  box-shadow: 0 8px 20px rgba(21,101,192,0.3);
+}
+
+.tujuan-umum-text {
+  color: var(--primary-dark) !important;
+  font-size: 15px;
+  line-height: 1.8;
+}
+
+/* ============================================================
+   TUJUAN KHUSUS — Grid Card Bernomor
+   ============================================================ */
+.tujuan-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.tujuan-card {
+  display: flex;
+  gap: 15px;
+  background: #fff;
+  padding: 18px 20px;
+  border-radius: 14px;
+  border: 2px solid #e3f2fd;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.tujuan-card::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 0;
+  width: 4px;
+  height: 100%;
+  background: linear-gradient(180deg, var(--primary), var(--accent));
+  transition: width 0.3s;
+}
+
+.tujuan-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--primary);
+  box-shadow: 0 12px 30px rgba(21,101,192,0.15);
+}
+
+.tujuan-card:hover::before {
+  width: 6px;
+  background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+}
+
+.tujuan-num {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 15px;
+  box-shadow: 0 4px 12px rgba(21,101,192,0.3);
+  transition: all 0.3s;
+}
+
+.tujuan-card:hover .tujuan-num {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+  transform: rotate(-5deg) scale(1.08);
+}
+
+.tujuan-body h4 {
+  color: var(--primary-dark);
+  font-size: 14px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.tujuan-body p {
+  color: var(--gray) !important;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ============================================================
+   CAPAIAN PEMBELAJARAN — Grid Box
+   ============================================================ */
+.capaian-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.capaian-box {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: linear-gradient(135deg, #fff, #f0f7ff);
+  padding: 20px;
+  border-radius: 14px;
+  border: 2px solid #e3f2fd;
+  transition: all 0.3s;
+}
+
+.capaian-box:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 25px rgba(255,179,0,0.2);
+}
+
+.capaian-icon {
+  flex-shrink: 0;
+  width: 55px;
+  height: 55px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  transition: all 0.3s;
+}
+
+.capaian-box:hover .capaian-icon {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+  transform: scale(1.1) rotate(-5deg);
+}
+
+.capaian-info h4 {
+  color: var(--primary-dark);
+  font-size: 16px;
+  font-weight: 800;
+  margin-bottom: 3px;
+}
+
+.capaian-info p {
+  color: var(--gray) !important;
+  font-size: 12px;
+}
+
+/* ============================================================
+   RESPONSIVE — Halaman Tujuan
+   ============================================================ */
+@media (max-width: 600px) {
+  .tujuan-umum-box {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+
+  .tujuan-umum-icon {
+    width: 55px;
+    height: 55px;
+    font-size: 24px;
+  }
+
+  .tujuan-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .capaian-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .capaian-box {
+    padding: 15px;
+    gap: 10px;
+  }
+
+  .capaian-icon {
+    width: 42px;
+    height: 42px;
+    font-size: 18px;
+  }
+
+  .capaian-info h4 { font-size: 14px; }
+  .capaian-info p { font-size: 11px; }
+}
