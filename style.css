@@ -1,4 +1,468 @@
 /* ============================================================
+   DASHBOARD SISWA & GURU
+   ============================================================ */
+.header-user {
+  display: flex;
+  align-items: center;
+}
+
+.user-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255,255,255,0.15);
+  padding: 8px 16px;
+  border-radius: 50px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255,255,255,0.2);
+}
+
+.user-badge i {
+  font-size: 26px;
+  color: var(--accent);
+}
+
+.user-badge strong {
+  display: block;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.user-badge span {
+  display: block;
+  color: rgba(255,255,255,0.8);
+  font-size: 11px;
+}
+
+/* ===== WELCOME CARD ===== */
+.dashboard-welcome {
+  background: linear-gradient(135deg, #f0f7ff, #e3f2fd) !important;
+  border: 2px solid #bbdefb !important;
+}
+
+.dashboard-welcome.guru-welcome {
+  background: linear-gradient(135deg, #fff8e1, #ffecb3) !important;
+  border: 2px solid #ffe082 !important;
+}
+
+.welcome-grid {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+}
+
+.welcome-icon {
+  width: 90px;
+  height: 90px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  box-shadow: 0 10px 25px rgba(21,101,192,0.25);
+  flex-shrink: 0;
+}
+
+.welcome-icon.guru-icon {
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  color: var(--dark);
+  box-shadow: 0 10px 25px rgba(255,179,0,0.3);
+}
+
+.welcome-text h2 {
+  color: var(--primary-dark);
+  font-size: 24px;
+  border-left: none !important;
+  padding-left: 0 !important;
+  margin-bottom: 5px;
+}
+
+.welcome-text p {
+  color: var(--gray);
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.welcome-badges {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.welcome-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #fff;
+  padding: 8px 14px;
+  border-radius: 50px;
+  font-size: 12px;
+  color: var(--primary-dark);
+  border: 1px solid #bbdefb;
+  font-weight: 500;
+}
+
+.welcome-badge i { color: var(--primary); }
+.welcome-badge b { font-weight: 700; }
+
+/* ===== INFO LIST SISWA ===== */
+.info-list-siswa {
+  display: grid;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.info-item-siswa {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: #f0f7ff;
+  border-radius: 10px;
+  border-left: 4px solid var(--primary);
+}
+
+.info-item-siswa i {
+  color: var(--success);
+  font-size: 18px;
+}
+
+.info-item-siswa p {
+  font-size: 14px;
+  color: #444;
+  margin: 0;
+}
+
+/* ===== GURU STATS ===== */
+.guru-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.guru-stat-card {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 14px;
+  border: 2px solid #e3f2fd;
+  transition: all 0.3s;
+}
+
+.guru-stat-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--primary);
+  box-shadow: 0 10px 25px rgba(21,101,192,0.12);
+}
+
+.guru-stat-icon {
+  width: 55px;
+  height: 55px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  color: #fff;
+  flex-shrink: 0;
+}
+
+.icon-biru { background: linear-gradient(135deg, #1565c0, #42a5f5); }
+.icon-hijau { background: linear-gradient(135deg, #4caf50, #66bb6a); }
+.icon-kuning { background: linear-gradient(135deg, #ffb300, #ff8f00); }
+.icon-ungu { background: linear-gradient(135deg, #7b1fa2, #ab47bc); }
+
+.guru-stat-number {
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--primary-dark);
+  line-height: 1;
+}
+
+.guru-stat-label {
+  font-size: 12px;
+  color: var(--gray);
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+/* ===== KELAS FILTER ===== */
+.kelas-filter {
+  display: flex;
+  gap: 8px;
+  margin: 15px 0;
+  flex-wrap: wrap;
+}
+
+.kelas-btn {
+  padding: 8px 18px;
+  background: #f0f7ff;
+  color: var(--primary-dark);
+  border: 2px solid #e3f2fd;
+  border-radius: 50px;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.kelas-btn:hover {
+  background: #e3f2fd;
+  border-color: var(--primary-light);
+}
+
+.kelas-btn.active {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 4px 12px rgba(21,101,192,0.3);
+}
+
+/* ===== SISWA LIST ===== */
+.siswa-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.siswa-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: #fff;
+  padding: 15px 18px;
+  border-radius: 12px;
+  border: 2px solid #e3f2fd;
+  transition: all 0.3s;
+}
+
+.siswa-item:hover {
+  border-color: var(--primary);
+  transform: translateX(5px);
+  box-shadow: 0 6px 18px rgba(21,101,192,0.1);
+}
+
+.siswa-avatar {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-light));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.siswa-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.siswa-info h4 {
+  color: var(--primary-dark);
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+
+.siswa-info p {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 0;
+}
+
+.siswa-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background: #f0f7ff;
+  color: var(--primary-dark);
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.siswa-tag.kelas-tag {
+  background: #fff8e1;
+  color: #e65100;
+}
+
+.siswa-status .status-online {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--success);
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.siswa-status .status-online i {
+  font-size: 8px;
+  animation: pulse-dot 2s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* ===== LOADING & EMPTY ===== */
+.loading-state, .empty-state {
+  text-align: center;
+  padding: 40px 20px;
+  color: var(--gray);
+}
+
+.loading-state i, .empty-state i {
+  font-size: 40px;
+  color: var(--primary);
+  margin-bottom: 12px;
+  display: block;
+}
+
+.loading-state i { animation: spin 1s linear infinite; }
+
+.empty-state i { color: #b0bec5; }
+
+/* ===== LOGIN SELECT ===== */
+.login-select {
+  width: 100%;
+  padding: 13px 16px;
+  border: 2px solid #e3f2fd;
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 14px;
+  color: var(--primary-dark);
+  background: #fff;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.login-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(21,101,192,0.1);
+}
+
+/* ===== KELAS CHECKBOX (untuk guru) ===== */
+.kelas-checkbox-group {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.kelas-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  background: #fff;
+  border: 2px solid #e3f2fd;
+  border-radius: 50px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  transition: all 0.3s;
+}
+
+.kelas-checkbox:hover {
+  background: #f0f7ff;
+  border-color: var(--primary-light);
+}
+
+.kelas-checkbox:has(input:checked) {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+}
+
+.kelas-checkbox input[type="checkbox"] {
+  appearance: none;
+  width: 18px;
+  height: 18px;
+  border: 2px solid #b0bec5;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s;
+}
+
+.kelas-checkbox:has(input:checked) input[type="checkbox"] {
+  background: #fff;
+  border-color: #fff;
+}
+
+.kelas-checkbox:has(input:checked) input[type="checkbox"]::after {
+  content: '\f00c';
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  color: var(--primary);
+  font-size: 11px;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ===== LOGIN LINK BOTTOM ===== */
+.login-link-bottom {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 13px;
+  color: var(--gray);
+}
+
+.login-link-bottom a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.login-link-bottom a:hover {
+  color: var(--accent);
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 700px) {
+  .welcome-grid {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
+  }
+
+  .welcome-icon {
+    width: 70px;
+    height: 70px;
+    font-size: 32px;
+  }
+
+  .welcome-text h2 { font-size: 20px; }
+  .welcome-badges { justify-content: center; }
+
+  .guru-stats-grid { grid-template-columns: 1fr 1fr; }
+
+  .siswa-item {
+    flex-wrap: wrap;
+  }
+
+  .siswa-status {
+    width: 100%;
+    text-align: right;
+  }
+}/* ============================================================
    MEDIA PEMBELAJARAN K3 — STYLE.CSS (LENGKAP)
    ============================================================ */
 
