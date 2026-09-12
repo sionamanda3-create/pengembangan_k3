@@ -1,1 +1,386 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login - Media K3 Pemesinan</title>
+<meta name="description" content="Halaman login guru dan siswa media pembelajaran K3 SMK Negeri 2 Medan">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body class="login-body">
 
+<!-- ============ LOADER ============ -->
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p>Memuat Halaman...</p>
+</div>
+
+<!-- ============ PROGRESS BAR ============ -->
+<div id="progress-bar"></div>
+
+<!-- ============ HEADER ============ -->
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area">
+      <div class="logo-icon">⚙️</div>
+      <div>
+        <h1>Media Pembelajaran K3</h1>
+        <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
+      </div>
+    </div>
+    <div class="header-badge">
+      <i class="fas fa-graduation-cap"></i> Skripsi R&D
+    </div>
+  </div>
+</header>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="main-nav">
+  <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
+  <a href="petunjuk.html"><i class="fas fa-book-open"></i> Petunjuk</a>
+  <a href="tujuan.html"><i class="fas fa-bullseye"></i> Tujuan</a>
+  <a href="pengertian-k3.html"><i class="fas fa-tools"></i> Materi K3</a>
+  <a href="video.html"><i class="fas fa-play-circle"></i> Video</a>
+  <a href="latihan.html"><i class="fas fa-pen"></i> Latihan</a>
+  <a href="kuis.html"><i class="fas fa-clipboard-list"></i> Kuis</a>
+  <a href="evaluasi.html"><i class="fas fa-chart-bar"></i> Evaluasi</a>
+  <a href="hasil.html"><i class="fas fa-trophy"></i> Hasil</a>
+  <a href="login.html" class="active"><i class="fas fa-sign-in-alt"></i> Login</a>
+</nav>
+
+<!-- ============ KONTEN LOGIN ============ -->
+<section class="login-section">
+
+  <div class="login-wrapper">
+
+    <!-- ===== PANEL KIRI (Info) ===== -->
+    <div class="login-info-panel">
+      <div class="login-info-content">
+        <div class="login-info-icon">
+          <i class="fas fa-shield-alt"></i>
+        </div>
+        <h2>Selamat Datang</h2>
+        <p>Silakan login untuk mengakses dashboard pembelajaran K3.</p>
+
+        <div class="login-benefits">
+          <div class="login-benefit-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Akses materi & video</span>
+          </div>
+          <div class="login-benefit-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Kerjakan latihan & kuis</span>
+          </div>
+          <div class="login-benefit-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Lihat nilai otomatis</span>
+          </div>
+          <div class="login-benefit-item">
+            <i class="fas fa-check-circle"></i>
+            <span>Pantau aktivitas belajar</span>
+          </div>
+        </div>
+
+        <div class="login-illustration">
+          <i class="fas fa-user-graduate"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== PANEL KANAN (Form) ===== -->
+    <div class="login-form-panel">
+
+      <div class="login-tabs">
+        <button class="login-tab active" data-tab="siswa" onclick="switchTab('siswa')">
+          <i class="fas fa-user-graduate"></i> Siswa
+        </button>
+        <button class="login-tab" data-tab="guru" onclick="switchTab('guru')">
+          <i class="fas fa-chalkboard-teacher"></i> Guru
+        </button>
+      </div>
+
+      <!-- ===== FORM LOGIN SISWA ===== -->
+      <form class="login-form active" id="formSiswa" onsubmit="event.preventDefault(); loginSiswa();">
+        <h3><i class="fas fa-user-graduate"></i> Login Siswa</h3>
+        <p class="login-subtitle">Masuk sebagai siswa Teknik Pemesinan</p>
+
+        <div class="login-field">
+          <label><i class="fas fa-user"></i> Username</label>
+          <input type="text" id="siswaUsername" placeholder="Contoh: 2024001" autocomplete="username">
+        </div>
+
+        <div class="login-field">
+          <label><i class="fas fa-lock"></i> Password</label>
+          <div class="login-password-wrapper">
+            <input type="password" id="siswaPassword" placeholder="Masukkan password" autocomplete="current-password">
+            <button type="button" class="toggle-password" onclick="togglePassword('siswaPassword', this)">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-remember">
+          <label>
+            <input type="checkbox" id="siswaRemember">
+            <span>Ingat saya</span>
+          </label>
+        </div>
+
+        <div class="login-error" id="errorSiswa"></div>
+
+        <button type="submit" class="btn-login">
+          <i class="fas fa-sign-in-alt"></i> Masuk sebagai Siswa
+        </button>
+
+        <div class="login-demo">
+          <i class="fas fa-info-circle"></i>
+          <strong>Demo:</strong> Username <code>siswa</code> / Password <code>siswa123</code>
+        </div>
+      </form>
+
+      <!-- ===== FORM LOGIN GURU ===== -->
+      <form class="login-form" id="formGuru" onsubmit="event.preventDefault(); loginGuru();">
+        <h3><i class="fas fa-chalkboard-teacher"></i> Login Guru</h3>
+        <p class="login-subtitle">Masuk sebagai guru pengampu mata pelajaran K3</p>
+
+        <div class="login-field">
+          <label><i class="fas fa-user"></i> Username</label>
+          <input type="text" id="guruUsername" placeholder="Contoh: guru01" autocomplete="username">
+        </div>
+
+        <div class="login-field">
+          <label><i class="fas fa-lock"></i> Password</label>
+          <div class="login-password-wrapper">
+            <input type="password" id="guruPassword" placeholder="Masukkan password" autocomplete="current-password">
+            <button type="button" class="toggle-password" onclick="togglePassword('guruPassword', this)">
+              <i class="fas fa-eye"></i>
+            </button>
+          </div>
+        </div>
+
+        <div class="login-remember">
+          <label>
+            <input type="checkbox" id="guruRemember">
+            <span>Ingat saya</span>
+          </label>
+        </div>
+
+        <div class="login-error" id="errorGuru"></div>
+
+        <button type="submit" class="btn-login btn-login-guru">
+          <i class="fas fa-sign-in-alt"></i> Masuk sebagai Guru
+        </button>
+
+        <div class="login-demo">
+          <i class="fas fa-info-circle"></i>
+          <strong>Demo:</strong> Username <code>guru</code> / Password <code>guru123</code>
+        </div>
+      </form>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
+      <p>Media Pembelajaran Berbasis Website pada Materi K3 bagi Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu Cepat</h4>
+      <a href="index.html">Beranda</a>
+      <a href="petunjuk.html">Petunjuk</a>
+      <a href="pengertian-k3.html">Materi K3</a>
+      <a href="kuis.html">Kuis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
+      <p><i class="fas fa-map-marker-alt"></i> Medan, Sumatera Utara</p>
+      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+/* ============================================================
+   SCRIPT KHUSUS HALAMAN LOGIN
+   ============================================================ */
+
+// ===== DATA USER (SIMULASI) =====
+// Format: { username: { password, nama, kelas/nip, role } }
+const users = {
+  // Siswa
+  'siswa':   { password: 'siswa123',   nama: 'Siswa Demo',      kelas: 'TP 1',  role: 'siswa' },
+  '2024001': { password: 'siswa123',   nama: 'Ahmad Fauzi',     kelas: 'TP 1',  role: 'siswa' },
+  '2024002': { password: 'siswa123',   nama: 'Budi Santoso',    kelas: 'TP 1',  role: 'siswa' },
+  '2024003': { password: 'siswa123',   nama: 'Citra Dewi',      kelas: 'TP 2',  role: 'siswa' },
+
+  // Guru
+  'guru':    { password: 'guru123',    nama: 'Guru Demo',       nip: '19700101', role: 'guru' },
+  'guru01':  { password: 'guru123',    nama: 'Bapak Surya',     nip: '19850505', role: 'guru' },
+  'guru02':  { password: 'guru123',    nama: 'Ibu Rina',        nip: '19900101', role: 'guru' }
+};
+
+// ===== SWITCH TAB =====
+function switchTab(tab) {
+  document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.login-form').forEach(f => f.classList.remove('active'));
+
+  document.querySelector(`.login-tab[data-tab="${tab}"]`).classList.add('active');
+  document.getElementById(tab === 'siswa' ? 'formSiswa' : 'formGuru').classList.add('active');
+}
+
+// ===== TOGGLE PASSWORD =====
+function togglePassword(inputId, btn) {
+  const input = document.getElementById(inputId);
+  const icon = btn.querySelector('i');
+  if (input.type === 'password') {
+    input.type = 'text';
+    icon.classList.replace('fa-eye', 'fa-eye-slash');
+  } else {
+    input.type = 'password';
+    icon.classList.replace('fa-eye-slash', 'fa-eye');
+  }
+}
+
+// ===== LOGIN SISWA =====
+function loginSiswa() {
+  const user = document.getElementById('siswaUsername').value.trim().toLowerCase();
+  const pass = document.getElementById('siswaPassword').value;
+  const remember = document.getElementById('siswaRemember').checked;
+  const err = document.getElementById('errorSiswa');
+
+  err.textContent = '';
+  err.classList.remove('show');
+
+  if (!user || !pass) {
+    err.innerHTML = '<i class="fas fa-exclamation-circle"></i> Username dan password wajib diisi';
+    err.classList.add('show');
+    return;
+  }
+
+  const data = users[user];
+  if (!data || data.role !== 'siswa' || data.password !== pass) {
+    err.innerHTML = '<i class="fas fa-times-circle"></i> Username atau password salah';
+    err.classList.add('show');
+    shakeForm('formSiswa');
+    return;
+  }
+
+  // Sukses
+  const session = {
+    username: user,
+    nama: data.nama,
+    kelas: data.kelas,
+    role: 'siswa',
+    loginAt: new Date().toISOString()
+  };
+
+  if (remember) {
+    localStorage.setItem('userK3', JSON.stringify(session));
+  } else {
+    sessionStorage.setItem('userK3', JSON.stringify(session));
+  }
+
+  showSuccess(err, 'Login berhasil! Mengalihkan...');
+  setTimeout(() => {
+    window.location.href = 'siswa-dashboard.html';
+  }, 1000);
+}
+
+// ===== LOGIN GURU =====
+function loginGuru() {
+  const user = document.getElementById('guruUsername').value.trim().toLowerCase();
+  const pass = document.getElementById('guruPassword').value;
+  const remember = document.getElementById('guruRemember').checked;
+  const err = document.getElementById('errorGuru');
+
+  err.textContent = '';
+  err.classList.remove('show');
+
+  if (!user || !pass) {
+    err.innerHTML = '<i class="fas fa-exclamation-circle"></i> Username dan password wajib diisi';
+    err.classList.add('show');
+    return;
+  }
+
+  const data = users[user];
+  if (!data || data.role !== 'guru' || data.password !== pass) {
+    err.innerHTML = '<i class="fas fa-times-circle"></i> Username atau password salah';
+    err.classList.add('show');
+    shakeForm('formGuru');
+    return;
+  }
+
+  // Sukses
+  const session = {
+    username: user,
+    nama: data.nama,
+    nip: data.nip,
+    role: 'guru',
+    loginAt: new Date().toISOString()
+  };
+
+  if (remember) {
+    localStorage.setItem('userK3', JSON.stringify(session));
+  } else {
+    sessionStorage.setItem('userK3', JSON.stringify(session));
+  }
+
+  showSuccess(err, 'Login berhasil! Mengalihkan...');
+  setTimeout(() => {
+    window.location.href = 'guru-dashboard.html';
+  }, 1000);
+}
+
+// ===== HELPER: PESAN SUKSES =====
+function showSuccess(el, msg) {
+  el.innerHTML = '<i class="fas fa-check-circle"></i> ' + msg;
+  el.classList.add('show', 'success');
+}
+
+// ===== HELPER: ANIMASI SHAKE =====
+function shakeForm(id) {
+  const form = document.getElementById(id);
+  form.classList.add('shake');
+  setTimeout(() => form.classList.remove('shake'), 500);
+}
+
+// ===== AUTO-FILL JIKA SUDAH LOGIN =====
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('userK3');
+  if (saved) {
+    const user = JSON.parse(saved);
+    if (user.role === 'siswa') {
+      document.getElementById('siswaUsername').value = user.username;
+      document.getElementById('siswaRemember').checked = true;
+    } else if (user.role === 'guru') {
+      document.getElementById('guruUsername').value = user.username;
+      document.getElementById('guruRemember').checked = true;
+      switchTab('guru');
+    }
+  }
+});
+
+// ===== ENTER KEY UNTUK SUBMIT =====
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter') {
+    const activeForm = document.querySelector('.login-form.active');
+    if (activeForm && activeForm.id === 'formSiswa') loginSiswa();
+    else if (activeForm && activeForm.id === 'formGuru') loginGuru();
+  }
+});
+</script>
+</body>
+</html>
