@@ -1,1 +1,239 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Guru - Media K3 Pemesinan</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
 
+<div id="loader"><div class="loader-spinner"></div><p>Memuat Dashboard...</p></div>
+<div id="progress-bar"></div>
+
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area">
+      <div class="logo-icon">👨‍🏫</div>
+      <div>
+        <h1>Dashboard Guru</h1>
+        <p>Media K3 Pemesinan — SMK N 2 Medan</p>
+      </div>
+    </div>
+    <div class="header-user" id="headerUser"></div>
+  </div>
+</header>
+
+<nav class="main-nav">
+  <a href="guru-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+  <a href="pengertian-k3.html"><i class="fas fa-book"></i> Materi</a>
+  <a href="guru-tugas.html"><i class="fas fa-tasks"></i> Tugas</a>
+  <a href="guru-nilai.html"><i class="fas fa-chart-bar"></i> Nilai</a>
+  <a href="#" onclick="logoutConfirm(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+</nav>
+
+<div class="container">
+
+  <!-- ===== WELCOME ===== -->
+  <div class="card reveal dashboard-welcome guru-welcome">
+    <div class="welcome-grid">
+      <div class="welcome-icon guru-icon">
+        <i class="fas fa-chalkboard-teacher"></i>
+      </div>
+      <div class="welcome-text">
+        <h2>Selamat Datang, <span id="namaGuru">Guru</span>! 👋</h2>
+        <p id="mapelGuru">K3 Teknik Pemesinan</p>
+        <div class="welcome-badges">
+          <span class="welcome-badge"><i class="fas fa-id-card"></i> NIP: <b id="nipGuru">-</b></span>
+          <span class="welcome-badge"><i class="fas fa-school"></i> Kelas: <b id="kelasAmpuGuru">-</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== STATISTIK ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-chart-pie"></i> Statistik</h2>
+    <div class="guru-stats-grid">
+      <div class="guru-stat-card">
+        <div class="guru-stat-icon icon-biru"><i class="fas fa-users"></i></div>
+        <div>
+          <div class="guru-stat-number" id="totalSiswa">0</div>
+          <div class="guru-stat-label">Total Siswa</div>
+        </div>
+      </div>
+      <div class="guru-stat-card">
+        <div class="guru-stat-icon icon-hijau"><i class="fas fa-school"></i></div>
+        <div>
+          <div class="guru-stat-number" id="totalKelas">0</div>
+          <div class="guru-stat-label">Kelas Diampu</div>
+        </div>
+      </div>
+      <div class="guru-stat-card">
+        <div class="guru-stat-icon icon-kuning"><i class="fas fa-user-check"></i></div>
+        <div>
+          <div class="guru-stat-number" id="totalTP1">0</div>
+          <div class="guru-stat-label">Siswa TP 1</div>
+        </div>
+      </div>
+      <div class="guru-stat-card">
+        <div class="guru-stat-icon icon-ungu"><i class="fas fa-user-graduate"></i></div>
+        <div>
+          <div class="guru-stat-number" id="totalTP2">0</div>
+          <div class="guru-stat-label">Siswa TP 2</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== DAFTAR SISWA ===== -->
+  <div class="card reveal">
+    <h2><i class="fas fa-users"></i> Daftar Siswa Terdaftar</h2>
+    <p class="section-desc">Siswa yang terdaftar di kelas yang Anda ampu (real-time dari Firebase).</p>
+
+    <div class="kelas-filter">
+      <button class="kelas-btn active" onclick="filterKelas('all', this)">Semua</button>
+      <button class="kelas-btn" onclick="filterKelas('TP 1', this)">TP 1</button>
+      <button class="kelas-btn" onclick="filterKelas('TP 2', this)">TP 2</button>
+      <button class="kelas-btn" onclick="filterKelas('TP 3', this)">TP 3</button>
+    </div>
+
+    <div id="siswaList" class="siswa-list">
+      <div class="loading-state">
+        <i class="fas fa-spinner fa-spin"></i>
+        <p>Memuat data siswa...</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-col">
+      <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
+      <p>Media Pembelajaran K3 untuk Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Menu Cepat</h4>
+      <a href="guru-dashboard.html">Dashboard</a>
+      <a href="guru-tugas.html">Tugas</a>
+      <a href="pengertian-k3.html">Materi</a>
+      <a href="kuis.html">Kuis</a>
+    </div>
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
+      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D
+  </div>
+</footer>
+
+<script type="module">
+import { requireLogin, logoutUser, getAllSiswa } from "./auth.js";
+
+const user = requireLogin('guru');
+let semuaSiswa = [];
+
+if (user) {
+  document.getElementById('namaGuru').textContent = user.nama || 'Guru';
+  document.getElementById('nipGuru').textContent = user.nip || '-';
+  document.getElementById('mapelGuru').textContent = user.mapel || 'K3 Teknik Pemesinan';
+
+  const kelasAmpu = user.kelasAmpu || [];
+  document.getElementById('kelasAmpuGuru').textContent = kelasAmpu.join(', ') || '-';
+  document.getElementById('totalKelas').textContent = kelasAmpu.length;
+
+  document.getElementById('headerUser').innerHTML = `
+    <div class="user-badge">
+      <i class="fas fa-user-circle"></i>
+      <div>
+        <strong>${user.nama}</strong>
+        <span>Guru K3</span>
+      </div>
+    </div>
+  `;
+}
+
+// ===== LOAD DATA SISWA =====
+async function loadSiswa() {
+  try {
+    const list = await getAllSiswa();
+    semuaSiswa = list;
+
+    document.getElementById('totalSiswa').textContent = list.length;
+    document.getElementById('totalTP1').textContent = list.filter(s => s.kelas === 'TP 1').length;
+    document.getElementById('totalTP2').textContent = list.filter(s => s.kelas === 'TP 2').length;
+
+    renderSiswa(list);
+  } catch (error) {
+    document.getElementById('siswaList').innerHTML = `
+      <div class="empty-state">
+        <i class="fas fa-exclamation-triangle"></i>
+        <p>Gagal memuat data: ${error.message}</p>
+      </div>
+    `;
+  }
+}
+
+// ===== RENDER DAFTAR SISWA =====
+function renderSiswa(list) {
+  const container = document.getElementById('siswaList');
+
+  if (list.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <i class="fas fa-users-slash"></i>
+        <p>Belum ada siswa terdaftar di kelas ini.</p>
+      </div>
+    `;
+    return;
+  }
+
+  container.innerHTML = list.map(s => `
+    <div class="siswa-item">
+      <div class="siswa-avatar">
+        <i class="fas fa-user"></i>
+      </div>
+      <div class="siswa-info">
+        <h4>${s.nama}</h4>
+        <p>
+          <span class="siswa-tag"><i class="fas fa-id-card"></i> ${s.nis || '-'}</span>
+          <span class="siswa-tag kelas-tag"><i class="fas fa-school"></i> ${s.kelas || '-'}</span>
+        </p>
+      </div>
+      <div class="siswa-status">
+        <span class="status-online"><i class="fas fa-circle"></i> Aktif</span>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== FILTER KELAS =====
+window.filterKelas = function(kelas, btn) {
+  document.querySelectorAll('.kelas-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+
+  if (kelas === 'all') {
+    renderSiswa(semuaSiswa);
+  } else {
+    renderSiswa(semuaSiswa.filter(s => s.kelas === kelas));
+  }
+};
+
+window.logoutConfirm = async function() {
+  if (confirm('Yakin ingin keluar?')) {
+    await logoutUser();
+  }
+};
+
+// Load data saat halaman siap
+if (user) loadSiswa();
+</script>
+</body>
+</html>
