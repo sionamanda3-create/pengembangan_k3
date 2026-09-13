@@ -3583,3 +3583,26 @@ footer {
   .login-tabs { flex-direction: column; }
   .login-tab { padding: 10px; }
 }
+
+
+
+/* ============================================================
+   AUTO-HIDE LOADER (FIX STUCK)
+   ============================================================ */
+#loader {
+  animation: autoHideLoader 0.5s ease 1.5s forwards;
+}
+
+@keyframes autoHideLoader {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+#loader.hide {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
