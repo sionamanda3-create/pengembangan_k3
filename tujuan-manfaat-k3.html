@@ -11,16 +11,13 @@
 </head>
 <body>
 
-<!-- ============ LOADER ============ -->
 <div id="loader">
   <div class="loader-spinner"></div>
   <p>Memuat Halaman...</p>
 </div>
 
-<!-- ============ PROGRESS BAR ============ -->
 <div id="progress-bar"></div>
 
-<!-- ============ HEADER ============ -->
 <header class="main-header">
   <div class="header-content">
     <div class="logo-area">
@@ -36,7 +33,6 @@
   </div>
 </header>
 
-<!-- ============ NAVBAR ============ -->
 <nav class="main-nav">
   <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
   <a href="petunjuk.html"><i class="fas fa-book-open"></i> Petunjuk</a>
@@ -50,84 +46,125 @@
   <a href="login.html"><i class="fas fa-sign-in-alt"></i> Login</a>
 </nav>
 
-<!-- ============ MINI HERO ============ -->
-<section class="page-hero">
-  <div class="page-hero-content">
-    <div class="page-hero-icon">
-      <i class="fas fa-bullseye"></i>
+<!-- ============ HERO SECTION ============ -->
+<section class="materi-hero-full">
+  <div class="materi-hero-overlay"></div>
+  <div class="materi-hero-content">
+    <div class="materi-progress-badge">
+      <span class="progress-dot"></span>
+      Materi 2 dari 10
     </div>
-    <h1>Tujuan dan Manfaat K3</h1>
-    <p>Memahami tujuan dan manfaat penerapan K3 di dunia kerja</p>
-    <div class="breadcrumb">
+    <h1 class="materi-hero-title">
+      Tujuan dan <span class="gradient-text">Manfaat K3</span>
+    </h1>
+    <p class="materi-hero-desc">
+      Memahami tujuan dan manfaat penerapan Keselamatan dan Kesehatan Kerja
+      di dunia industri, khususnya di bengkel pemesinan.
+    </p>
+    <div class="breadcrumb-main">
       <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
       <span>/</span>
       <a href="pengertian-k3.html">Materi K3</a>
       <span>/</span>
-      <span class="current">Tujuan & Manfaat K3</span>
+      <span class="current">Tujuan & Manfaat</span>
     </div>
-  </div>
-  <div class="hero-wave">
-    <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
-      <path d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z" fill="#f4f7fb"></path>
-    </svg>
   </div>
 </section>
 
 <div class="container">
 
-  <!-- ===== MATERI HERO ===== -->
-  <div class="card reveal materi-hero-card">
-    <div class="materi-hero-grid">
-      <div class="materi-hero-img">
+  <!-- ===== PENGANTAR ===== -->
+  <div class="card reveal pro-card">
+    <div class="card-intro-grid">
+      <div class="card-intro-img">
         <img src="https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80"
              alt="K3 Industri" loading="lazy"
              onerror="this.src='https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&q=80'">
-        <div class="materi-hero-badge">
-          <i class="fas fa-book"></i> Materi 2 dari 10
+        <div class="img-float-badge">
+          <i class="fas fa-shield-alt"></i>
+          <span>K3 Itu Penting!</span>
         </div>
       </div>
-      <div class="materi-hero-text">
-        <span class="materi-tag"><i class="fas fa-info-circle"></i> Sub-Materi Kedua</span>
-        <h2>Mengapa K3 Itu Penting?</h2>
-        <p>Setiap tempat kerja, terutama <b>bengkel pemesinan</b>, memiliki risiko kecelakaan kerja.
-          Penerapan K3 bukan hanya kewajiban hukum, tetapi kebutuhan setiap pekerja
-          untuk <b>bekerja dengan aman, sehat, dan produktif</b>.</p>
-        <div class="materi-highlight">
-          <i class="fas fa-quote-left"></i>
-          K3 bukan hanya tanggung jawab perusahaan, tetapi tanggung jawab semua pihak.
+      <div class="card-intro-text">
+        <span class="intro-tag"><i class="fas fa-quote-left"></i> Pengantar Materi</span>
+        <h2>Kenapa K3 Sangat Penting?</h2>
+        <p>Setiap tempat kerja, terutama <b>bengkel pemesinan</b>, memiliki risiko
+          kecelakaan kerja yang mengintai. Penerapan K3 bukan hanya kewajiban hukum,
+          tetapi kebutuhan setiap pekerja untuk <b>bekerja dengan aman, sehat, dan produktif</b>.</p>
+        <p>Dengan memahami <b>tujuan</b> dan <b>manfaat</b> K3, kita bisa lebih
+          sadar dan disiplin dalam menerapkannya di kehidupan sehari-hari.</p>
+        <div class="intro-highlight">
+          <i class="fas fa-lightbulb"></i>
+          <span>K3 bukan hanya tanggung jawab perusahaan, tetapi tanggung jawab <b>semua pihak</b>.</span>
         </div>
       </div>
     </div>
   </div>
 
+  <!-- ===== STATISTIK INFO ===== -->
+  <div class="info-stats-grid reveal">
+    <div class="info-stat-card">
+      <div class="info-stat-icon icon-merah"><i class="fas fa-exclamation-triangle"></i></div>
+      <div class="info-stat-info">
+        <div class="info-stat-number">2.5M+</div>
+        <div class="info-stat-label">Kecelakaan kerja/tahun (global)</div>
+      </div>
+    </div>
+    <div class="info-stat-card">
+      <div class="info-stat-icon icon-biru"><i class="fas fa-shield-alt"></i></div>
+      <div class="info-stat-info">
+        <div class="info-stat-number">98%</div>
+        <div class="info-stat-label">Kecelakaan bisa dicegah</div>
+      </div>
+    </div>
+    <div class="info-stat-card">
+      <div class="info-stat-icon icon-hijau"><i class="fas fa-wallet"></i></div>
+      <div class="info-stat-info">
+        <div class="info-stat-number">4x</div>
+        <div class="info-stat-label">Return investasi K3</div>
+      </div>
+    </div>
+  </div>
+
   <!-- ===== TUJUAN K3 ===== -->
-  <div class="card reveal">
-    <h2><i class="fas fa-bullseye"></i> Tujuan K3</h2>
-    <p class="section-desc">Tujuan utama penerapan K3 adalah sebagai berikut:</p>
+  <div class="card reveal pro-card">
+    <div class="section-head">
+      <div class="section-head-icon"><i class="fas fa-bullseye"></i></div>
+      <div>
+        <h2>Tujuan Penerapan K3</h2>
+        <p class="section-subtitle">Tiga tujuan utama mengapa K3 wajib diterapkan</p>
+      </div>
+    </div>
 
-    <div class="tujuan-grid">
+    <div class="tujuan-pro-grid">
 
-      <div class="tujuan-card">
-        <div class="tujuan-num">01</div>
-        <div class="tujuan-body">
-          <h4>Melindungi Tenaga Kerja</h4>
-          <p>Melindungi tenaga kerja dari kecelakaan kerja dan penyakit akibat kerja.</p>
+      <div class="tujuan-pro-card">
+        <div class="tujuan-pro-num">01</div>
+        <div class="tujuan-pro-icon"><i class="fas fa-user-shield"></i></div>
+        <h3>Melindungi Tenaga Kerja</h3>
+        <p>Melindungi tenaga kerja dari kecelakaan kerja dan penyakit akibat kerja yang dapat merugikan.</p>
+        <div class="tujuan-pro-tag">
+          <i class="fas fa-check-circle"></i> Tujuan Utama
         </div>
       </div>
 
-      <div class="tujuan-card">
-        <div class="tujuan-num">02</div>
-        <div class="tujuan-body">
-          <h4>Meningkatkan Produktivitas</h4>
-          <p>Meningkatkan produktivitas kerja karena karyawan merasa aman dan nyaman.</p>
+      <div class="tujuan-pro-card">
+        <div class="tujuan-pro-num">02</div>
+        <div class="tujuan-pro-icon"><i class="fas fa-chart-line"></i></div>
+        <h3>Meningkatkan Produktivitas</h3>
+        <p>Meningkatkan produktivitas kerja karena karyawan merasa aman, nyaman, dan terhindar dari risiko.</p>
+        <div class="tujuan-pro-tag">
+          <i class="fas fa-check-circle"></i> Dampak Positif
         </div>
       </div>
 
-      <div class="tujuan-card">
-        <div class="tujuan-num">03</div>
-        <div class="tujuan-body">
-          <h4>Menciptakan Lingkungan Aman</h4>
-          <p>Menciptakan lingkungan kerja yang aman, sehat, dan nyaman bagi semua.</p>
+      <div class="tujuan-pro-card">
+        <div class="tujuan-pro-num">03</div>
+        <div class="tujuan-pro-icon"><i class="fas fa-home"></i></div>
+        <h3>Lingkungan Kerja Aman</h3>
+        <p>Menciptakan lingkungan kerja yang aman, sehat, dan nyaman bagi seluruh pekerja dan orang di sekitarnya.</p>
+        <div class="tujuan-pro-tag">
+          <i class="fas fa-check-circle"></i> Hasil Akhir
         </div>
       </div>
 
@@ -135,112 +172,279 @@
   </div>
 
   <!-- ===== MANFAAT K3 ===== -->
-  <div class="card reveal">
-    <h2><i class="fas fa-star"></i> Manfaat K3</h2>
-    <p class="section-desc">Manfaat penerapan K3 bagi perusahaan, pekerja, dan masyarakat:</p>
+  <div class="card reveal pro-card">
+    <div class="section-head">
+      <div class="section-head-icon icon-star"><i class="fas fa-star"></i></div>
+      <div>
+        <h2>Manfaat Penerapan K3</h2>
+        <p class="section-subtitle">Enam manfaat besar yang bisa dirasakan</p>
+      </div>
+    </div>
 
-    <div class="manfaat-grid">
+    <div class="manfaat-pro-grid">
 
-      <div class="manfaat-box">
-        <div class="manfaat-icon icon-merah">
-          <i class="fas fa-shield-alt"></i>
-        </div>
-        <h4>Mengurangi Kecelakaan Kerja</h4>
+      <div class="manfaat-pro-box">
+        <div class="manfaat-pro-icon icon-merah"><i class="fas fa-shield-alt"></i></div>
+        <h4>Mengurangi Kecelakaan</h4>
         <p>Angka kecelakaan kerja menurun karena risiko teridentifikasi & dicegah lebih awal.</p>
+        <div class="manfaat-pro-bar"><span style="width:95%"></span></div>
       </div>
 
-      <div class="manfaat-box">
-        <div class="manfaat-icon icon-biru">
-          <i class="fas fa-chart-line"></i>
-        </div>
-        <h4>Meningkatkan Motivasi & Kinerja</h4>
-        <p>Karyawan bekerja lebih semangat karena merasa aman dan dihargai.</p>
+      <div class="manfaat-pro-box">
+        <div class="manfaat-pro-icon icon-biru"><i class="fas fa-chart-line"></i></div>
+        <h4>Motivasi & Kinerja</h4>
+        <p>Karyawan bekerja lebih semangat karena merasa aman dan dihargai perusahaan.</p>
+        <div class="manfaat-pro-bar"><span style="width:90%"></span></div>
       </div>
 
-      <div class="manfaat-box">
-        <div class="manfaat-icon icon-hijau">
-          <i class="fas fa-wallet"></i>
-        </div>
+      <div class="manfaat-pro-box">
+        <div class="manfaat-pro-icon icon-hijau"><i class="fas fa-wallet"></i></div>
         <h4>Menghemat Biaya</h4>
         <p>Biaya pengobatan & klaim asuransi berkurang karena kecelakaan kerja minim.</p>
+        <div class="manfaat-pro-bar"><span style="width:88%"></span></div>
       </div>
 
-      <div class="manfaat-box">
-        <div class="manfaat-icon icon-kuning">
-          <i class="fas fa-award"></i>
-        </div>
+      <div class="manfaat-pro-box">
+        <div class="manfaat-pro-icon icon-kuning"><i class="fas fa-award"></i></div>
         <h4>Meningkatkan Citra</h4>
         <p>Perusahaan yang peduli K3 memiliki citra baik di mata pekerja & masyarakat.</p>
+        <div class="manfaat-pro-bar"><span style="width:85%"></span></div>
       </div>
 
-      <div class="manfaat-box">
-        <div class="manfaat-icon icon-ungu">
-          <i class="fas fa-balance-scale"></i>
-        </div>
+      <div class="manfaat-pro-box">
+        <div class="manfaat-pro-icon icon-ungu"><i class="fas fa-balance-scale"></i></div>
         <h4>Memenuhi Regulasi</h4>
-        <p>Patuh pada UU No. 1 Tahun 1970 dan peraturan K3 lainnya.</p>
+        <p>Patuh pada UU No. 1 Tahun 1970 dan peraturan K3 lainnya yang berlaku.</p>
+        <div class="manfaat-pro-bar"><span style="width:100%"></span></div>
       </div>
 
-      <div class="manfaat-box">
-        <div class="manfaat-icon icon-cyan">
-          <i class="fas fa-handshake"></i>
-        </div>
-        <h4>Hubungan Kerja Harmonis</h4>
+      <div class="manfaat-pro-box">
+        <div class="manfaat-pro-icon icon-cyan"><i class="fas fa-handshake"></i></div>
+        <h4>Hubungan Harmonis</h4>
         <p>Hubungan antara pekerja dan manajemen lebih harmonis dan saling percaya.</p>
+        <div class="manfaat-pro-bar"><span style="width:82%"></span></div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== PENERAPAN DI BENGKEL ===== -->
+  <div class="card reveal pro-card">
+    <div class="section-head">
+      <div class="section-head-icon icon-bengkel"><i class="fas fa-industry"></i></div>
+      <div>
+        <h2>Penerapan di Bengkel Pemesinan</h2>
+        <p class="section-subtitle">Contoh nyata penerapan K3 di bengkel</p>
+      </div>
+    </div>
+
+    <div class="bengkel-grid">
+
+      <div class="bengkel-item">
+        <div class="bengkel-num">A</div>
+        <div class="bengkel-content">
+          <h4><i class="fas fa-check-circle"></i> Sebelum Praktik</h4>
+          <ul>
+            <li>Gunakan APD lengkap (kacamata, wearpack, sepatu safety)</li>
+            <li>Periksa kondisi mesin & alat kerja</li>
+            <li>Pastikan ruangan berventilasi baik</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bengkel-item">
+        <div class="bengkel-num">B</div>
+        <div class="bengkel-content">
+          <h4><i class="fas fa-cog"></i> Saat Praktik</h4>
+          <ul>
+            <li>Ikuti SOP penggunaan mesin</li>
+            <li>Fokus & jangan bercanda saat bekerja</li>
+            <li>Jangan pakai sarung tangan di mesin berputar</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bengkel-item">
+        <div class="bengkel-num">C</div>
+        <div class="bengkel-content">
+          <h4><i class="fas fa-flag-checkered"></i> Setelah Praktik</h4>
+          <ul>
+            <li>Matikan mesin & bersihkan area kerja</li>
+            <li>Simpan alat pada tempatnya</li>
+            <li>Cuci tangan & ganti pakaian kerja</li>
+          </ul>
+        </div>
       </div>
 
     </div>
   </div>
 
   <!-- ===== KESIMPULAN ===== -->
-  <div class="card reveal kesimpulan-card">
-    <h2><i class="fas fa-flag-checkered"></i> Kesimpulan</h2>
-    <div class="kesimpulan-box">
-      <div class="kesimpulan-icon"><i class="fas fa-lightbulb"></i></div>
-      <p class="kesimpulan-text">
-        Penerapan K3 memiliki <b>tujuan utama melindungi tenaga kerja</b> dan
-        memberikan <b>manfaat besar</b> bagi perusahaan, pekerja, dan masyarakat.
-        Di bengkel pemesinan, K3 wajib diterapkan setiap saat untuk mencegah
-        kecelakaan kerja dan menciptakan lingkungan kerja yang aman serta produktif.
-      </p>
+  <div class="card reveal kesimpulan-pro">
+    <div class="kesimpulan-pro-content">
+      <div class="kesimpulan-pro-icon"><i class="fas fa-lightbulb"></i></div>
+      <div>
+        <h2><i class="fas fa-flag-checkered"></i> Kesimpulan</h2>
+        <p>Penerapan K3 memiliki <b>tujuan utama melindungi tenaga kerja</b> dan memberikan
+          <b>manfaat besar</b> bagi perusahaan, pekerja, dan masyarakat.
+          Di bengkel pemesinan, K3 wajib diterapkan setiap saat untuk mencegah
+          kecelakaan kerja dan menciptakan lingkungan kerja yang aman serta produktif.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PROGRESS PEMBELAJARAN ===== -->
+  <div class="card reveal progress-belajar">
+    <div class="progress-belajar-content">
+      <div class="progress-belajar-icon"><i class="fas fa-graduation-cap"></i></div>
+      <div class="progress-belajar-info">
+        <h4>Progress Pembelajaran</h4>
+        <p>Materi 2 dari 10 telah Anda pelajari</p>
+        <div class="progress-belajar-bar">
+          <div class="progress-belajar-fill" style="width: 20%"></div>
+        </div>
+      </div>
+      <div class="progress-belajar-percent">20%</div>
     </div>
   </div>
 
   <!-- ===== DAFTAR SUB-MATERI ===== -->
-  <div class="card reveal">
-    <h2><i class="fas fa-list"></i> Daftar Sub-Materi K3</h2>
-    <div class="materi-list">
-      <a href="pengertian-k3.html"><i class="fas fa-book"></i> 1. Pengertian K3</a>
-      <a href="tujuan-manfaat-k3.html"><i class="fas fa-bullseye"></i> 2. Tujuan dan Manfaat K3</a>
-      <a href="bahaya-risiko.html"><i class="fas fa-exclamation-triangle"></i> 3. Bahaya dan Risiko Kerja</a>
-      <a href="apd.html"><i class="fas fa-shield-alt"></i> 4. Alat Pelindung Diri (APD)</a>
-      <a href="rambu-k3.html"><i class="fas fa-traffic-light"></i> 5. Rambu-Rambu K3</a>
-      <a href="k3-bengkel.html"><i class="fas fa-industry"></i> 6. K3 di Bengkel Pemesinan</a>
-      <a href="k3-bubut.html"><i class="fas fa-cog"></i> 7. K3 Mesin Bubut</a>
-      <a href="k3-frais.html"><i class="fas fa-cogs"></i> 8. K3 Mesin Frais</a>
-      <a href="k3-bor.html"><i class="fas fa-screwdriver"></i> 9. K3 Mesin Bor</a>
-      <a href="k3-gerinda.html"><i class="fas fa-circle-notch"></i> 10. K3 Mesin Gerinda</a>
+  <div class="card reveal pro-card">
+    <div class="section-head">
+      <div class="section-head-icon"><i class="fas fa-list"></i></div>
+      <div>
+        <h2>Daftar Sub-Materi K3</h2>
+        <p class="section-subtitle">10 sub-materi lengkap tentang K3</p>
+      </div>
+    </div>
+
+    <div class="materi-list-pro">
+      <a href="pengertian-k3.html" class="materi-item">
+        <div class="materi-item-num">1</div>
+        <div class="materi-item-icon"><i class="fas fa-book"></i></div>
+        <div class="materi-item-info">
+          <h4>Pengertian K3</h4>
+          <p>Dasar-dasar K3</p>
+        </div>
+        <i class="fas fa-check-circle materi-item-status done"></i>
+      </a>
+
+      <a href="tujuan-manfaat-k3.html" class="materi-item active">
+        <div class="materi-item-num">2</div>
+        <div class="materi-item-icon"><i class="fas fa-bullseye"></i></div>
+        <div class="materi-item-info">
+          <h4>Tujuan dan Manfaat K3</h4>
+          <p>Fungsi penerapan K3</p>
+        </div>
+        <i class="fas fa-play-circle materi-item-status"></i>
+      </a>
+
+      <a href="bahaya-risiko.html" class="materi-item">
+        <div class="materi-item-num">3</div>
+        <div class="materi-item-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <div class="materi-item-info">
+          <h4>Bahaya dan Risiko Kerja</h4>
+          <p>Identifikasi bahaya</p>
+        </div>
+        <i class="fas fa-chevron-right materi-item-status"></i>
+      </a>
+
+      <a href="apd.html" class="materi-item">
+        <div class="materi-item-num">4</div>
+        <div class="materi-item-icon"><i class="fas fa-shield-alt"></i></div>
+        <div class="materi-item-info">
+          <h4>Alat Pelindung Diri</h4>
+          <p>APD & penggunaannya</p>
+        </div>
+        <i class="fas fa-chevron-right materi-item-status"></i>
+      </a>
+
+      <a href="rambu-k3.html" class="materi-item">
+        <div class="materi-item-num">5</div>
+        <div class="materi-item-icon"><i class="fas fa-traffic-light"></i></div>
+        <div class="materi-item-info">
+          <h4>Rambu-Rambu K3</h4>
+          <p>Simbol keselamatan</p>
+        </div>
+        <i class="fas fa-chevron-right materi-item-status"></i>
+      </a>
+
+      <a href="k3-bengkel.html" class="materi-item">
+        <div class="materi-item-num">6</div>
+        <div class="materi-item-icon"><i class="fas fa-industry"></i></div>
+        <div class="materi-item-info">
+          <h4>K3 Bengkel Pemesinan</h4>
+          <p>Penerapan di bengkel</p>
+        </div>
+        <i class="fas fa-chevron-right materi-item-status"></i>
+      </a>
+
+      <a href="k3-bubut.html" class="materi-item">
+        <div class="materi-item-num">7</div>
+        <div class="materi-item-icon"><i class="fas fa-cog"></i></div>
+        <div class="materi-item-info">
+          <h4>K3 Mesin Bubut</h4>
+          <p>Keselamatan mesin bubut</p>
+        </div>
+        <i class="fas fa-chevron-right materi-item-status"></i>
+      </a>
+
+      <a href="k3-frais.html" class="materi-item">
+        <div class="materi-item-num">8</div>
+        <div class="materi-item-icon"><i class="fas fa-cogs"></i></div>
+        <div class="materi-item-info">
+          <h4>K3 Mesin Frais</h4>
+          <p>Keselamatan mesin frais</p>
+        </div>
+        <i class="fas fa-chevron-right materi-item-status"></i>
+      </a>
+
+      <a href="k3-bor.html" class="materi-item">
+        <div class="materi-item-num">9</div>
+        <div class="materi-item-icon"><i class="fas fa-screwdriver"></i></div>
+        <div class="materi-item-info">
+          <h4>K3 Mesin Bor</h4>
+          <p>Keselamatan mesin bor</p>
+        </div>
+        <i class="fas fa-chevron-right materi-item-status"></i>
+      </a>
+
+      <a href="k3-gerinda.html" class="materi-item">
+        <div class="materi-item-num">10</div>
+        <div class="materi-item-icon"><i class="fas fa-circle-notch"></i></div>
+        <div class="materi-item-info">
+          <h4>K3 Mesin Gerinda</h4>
+          <p>Keselamatan mesin gerinda</p>
+        </div>
+        <i class="fas fa-chevron-right materi-item-status"></i>
+      </a>
     </div>
   </div>
 
   <!-- ===== NAVIGASI BAWAH ===== -->
-  <div class="nav-bottom">
-    <a href="pengertian-k3.html" class="btn btn-back">
-      <i class="fas fa-arrow-left"></i> Sebelumnya
+  <div class="nav-pro">
+    <a href="pengertian-k3.html" class="nav-pro-btn prev">
+      <div class="nav-pro-icon"><i class="fas fa-arrow-left"></i></div>
+      <div class="nav-pro-text">
+        <span>Sebelumnya</span>
+        <strong>Pengertian K3</strong>
+      </div>
     </a>
-    <a href="bahaya-risiko.html" class="btn">
-      Selanjutnya <i class="fas fa-arrow-right"></i>
+    <a href="bahaya-risiko.html" class="nav-pro-btn next">
+      <div class="nav-pro-text">
+        <span>Selanjutnya</span>
+        <strong>Bahaya & Risiko Kerja</strong>
+      </div>
+      <div class="nav-pro-icon"><i class="fas fa-arrow-right"></i></div>
     </a>
   </div>
 
 </div>
 
-<!-- ============ BACK TO TOP ============ -->
 <button id="backToTop" title="Kembali ke atas">
   <i class="fas fa-arrow-up"></i>
 </button>
 
-<!-- ============ FOOTER ============ -->
 <footer>
   <div class="footer-content">
     <div class="footer-col">
@@ -258,7 +462,7 @@
       <h4>Kontak</h4>
       <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
       <p><i class="fas fa-map-marker-alt"></i> Medan, Sumatera Utara</p>
-      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
+      <p><i class="fas fa-envelope"></i> smkn2medan@sch.id</p>
     </div>
   </div>
   <div class="footer-bottom">
