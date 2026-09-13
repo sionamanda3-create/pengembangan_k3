@@ -45,13 +45,24 @@ const db = getFirestore(app);
 
 // ===== EXPORT SEMUA =====
 export {
-  app, auth, db,
+  app,
+  auth,
+  db,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
   onAuthStateChanged,
-  doc, setDoc, getDoc, getDocs,
-  collection, query, where,
-  addDoc, updateDoc, deleteDoc,
-  serverTimestamp, onSnapshot, orderBy
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  collection,
+  query,
+  where,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  serverTimestamp,
+  onSnapshot,
+  orderBy
 };
