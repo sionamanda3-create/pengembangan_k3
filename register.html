@@ -4,15 +4,21 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Daftar Akun - Media K3 Pemesinan</title>
+<meta name="description" content="Daftar akun Media Pembelajaran K3 untuk Siswa dan Guru SMK Negeri 2 Medan">
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body class="login-body">
 
-<div id="loader"><div class="loader-spinner"></div><p>Memuat...</p></div>
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p>Memuat...</p>
+</div>
+
 <div id="progress-bar"></div>
 
+<!-- ============ HEADER SEDERHANA (TANPA NAVBAR) ============ -->
 <header class="main-header">
   <div class="header-content">
     <div class="logo-area">
@@ -22,22 +28,16 @@
         <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
       </div>
     </div>
-    <div class="header-badge"><i class="fas fa-graduation-cap"></i> Skripsi R&D</div>
+    <div class="header-badge">
+      <i class="fas fa-user-plus"></i> Daftar Akun
+    </div>
   </div>
 </header>
 
-<nav class="main-nav">
-  <a href="index.html"><i class="fas fa-home"></i> Beranda</a>
-  <a href="petunjuk.html"><i class="fas fa-book-open"></i> Petunjuk</a>
-  <a href="tujuan.html"><i class="fas fa-bullseye"></i> Tujuan</a>
-  <a href="pengertian-k3.html"><i class="fas fa-tools"></i> Materi K3</a>
-  <a href="video.html"><i class="fas fa-play-circle"></i> Video</a>
-  <a href="latihan.html"><i class="fas fa-pen"></i> Latihan</a>
-  <a href="kuis.html"><i class="fas fa-clipboard-list"></i> Kuis</a>
-  <a href="evaluasi.html"><i class="fas fa-chart-bar"></i> Evaluasi</a>
-  <a href="hasil.html"><i class="fas fa-trophy"></i> Hasil</a>
-  <a href="login.html" class="active"><i class="fas fa-sign-in-alt"></i> Login</a>
-</nav>
+<!-- ============================================== -->
+<!-- TIDAK ADA NAVBAR DI SINI — SENGAJA DIHAPUS   -->
+<!-- User hanya bisa daftar, belum bisa akses web -->
+<!-- ============================================== -->
 
 <section class="login-section">
   <div class="login-wrapper register-wrapper">
@@ -114,7 +114,7 @@
         </button>
 
         <p class="login-link-bottom">
-          Sudah punya akun? <a href="login.html">Login di sini</a>
+          Sudah punya akun? <a href="index.html">Login di sini</a>
         </p>
       </form>
 
@@ -164,7 +164,7 @@
         </button>
 
         <p class="login-link-bottom">
-          Sudah punya akun? <a href="login.html">Login di sini</a>
+          Sudah punya akun? <a href="index.html">Login di sini</a>
         </p>
       </form>
 
@@ -172,6 +172,7 @@
   </div>
 </section>
 
+<!-- ============ FOOTER SEDERHANA ============ -->
 <footer>
   <div class="footer-content">
     <div class="footer-col">
@@ -180,10 +181,8 @@
     </div>
     <div class="footer-col">
       <h4>Menu Cepat</h4>
-      <a href="index.html">Beranda</a>
-      <a href="login.html">Login</a>
-      <a href="pengertian-k3.html">Materi K3</a>
-      <a href="kuis.html">Kuis</a>
+      <a href="index.html">Login</a>
+      <a href="register.html">Daftar</a>
     </div>
     <div class="footer-col">
       <h4>Kontak</h4>
@@ -192,21 +191,26 @@
     </div>
   </div>
   <div class="footer-bottom">
-    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
   </div>
 </footer>
 
 <script type="module">
 import { registerUser } from "./auth.js";
 
-function switchTab(tab) {
+window.addEventListener('load', function() {
+  const loader = document.getElementById('loader');
+  if (loader) setTimeout(function() { loader.classList.add('hide'); }, 400);
+});
+
+window.switchTab = function(tab) {
   document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.login-form').forEach(f => f.classList.remove('active'));
-  document.querySelector(`.login-tab[data-tab="${tab}"]`).classList.add('active');
+  document.querySelector('.login-tab[data-tab="' + tab + '"]').classList.add('active');
   document.getElementById(tab === 'siswa' ? 'formSiswa' : 'formGuru').classList.add('active');
-}
+};
 
-function togglePassword(id, btn) {
+window.togglePassword = function(id, btn) {
   const input = document.getElementById(id);
   const icon = btn.querySelector('i');
   if (input.type === 'password') {
@@ -216,7 +220,7 @@ function togglePassword(id, btn) {
     input.type = 'password';
     icon.classList.replace('fa-eye-slash', 'fa-eye');
   }
-}
+};
 
 function showError(id, msg) {
   const el = document.getElementById(id);
@@ -231,7 +235,7 @@ function showSuccess(id, msg) {
   el.classList.add('show', 'success');
 }
 
-async function daftarSiswa() {
+window.daftarSiswa = async function() {
   const nama = document.getElementById('regSiswaNama').value.trim();
   const email = document.getElementById('regSiswaEmail').value.trim();
   const nis = document.getElementById('regSiswaNis').value.trim();
@@ -246,14 +250,14 @@ async function daftarSiswa() {
   const result = await registerUser({ email, password: pass, nama, role: 'siswa', kelas, nis });
 
   if (result.ok) {
-    showSuccess('errRegSiswa', 'Pendaftaran berhasil! Mengalihkan ke login...');
-    setTimeout(() => window.location.href = 'login.html', 2000);
+    showSuccess('errRegSiswa', 'Pendaftaran berhasil! Silakan login...');
+    setTimeout(function() { window.location.href = 'index.html'; }, 2000);
   } else {
     showError('errRegSiswa', result.msg);
   }
-}
+};
 
-async function daftarGuru() {
+window.daftarGuru = async function() {
   const nama = document.getElementById('regGuruNama').value.trim();
   const email = document.getElementById('regGuruEmail').value.trim();
   const nip = document.getElementById('regGuruNip').value.trim();
@@ -272,17 +276,12 @@ async function daftarGuru() {
   });
 
   if (result.ok) {
-    showSuccess('errRegGuru', 'Pendaftaran berhasil! Mengalihkan ke login...');
-    setTimeout(() => window.location.href = 'login.html', 2000);
+    showSuccess('errRegGuru', 'Pendaftaran berhasil! Silakan login...');
+    setTimeout(function() { window.location.href = 'index.html'; }, 2000);
   } else {
     showError('errRegGuru', result.msg);
   }
-}
-
-window.switchTab = switchTab;
-window.togglePassword = togglePassword;
-window.daftarSiswa = daftarSiswa;
-window.daftarGuru = daftarGuru;
+};
 </script>
 </body>
 </html>
