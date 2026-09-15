@@ -171,15 +171,12 @@
   <div class="footer-bottom">&copy; 2025 — Media K3 Pemesinan</div>
 </footer>
 
-<!-- ============ SCRIPT NON-MODULE ============ -->
 <script>
-// Auto-hide loader
 window.addEventListener('load', function() {
   var loader = document.getElementById('loader');
   if (loader) setTimeout(function() { loader.classList.add('hide'); }, 400);
 });
 
-// ===== SWITCH TAB (LANGSUNG DI-ATTACH) =====
 function setActiveTab(tab) {
   var tabs = document.querySelectorAll('.login-tab');
   var forms = document.querySelectorAll('.login-form');
@@ -195,11 +192,9 @@ function setActiveTab(tab) {
   }
 }
 
-// Attach click event
 document.getElementById('tabSiswa').addEventListener('click', function() { setActiveTab('siswa'); });
 document.getElementById('tabGuru').addEventListener('click', function() { setActiveTab('guru'); });
 
-// ===== TOGGLE PASSWORD =====
 function togglePassword(id, btn) {
   var input = document.getElementById(id);
   var icon = btn.querySelector('i');
@@ -214,7 +209,6 @@ function togglePassword(id, btn) {
   }
 }
 
-// ===== SHOW ERROR / SUCCESS =====
 function showErr(id, msg) {
   var el = document.getElementById(id);
   el.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + msg;
@@ -228,7 +222,6 @@ function showOk(id, msg) {
   el.classList.add('show', 'success');
 }
 
-// ===== DAFTAR SISWA =====
 function daftarSiswa() {
   var nama = document.getElementById('regSiswaNama').value.trim();
   var email = document.getElementById('regSiswaEmail').value.trim();
@@ -241,7 +234,6 @@ function daftarSiswa() {
 
   showOk('errRegSiswa', 'Sedang mendaftar...');
 
-  // Import dinamis
   import('./auth.js').then(function(mod) {
     mod.registerUser({ email: email, password: pass, nama: nama, role: 'siswa', kelas: kelas, nis: nis })
       .then(function(result) {
@@ -254,11 +246,10 @@ function daftarSiswa() {
       });
   }).catch(function(err) {
     console.error(err);
-    showErr('errRegSiswa', 'File auth.js tidak ditemukan. Hubungi admin.');
+    showErr('errRegSiswa', 'File auth.js tidak ditemukan.');
   });
 }
 
-// ===== DAFTAR GURU =====
 function daftarGuru() {
   var nama = document.getElementById('regGuruNama').value.trim();
   var email = document.getElementById('regGuruEmail').value.trim();
@@ -288,7 +279,7 @@ function daftarGuru() {
     });
   }).catch(function(err) {
     console.error(err);
-    showErr('errRegGuru', 'File auth.js tidak ditemukan. Hubungi admin.');
+    showErr('errRegGuru', 'File auth.js tidak ditemukan.');
   });
 }
 </script>
