@@ -7,6 +7,150 @@
 <link rel="stylesheet" href="style.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+.dashboard-wrap { max-width: 900px; margin: 40px auto; padding: 0 20px; }
+.welcome-card {
+  background: linear-gradient(135deg, #1565c0, #42a5f5);
+  color: #fff; padding: 35px; border-radius: 20px;
+  box-shadow: 0 15px 40px rgba(21,101,192,0.25);
+  display: flex; align-items: center; gap: 25px; margin-bottom: 25px;
+}
+.welcome-icon {
+  width: 90px; height: 90px; border-radius: 22px;
+  background: rgba(255,255,255,0.2); border: 2px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 42px; flex-shrink: 0;
+}
+.welcome-text h1 { font-size: 26px; font-weight: 800; margin-bottom: 6px; }
+.welcome-text p { font-size: 14px; opacity: 0.95; }
+.welcome-badges { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; }
+.welcome-badge {
+  background: rgba(255,255,255,0.15); padding: 6px 14px;
+  border-radius: 50px; font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px;
+}
+.info-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px; margin-bottom: 25px;
+}
+.info-box {
+  background: #fff; padding: 22px; border-radius: 16px;
+  border: 2px solid #e3f2fd; transition: all 0.3s;
+}
+.info-box:hover { transform: translateY(-5px); border-color: #1565c0; }
+.info-box i { font-size: 28px; color: #1565c0; margin-bottom: 12px; }
+.info-box h3 { color: #0d47a1; font-size: 16px; margin-bottom: 6px; }
+.info-box p { color: #64748b; font-size: 13px; }
+.logout-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #f44336; color: #fff;
+  padding: 12px 24px; border-radius: 10px;
+  text-decoration: none; font-weight: 600; font-size: 14px;
+  border: none; cursor: pointer;
+}
+.logout-btn:hover { background: #c62828; }
+@media (max-width: 600px) {
+  .welcome-card { flex-direction: column; text-align: center; padding: 25px; }
+}
+</style>
+</head>
+<body>
+
+<div id="loader"><div class="loader-spinner"></div><p>Memuat Dashboard...</p></div>
+
+<header class="main-header">
+  <div class="header-content">
+    <div class="logo-area">
+      <div class="logo-icon">🎓</div>
+      <div>
+        <h1>Dashboard Siswa</h1>
+        <p>Media K3 Pemesinan — SMK N 2 Medan</p>
+      </div>
+    </div>
+    <div class="header-badge"><i class="fas fa-user-graduate"></i> Siswa</div>
+  </div>
+</header>
+
+<div class="dashboard-wrap">
+
+  <div class="welcome-card">
+    <div class="welcome-icon"><i class="fas fa-user-graduate"></i></div>
+    <div class="welcome-text">
+      <h1>Halo, <span id="namaSiswa">Siswa</span>! 👋</h1>
+      <p>Selamat datang di dashboard pembelajaran K3</p>
+      <div class="welcome-badges">
+        <div class="welcome-badge"><i class="fas fa-school"></i> Kelas: <span id="kelasSiswa">-</span></div>
+        <div class="welcome-badge"><i class="fas fa-id-card"></i> NIS: <span id="nisSiswa">-</span></div>
+        <div class="welcome-badge"><i class="fas fa-envelope"></i> <span id="emailSiswa">-</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="info-grid">
+    <div class="info-box">
+      <i class="fas fa-book"></i>
+      <h3>Materi K3</h3>
+      <p>Pelajari 10 sub-materi K3</p>
+    </div>
+    <div class="info-box">
+      <i class="fas fa-play-circle"></i>
+      <h3>Video</h3>
+      <p>Tonton video pembelajaran</p>
+    </div>
+    <div class="info-box">
+      <i class="fas fa-clipboard-list"></i>
+      <h3>Kuis</h3>
+      <p>Kerjakan kuis interaktif</p>
+    </div>
+    <div class="info-box">
+      <i class="fas fa-trophy"></i>
+      <h3>Nilai</h3>
+      <p>Lihat hasil belajar Anda</p>
+    </div>
+  </div>
+
+  <button class="logout-btn" onclick="logoutConfirm()">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
+
+</div>
+
+<script type="module">
+import { getCurrentUser, logoutUser } from "./auth.js";
+
+window.addEventListener('load', function() {
+  const loader = document.getElementById('loader');
+  if (loader) setTimeout(function() { loader.classList.add('hide'); }, 400);
+});
+
+// Cek login
+const user = getCurrentUser();
+
+if (!user || user.role !== 'siswa') {
+  window.location.href = 'index.html';
+} else {
+  document.getElementById('namaSiswa').textContent = user.nama || 'Siswa';
+  document.getElementById('kelasSiswa').textContent = user.kelas || '-';
+  document.getElementById('nisSiswa').textContent = user.nis || '-';
+  document.getElementById('emailSiswa').textContent = user.email || '-';
+}
+
+window.logoutConfirm = async function() {
+  if (confirm('Yakin ingin keluar?')) {
+    await logoutUser();
+  }
+};
+</script>
+</body>
+</html><!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Siswa - Media K3 Pemesinan</title>
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
 
