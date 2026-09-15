@@ -12,22 +12,11 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import {
   getFirestore,
-  doc,
-  setDoc,
-  getDoc,
-  getDocs,
-  collection,
-  query,
-  where,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  serverTimestamp,
-  onSnapshot,
-  orderBy
+  doc, setDoc, getDoc, getDocs,
+  collection, query, where,
+  serverTimestamp
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-// ===== KONFIGURASI FIREBASE =====
 const firebaseConfig = {
   apiKey: "AIzaSyDFLbfQRwgANDYt8CfmV2aSSUW9ng1KIoY",
   authDomain: "media-k3-pemesinan.firebaseapp.com",
@@ -38,31 +27,16 @@ const firebaseConfig = {
   measurementId: "G-RSMPERCH9X"
 };
 
-// ===== INISIALISASI =====
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// ===== EXPORT SEMUA =====
 export {
-  app,
-  auth,
-  db,
+  app, auth, db,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  doc,
-  setDoc,
-  getDoc,
-  getDocs,
-  collection,
-  query,
-  where,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  serverTimestamp,
-  onSnapshot,
-  orderBy
+  signOut, onAuthStateChanged,
+  doc, setDoc, getDoc, getDocs,
+  collection, query, where,
+  serverTimestamp
 };
