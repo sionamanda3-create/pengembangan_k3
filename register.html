@@ -43,10 +43,10 @@
 
     <div class="login-form-panel">
       <div class="login-tabs">
-        <button type="button" class="login-tab active" data-tab="siswa" onclick="switchTab('siswa')">
+        <button type="button" id="tabSiswa" class="login-tab active">
           <i class="fas fa-user-graduate"></i> Siswa
         </button>
-        <button type="button" class="login-tab" data-tab="guru" onclick="switchTab('guru')">
+        <button type="button" id="tabGuru" class="login-tab">
           <i class="fas fa-chalkboard-teacher"></i> Guru
         </button>
       </div>
@@ -171,74 +171,102 @@
   <div class="footer-bottom">&copy; 2025 — Media K3 Pemesinan</div>
 </footer>
 
-<script type="module">
-import { registerUser } from "./auth.js";
-
+<!-- ============ SCRIPT NON-MODULE ============ -->
+<script>
+// Auto-hide loader
 window.addEventListener('load', function() {
-  const loader = document.getElementById('loader');
+  var loader = document.getElementById('loader');
   if (loader) setTimeout(function() { loader.classList.add('hide'); }, 400);
 });
 
-window.switchTab = function(tab) {
-  document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.login-form').forEach(f => f.classList.remove('active'));
-  document.querySelector('.login-tab[data-tab="' + tab + '"]').classList.add('active');
-  document.getElementById(tab === 'siswa' ? 'formSiswa' : 'formGuru').classList.add('active');
-};
+// ===== SWITCH TAB (LANGSUNG DI-ATTACH) =====
+function setActiveTab(tab) {
+  var tabs = document.querySelectorAll('.login-tab');
+  var forms = document.querySelectorAll('.login-form');
+  for (var i = 0; i < tabs.length; i++) tabs[i].classList.remove('active');
+  for (var i = 0; i < forms.length; i++) forms[i].classList.remove('active');
 
-window.togglePassword = function(id, btn) {
-  const input = document.getElementById(id);
-  const icon = btn.querySelector('i');
+  if (tab === 'siswa') {
+    document.getElementById('tabSiswa').classList.add('active');
+    document.getElementById('formSiswa').classList.add('active');
+  } else {
+    document.getElementById('tabGuru').classList.add('active');
+    document.getElementById('formGuru').classList.add('active');
+  }
+}
+
+// Attach click event
+document.getElementById('tabSiswa').addEventListener('click', function() { setActiveTab('siswa'); });
+document.getElementById('tabGuru').addEventListener('click', function() { setActiveTab('guru'); });
+
+// ===== TOGGLE PASSWORD =====
+function togglePassword(id, btn) {
+  var input = document.getElementById(id);
+  var icon = btn.querySelector('i');
   if (input.type === 'password') {
     input.type = 'text';
-    icon.classList.replace('fa-eye', 'fa-eye-slash');
+    icon.classList.remove('fa-eye');
+    icon.classList.add('fa-eye-slash');
   } else {
     input.type = 'password';
-    icon.classList.replace('fa-eye-slash', 'fa-eye');
+    icon.classList.remove('fa-eye-slash');
+    icon.classList.add('fa-eye');
   }
-};
+}
 
+// ===== SHOW ERROR / SUCCESS =====
 function showErr(id, msg) {
-  const el = document.getElementById(id);
+  var el = document.getElementById(id);
   el.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + msg;
   el.classList.add('show');
   el.classList.remove('success');
 }
 
 function showOk(id, msg) {
-  const el = document.getElementById(id);
+  var el = document.getElementById(id);
   el.innerHTML = '<i class="fas fa-check-circle"></i> ' + msg;
   el.classList.add('show', 'success');
 }
 
-window.daftarSiswa = async function() {
-  const nama = document.getElementById('regSiswaNama').value.trim();
-  const email = document.getElementById('regSiswaEmail').value.trim();
-  const nis = document.getElementById('regSiswaNis').value.trim();
-  const kelas = document.getElementById('regSiswaKelas').value;
-  const pass = document.getElementById('regSiswaPass').value;
+// ===== DAFTAR SISWA =====
+function daftarSiswa() {
+  var nama = document.getElementById('regSiswaNama').value.trim();
+  var email = document.getElementById('regSiswaEmail').value.trim();
+  var nis = document.getElementById('regSiswaNis').value.trim();
+  var kelas = document.getElementById('regSiswaKelas').value;
+  var pass = document.getElementById('regSiswaPass').value;
 
   if (!nama || !email || !nis || !kelas || !pass) return showErr('errRegSiswa', 'Semua kolom wajib diisi');
   if (pass.length < 6) return showErr('errRegSiswa', 'Password minimal 6 karakter');
 
   showOk('errRegSiswa', 'Sedang mendaftar...');
 
-  const result = await registerUser({ email, password: pass, nama, role: 'siswa', kelas, nis });
+  // Import dinamis
+  import('./auth.js').then(function(mod) {
+    mod.registerUser({ email: email, password: pass, nama: nama, role: 'siswa', kelas: kelas, nis: nis })
+      .then(function(result) {
+        if (result.ok) {
+          showOk('errRegSiswa', 'Pendaftaran berhasil! Silakan login...');
+          setTimeout(function() { window.location.href = 'index.html'; }, 2000);
+        } else {
+          showErr('errRegSiswa', result.msg);
+        }
+      });
+  }).catch(function(err) {
+    console.error(err);
+    showErr('errRegSiswa', 'File auth.js tidak ditemukan. Hubungi admin.');
+  });
+}
 
-  if (result.ok) {
-    showOk('errRegSiswa', 'Pendaftaran berhasil! Silakan login...');
-    setTimeout(function() { window.location.href = 'index.html'; }, 2000);
-  } else {
-    showErr('errRegSiswa', result.msg);
-  }
-};
-
-window.daftarGuru = async function() {
-  const nama = document.getElementById('regGuruNama').value.trim();
-  const email = document.getElementById('regGuruEmail').value.trim();
-  const nip = document.getElementById('regGuruNip').value.trim();
-  const pass = document.getElementById('regGuruPass').value;
-  const kelasAmpu = [...document.querySelectorAll('input[name="kelasAmpu"]:checked')].map(c => c.value);
+// ===== DAFTAR GURU =====
+function daftarGuru() {
+  var nama = document.getElementById('regGuruNama').value.trim();
+  var email = document.getElementById('regGuruEmail').value.trim();
+  var nip = document.getElementById('regGuruNip').value.trim();
+  var pass = document.getElementById('regGuruPass').value;
+  var checked = document.querySelectorAll('input[name="kelasAmpu"]:checked');
+  var kelasAmpu = [];
+  for (var i = 0; i < checked.length; i++) kelasAmpu.push(checked[i].value);
 
   if (!nama || !email || !nip || !pass) return showErr('errRegGuru', 'Semua kolom wajib diisi');
   if (kelasAmpu.length === 0) return showErr('errRegGuru', 'Pilih minimal 1 kelas');
@@ -246,305 +274,24 @@ window.daftarGuru = async function() {
 
   showOk('errRegGuru', 'Sedang mendaftar...');
 
-  const result = await registerUser({
-    email, password: pass, nama, role: 'guru', nip, kelasAmpu,
-    mapel: 'K3 Teknik Pemesinan'
+  import('./auth.js').then(function(mod) {
+    mod.registerUser({
+      email: email, password: pass, nama: nama, role: 'guru',
+      nip: nip, kelasAmpu: kelasAmpu, mapel: 'K3 Teknik Pemesinan'
+    }).then(function(result) {
+      if (result.ok) {
+        showOk('errRegGuru', 'Pendaftaran berhasil! Silakan login...');
+        setTimeout(function() { window.location.href = 'index.html'; }, 2000);
+      } else {
+        showErr('errRegGuru', result.msg);
+      }
+    });
+  }).catch(function(err) {
+    console.error(err);
+    showErr('errRegGuru', 'File auth.js tidak ditemukan. Hubungi admin.');
   });
-
-  if (result.ok) {
-    showOk('errRegGuru', 'Pendaftaran berhasil! Silakan login...');
-    setTimeout(function() { window.location.href = 'index.html'; }, 2000);
-  } else {
-    showErr('errRegGuru', result.msg);
-  }
-};
-</script>
-</body>
-</html><!DOCTYPE html>
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Daftar Akun - Media K3 Pemesinan</title>
-<meta name="description" content="Daftar akun Media Pembelajaran K3 untuk Siswa dan Guru SMK Negeri 2 Medan">
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-</head>
-<body class="login-body">
-
-<div id="loader">
-  <div class="loader-spinner"></div>
-  <p>Memuat...</p>
-</div>
-
-<div id="progress-bar"></div>
-
-<!-- ============ HEADER SEDERHANA (TANPA NAVBAR) ============ -->
-<header class="main-header">
-  <div class="header-content">
-    <div class="logo-area">
-      <div class="logo-icon">⚙️</div>
-      <div>
-        <h1>Media Pembelajaran K3</h1>
-        <p>Teknik Pemesinan — SMK Negeri 2 Medan</p>
-      </div>
-    </div>
-    <div class="header-badge">
-      <i class="fas fa-user-plus"></i> Daftar Akun
-    </div>
-  </div>
-</header>
-
-<!-- ============================================== -->
-<!-- TIDAK ADA NAVBAR DI SINI — SENGAJA DIHAPUS   -->
-<!-- User hanya bisa daftar, belum bisa akses web -->
-<!-- ============================================== -->
-
-<section class="login-section">
-  <div class="login-wrapper register-wrapper">
-
-    <div class="login-info-panel">
-      <div class="login-info-content">
-        <div class="login-info-icon"><i class="fas fa-user-plus"></i></div>
-        <h2>Daftar Akun</h2>
-        <p>Buat akun baru untuk mengakses media pembelajaran K3.</p>
-        <div class="login-benefits">
-          <div class="login-benefit-item"><i class="fas fa-check-circle"></i><span>Akses semua materi</span></div>
-          <div class="login-benefit-item"><i class="fas fa-check-circle"></i><span>Kerjakan latihan & kuis</span></div>
-          <div class="login-benefit-item"><i class="fas fa-check-circle"></i><span>Nilai otomatis</span></div>
-          <div class="login-benefit-item"><i class="fas fa-check-circle"></i><span>Terdaftar di kelas guru</span></div>
-        </div>
-        <div class="login-illustration"><i class="fas fa-users"></i></div>
-      </div>
-    </div>
-
-    <div class="login-form-panel">
-      <div class="login-tabs">
-        <button class="login-tab active" data-tab="siswa" onclick="switchTab('siswa')">
-          <i class="fas fa-user-graduate"></i> Siswa
-        </button>
-        <button class="login-tab" data-tab="guru" onclick="switchTab('guru')">
-          <i class="fas fa-chalkboard-teacher"></i> Guru
-        </button>
-      </div>
-
-      <!-- FORM DAFTAR SISWA -->
-      <form class="login-form active" id="formSiswa" onsubmit="event.preventDefault(); daftarSiswa();">
-        <h3><i class="fas fa-user-graduate"></i> Daftar Siswa</h3>
-        <p class="login-subtitle">Isi data diri untuk membuat akun siswa</p>
-
-        <div class="login-field">
-          <label><i class="fas fa-user"></i> Nama Lengkap</label>
-          <input type="text" id="regSiswaNama" placeholder="Contoh: Ahmad Fauzi">
-        </div>
-
-        <div class="login-field">
-          <label><i class="fas fa-envelope"></i> Email</label>
-          <input type="email" id="regSiswaEmail" placeholder="Contoh: ahmad@gmail.com">
-        </div>
-
-        <div class="login-field">
-          <label><i class="fas fa-id-card"></i> NIS</label>
-          <input type="text" id="regSiswaNis" placeholder="Contoh: 2024001">
-        </div>
-
-        <div class="login-field">
-          <label><i class="fas fa-school"></i> Kelas</label>
-          <select id="regSiswaKelas" class="login-select">
-            <option value="">-- Pilih Kelas --</option>
-            <option value="TP 1">TP 1</option>
-            <option value="TP 2">TP 2</option>
-            <option value="TP 3">TP 3</option>
-          </select>
-        </div>
-
-        <div class="login-field">
-          <label><i class="fas fa-lock"></i> Password</label>
-          <div class="login-password-wrapper">
-            <input type="password" id="regSiswaPass" placeholder="Min. 6 karakter">
-            <button type="button" class="toggle-password" onclick="togglePassword('regSiswaPass', this)">
-              <i class="fas fa-eye"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="login-error" id="errRegSiswa"></div>
-
-        <button type="submit" class="btn-login">
-          <i class="fas fa-user-plus"></i> Daftar sebagai Siswa
-        </button>
-
-        <p class="login-link-bottom">
-          Sudah punya akun? <a href="index.html">Login di sini</a>
-        </p>
-      </form>
-
-      <!-- FORM DAFTAR GURU -->
-      <form class="login-form" id="formGuru" onsubmit="event.preventDefault(); daftarGuru();">
-        <h3><i class="fas fa-chalkboard-teacher"></i> Daftar Guru</h3>
-        <p class="login-subtitle">Isi data diri untuk membuat akun guru</p>
-
-        <div class="login-field">
-          <label><i class="fas fa-user"></i> Nama Lengkap</label>
-          <input type="text" id="regGuruNama" placeholder="Contoh: Bapak Surya">
-        </div>
-
-        <div class="login-field">
-          <label><i class="fas fa-envelope"></i> Email</label>
-          <input type="email" id="regGuruEmail" placeholder="Contoh: surya@gmail.com">
-        </div>
-
-        <div class="login-field">
-          <label><i class="fas fa-id-card"></i> NIP</label>
-          <input type="text" id="regGuruNip" placeholder="Contoh: 19850505">
-        </div>
-
-        <div class="login-field">
-          <label><i class="fas fa-school"></i> Kelas yang Diampu</label>
-          <div class="kelas-checkbox-group">
-            <label class="kelas-checkbox"><input type="checkbox" name="kelasAmpu" value="TP 1"><span>TP 1</span></label>
-            <label class="kelas-checkbox"><input type="checkbox" name="kelasAmpu" value="TP 2"><span>TP 2</span></label>
-            <label class="kelas-checkbox"><input type="checkbox" name="kelasAmpu" value="TP 3"><span>TP 3</span></label>
-          </div>
-        </div>
-
-        <div class="login-field">
-          <label><i class="fas fa-lock"></i> Password</label>
-          <div class="login-password-wrapper">
-            <input type="password" id="regGuruPass" placeholder="Min. 6 karakter">
-            <button type="button" class="toggle-password" onclick="togglePassword('regGuruPass', this)">
-              <i class="fas fa-eye"></i>
-            </button>
-          </div>
-        </div>
-
-        <div class="login-error" id="errRegGuru"></div>
-
-        <button type="submit" class="btn-login btn-login-guru">
-          <i class="fas fa-user-plus"></i> Daftar sebagai Guru
-        </button>
-
-        <p class="login-link-bottom">
-          Sudah punya akun? <a href="index.html">Login di sini</a>
-        </p>
-      </form>
-
-    </div>
-  </div>
-</section>
-
-<!-- ============ FOOTER SEDERHANA ============ -->
-<footer>
-  <div class="footer-content">
-    <div class="footer-col">
-      <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
-      <p>Media Pembelajaran K3 untuk Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Menu Cepat</h4>
-      <a href="index.html">Login</a>
-      <a href="register.html">Daftar</a>
-    </div>
-    <div class="footer-col">
-      <h4>Kontak</h4>
-      <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
-      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
-  </div>
-</footer>
-
-<script type="module">
-import { registerUser } from "./auth.js";
-
-window.addEventListener('load', function() {
-  const loader = document.getElementById('loader');
-  if (loader) setTimeout(function() { loader.classList.add('hide'); }, 400);
-});
-
-window.switchTab = function(tab) {
-  document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-  document.querySelectorAll('.login-form').forEach(f => f.classList.remove('active'));
-  document.querySelector('.login-tab[data-tab="' + tab + '"]').classList.add('active');
-  document.getElementById(tab === 'siswa' ? 'formSiswa' : 'formGuru').classList.add('active');
-};
-
-window.togglePassword = function(id, btn) {
-  const input = document.getElementById(id);
-  const icon = btn.querySelector('i');
-  if (input.type === 'password') {
-    input.type = 'text';
-    icon.classList.replace('fa-eye', 'fa-eye-slash');
-  } else {
-    input.type = 'password';
-    icon.classList.replace('fa-eye-slash', 'fa-eye');
-  }
-};
-
-function showError(id, msg) {
-  const el = document.getElementById(id);
-  el.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + msg;
-  el.classList.add('show');
-  el.classList.remove('success');
 }
-
-function showSuccess(id, msg) {
-  const el = document.getElementById(id);
-  el.innerHTML = '<i class="fas fa-check-circle"></i> ' + msg;
-  el.classList.add('show', 'success');
-}
-
-window.daftarSiswa = async function() {
-  const nama = document.getElementById('regSiswaNama').value.trim();
-  const email = document.getElementById('regSiswaEmail').value.trim();
-  const nis = document.getElementById('regSiswaNis').value.trim();
-  const kelas = document.getElementById('regSiswaKelas').value;
-  const pass = document.getElementById('regSiswaPass').value;
-
-  if (!nama || !email || !nis || !kelas || !pass) return showError('errRegSiswa', 'Semua kolom wajib diisi');
-  if (pass.length < 6) return showError('errRegSiswa', 'Password minimal 6 karakter');
-
-  showSuccess('errRegSiswa', 'Sedang mendaftar...');
-
-  const result = await registerUser({ email, password: pass, nama, role: 'siswa', kelas, nis });
-
-  if (result.ok) {
-    showSuccess('errRegSiswa', 'Pendaftaran berhasil! Silakan login...');
-    setTimeout(function() { window.location.href = 'index.html'; }, 2000);
-  } else {
-    showError('errRegSiswa', result.msg);
-  }
-};
-
-window.daftarGuru = async function() {
-  const nama = document.getElementById('regGuruNama').value.trim();
-  const email = document.getElementById('regGuruEmail').value.trim();
-  const nip = document.getElementById('regGuruNip').value.trim();
-  const pass = document.getElementById('regGuruPass').value;
-  const kelasAmpu = [...document.querySelectorAll('input[name="kelasAmpu"]:checked')].map(c => c.value);
-
-  if (!nama || !email || !nip || !pass) return showError('errRegGuru', 'Semua kolom wajib diisi');
-  if (kelasAmpu.length === 0) return showError('errRegGuru', 'Pilih minimal 1 kelas');
-  if (pass.length < 6) return showError('errRegGuru', 'Password minimal 6 karakter');
-
-  showSuccess('errRegGuru', 'Sedang mendaftar...');
-
-  const result = await registerUser({
-    email, password: pass, nama, role: 'guru', nip, kelasAmpu,
-    mapel: 'K3 Teknik Pemesinan'
-  });
-
-  if (result.ok) {
-    showSuccess('errRegGuru', 'Pendaftaran berhasil! Silakan login...');
-    setTimeout(function() { window.location.href = 'index.html'; }, 2000);
-  } else {
-    showError('errRegGuru', result.msg);
-  }
-};
 </script>
+
 </body>
 </html>
