@@ -11,7 +11,7 @@
 .dashboard-wrap { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
 .welcome-card {
   background: linear-gradient(135deg, #ff8f00, #ffb300);
-  color: #0a1929; padding: 35px; border-radius: 20px;
+  color: #fff; padding: 35px; border-radius: 20px;
   box-shadow: 0 15px 40px rgba(255,179,0,0.3);
   display: flex; align-items: center; gap: 25px; margin-bottom: 25px;
 }
@@ -34,9 +34,7 @@
   margin-bottom: 15px; display: flex; align-items: center; gap: 10px;
 }
 .section-title i { color: #1565c0; }
-.filter-bar {
-  display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap;
-}
+.filter-bar { display: flex; gap: 8px; margin-bottom: 20px; flex-wrap: wrap; }
 .filter-btn {
   padding: 8px 18px; background: #f0f7ff;
   color: #0d47a1; border: 2px solid #e3f2fd;
@@ -55,20 +53,28 @@
   border: 2px solid #e3f2fd; transition: all 0.3s;
   display: flex; align-items: center; gap: 15px;
 }
-.siswa-card:hover { transform: translateY(-5px); border-color: #1565c0;<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard Guru - Media K3 Pemesinan</title>
-<link rel="stylesheet" href="style.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+.siswa-card:hover { transform: translateY(-5px); border-color: #1565c0; }
+.siswa-avatar {
+  width: 55px; height: 55px; border-radius: 50%;
+  background: linear-gradient(135deg, #1565c0, #42a5f5);
+  color: #fff; display: flex; align-items: center; justify-content: center;
+  font-size: 22px; flex-shrink: 0;
+}
+.siswa-info h3 { font-size: 16px; color: #0d47a1; margin-bottom: 4px; }
+.siswa-info p { font-size: 13px; color: #64748b; }
+.logout-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: #f44336; color: #fff;
+  padding: 12px 24px; border-radius: 10px;
+  font-weight: 600; font-size: 14px;
+  border: none; cursor: pointer; text-decoration: none;
+}
+.logout-btn:hover { background: #c62828; }
+</style>
 </head>
 <body>
 
 <div id="loader"><div class="loader-spinner"></div><p>Memuat Dashboard...</p></div>
-<div id="progress-bar"></div>
 
 <header class="main-header">
   <div class="header-content">
@@ -79,91 +85,43 @@
         <p>Media K3 Pemesinan — SMK N 2 Medan</p>
       </div>
     </div>
-    <div class="header-user" id="headerUser"></div>
+    <div class="header-badge"><i class="fas fa-chalkboard-teacher"></i> Guru</div>
   </div>
 </header>
 
-<nav class="main-nav">
-  <a href="guru-dashboard.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-  <a href="pengertian-k3.html"><i class="fas fa-book"></i> Materi</a>
-  <a href="guru-tugas.html"><i class="fas fa-tasks"></i> Tugas</a>
-  <a href="guru-nilai.html"><i class="fas fa-chart-bar"></i> Nilai</a>
-  <a href="#" onclick="logoutConfirm(); return false;"><i class="fas fa-sign-out-alt"></i> Logout</a>
-</nav>
+<div class="dashboard-wrap">
 
-<div class="container">
-
-  <!-- ===== WELCOME ===== -->
-  <div class="card reveal dashboard-welcome guru-welcome">
-    <div class="welcome-grid">
-      <div class="welcome-icon guru-icon">
-        <i class="fas fa-chalkboard-teacher"></i>
-      </div>
-      <div class="welcome-text">
-        <h2>Selamat Datang, <span id="namaGuru">Guru</span>! 👋</h2>
-        <p id="mapelGuru">K3 Teknik Pemesinan</p>
-        <div class="welcome-badges">
-          <span class="welcome-badge"><i class="fas fa-id-card"></i> NIP: <b id="nipGuru">-</b></span>
-          <span class="welcome-badge"><i class="fas fa-school"></i> Kelas: <b id="kelasAmpuGuru">-</b></span>
-        </div>
+  <div class="welcome-card">
+    <div class="welcome-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+    <div class="welcome-text">
+      <h1>Halo, <span id="namaGuru">Guru</span>! 👋</h1>
+      <p id="mapelGuru">K3 Teknik Pemesinan</p>
+      <div class="welcome-badges">
+        <div class="welcome-badge"><i class="fas fa-id-card"></i> NIP: <span id="nipGuru">-</span></div>
+        <div class="welcome-badge"><i class="fas fa-school"></i> Kelas: <span id="kelasAmpuGuru">-</span></div>
       </div>
     </div>
   </div>
 
-  <!-- ===== STATISTIK ===== -->
-  <div class="card reveal">
-    <h2><i class="fas fa-chart-pie"></i> Statistik</h2>
-    <div class="guru-stats-grid">
-      <div class="guru-stat-card">
-        <div class="guru-stat-icon icon-biru"><i class="fas fa-users"></i></div>
-        <div>
-          <div class="guru-stat-number" id="totalSiswa">0</div>
-          <div class="guru-stat-label">Total Siswa</div>
-        </div>
-      </div>
-      <div class="guru-stat-card">
-        <div class="guru-stat-icon icon-hijau"><i class="fas fa-school"></i></div>
-        <div>
-          <div class="guru-stat-number" id="totalKelas">0</div>
-          <div class="guru-stat-label">Kelas Diampu</div>
-        </div>
-      </div>
-      <div class="guru-stat-card">
-        <div class="guru-stat-icon icon-kuning"><i class="fas fa-user-check"></i></div>
-        <div>
-          <div class="guru-stat-number" id="totalTP1">0</div>
-          <div class="guru-stat-label">Siswa TP 1</div>
-        </div>
-      </div>
-      <div class="guru-stat-card">
-        <div class="guru-stat-icon icon-ungu"><i class="fas fa-user-graduate"></i></div>
-        <div>
-          <div class="guru-stat-number" id="totalTP2">0</div>
-          <div class="guru-stat-label">Siswa TP 2</div>
-        </div>
-      </div>
+  <div class="filter-bar">
+    <button class="filter-btn active" onclick="filterKelas('all', this)">Semua Siswa</button>
+    <button class="filter-btn" onclick="filterKelas('TP 1', this)">TP 1</button>
+    <button class="filter-btn" onclick="filterKelas('TP 2', this)">TP 2</button>
+    <button class="filter-btn" onclick="filterKelas('TP 3', this)">TP 3</button>
+  </div>
+
+  <h2 class="section-title"><i class="fas fa-users"></i> Daftar Siswa Terdaftar</h2>
+
+  <div id="siswaList" class="siswa-grid">
+    <div style="text-align:center; padding:40px; color:#64748b; grid-column:1/-1;">
+      <i class="fas fa-spinner fa-spin" style="font-size:32px;"></i>
+      <p style="margin-top:10px;">Memuat data siswa...</p>
     </div>
   </div>
 
-  <!-- ===== DAFTAR SISWA ===== -->
-  <div class="card reveal">
-    <h2><i class="fas fa-users"></i> Daftar Siswa Terdaftar</h2>
-    <p class="section-desc">Siswa yang terdaftar di kelas yang Anda ampu (real-time dari Firebase).</p>
-
-    <div class="kelas-filter">
-      <button class="kelas-btn active" onclick="filterKelas('all', this)">Semua</button>
-      <button class="kelas-btn" onclick="filterKelas('TP 1', this)">TP 1</button>
-      <button class="kelas-btn" onclick="filterKelas('TP 2', this)">TP 2</button>
-      <button class="kelas-btn" onclick="filterKelas('TP 3', this)">TP 3</button>
-    </div>
-
-    <div id="siswaList" class="siswa-list">
-      <div class="loading-state">
-        <i class="fas fa-spinner fa-spin"></i>
-        <p>Memuat data siswa...</p>
-      </div>
-    </div>
-  </div>
+  <button class="logout-btn" onclick="logoutConfirm()">
+    <i class="fas fa-sign-out-alt"></i> Logout
+  </button>
 
 </div>
 
@@ -171,115 +129,87 @@
   <div class="footer-content">
     <div class="footer-col">
       <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
-      <p>Media Pembelajaran K3 untuk Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
+      <p>Media Pembelajaran K3 untuk Siswa SMK Negeri 2 Medan.</p>
     </div>
     <div class="footer-col">
       <h4>Menu Cepat</h4>
       <a href="guru-dashboard.html">Dashboard</a>
-      <a href="guru-tugas.html">Tugas</a>
-      <a href="pengertian-k3.html">Materi</a>
-      <a href="kuis.html">Kuis</a>
     </div>
     <div class="footer-col">
       <h4>Kontak</h4>
       <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
-      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
     </div>
   </div>
-  <div class="footer-bottom">
-    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D
-  </div>
+  <div class="footer-bottom">&copy; 2025 — Media K3 Pemesinan</div>
 </footer>
 
 <script type="module">
-import { requireLogin, logoutUser, getAllSiswa } from "./auth.js";
+import { getCurrentUser, logoutUser, getAllSiswa } from "./auth.js";
 
-const user = requireLogin('guru');
-let semuaSiswa = [];
+window.addEventListener('load', function() {
+  const loader = document.getElementById('loader');
+  if (loader) setTimeout(function() { loader.classList.add('hide'); }, 400);
+});
 
-if (user) {
+const user = getCurrentUser();
+
+if (!user || user.role !== 'guru') {
+  window.location.href = 'index.html';
+} else {
   document.getElementById('namaGuru').textContent = user.nama || 'Guru';
   document.getElementById('nipGuru').textContent = user.nip || '-';
   document.getElementById('mapelGuru').textContent = user.mapel || 'K3 Teknik Pemesinan';
 
   const kelasAmpu = user.kelasAmpu || [];
   document.getElementById('kelasAmpuGuru').textContent = kelasAmpu.join(', ') || '-';
-  document.getElementById('totalKelas').textContent = kelasAmpu.length;
 
-  document.getElementById('headerUser').innerHTML = `
-    <div class="user-badge">
-      <i class="fas fa-user-circle"></i>
-      <div>
-        <strong>${user.nama}</strong>
-        <span>Guru K3</span>
-      </div>
-    </div>
-  `;
+  loadSiswa();
 }
 
-// ===== LOAD DATA SISWA =====
+let semuaSiswa = [];
+
 async function loadSiswa() {
+  const container = document.getElementById('siswaList');
   try {
     const list = await getAllSiswa();
     semuaSiswa = list;
-
-    document.getElementById('totalSiswa').textContent = list.length;
-    document.getElementById('totalTP1').textContent = list.filter(s => s.kelas === 'TP 1').length;
-    document.getElementById('totalTP2').textContent = list.filter(s => s.kelas === 'TP 2').length;
-
     renderSiswa(list);
   } catch (error) {
-    document.getElementById('siswaList').innerHTML = `
-      <div class="empty-state">
-        <i class="fas fa-exclamation-triangle"></i>
-        <p>Gagal memuat data: ${error.message}</p>
-      </div>
-    `;
+    container.innerHTML = '<div style="text-align:center; padding:40px; color:#f44336; grid-column:1/-1;">' +
+      '<i class="fas fa-exclamation-triangle" style="font-size:32px;"></i>' +
+      '<p style="margin-top:10px;">Gagal memuat: ' + error.message + '</p></div>';
   }
 }
 
-// ===== RENDER DAFTAR SISWA =====
 function renderSiswa(list) {
   const container = document.getElementById('siswaList');
 
   if (list.length === 0) {
-    container.innerHTML = `
-      <div class="empty-state">
-        <i class="fas fa-users-slash"></i>
-        <p>Belum ada siswa terdaftar di kelas ini.</p>
-      </div>
-    `;
+    container.innerHTML = '<div style="text-align:center; padding:40px; color:#64748b; grid-column:1/-1;">' +
+      '<i class="fas fa-user-slash" style="font-size:40px;"></i>' +
+      '<p style="margin-top:10px;">Belum ada siswa terdaftar.</p></div>';
     return;
   }
 
-  container.innerHTML = list.map(s => `
-    <div class="siswa-item">
-      <div class="siswa-avatar">
-        <i class="fas fa-user"></i>
-      </div>
-      <div class="siswa-info">
-        <h4>${s.nama}</h4>
-        <p>
-          <span class="siswa-tag"><i class="fas fa-id-card"></i> ${s.nis || '-'}</span>
-          <span class="siswa-tag kelas-tag"><i class="fas fa-school"></i> ${s.kelas || '-'}</span>
-        </p>
-      </div>
-      <div class="siswa-status">
-        <span class="status-online"><i class="fas fa-circle"></i> Aktif</span>
-      </div>
-    </div>
-  `).join('');
+  container.innerHTML = list.map(function(s) {
+    return '<div class="siswa-card">' +
+      '<div class="siswa-avatar"><i class="fas fa-user"></i></div>' +
+      '<div class="siswa-info">' +
+        '<h3>' + (s.nama || '-') + '</h3>' +
+        '<p><i class="fas fa-id-card"></i> ' + (s.nis || '-') + ' • <i class="fas fa-school"></i> ' + (s.kelas || '-') + '</p>' +
+      '</div>' +
+    '</div>';
+  }).join('');
 }
 
-// ===== FILTER KELAS =====
 window.filterKelas = function(kelas, btn) {
-  document.querySelectorAll('.kelas-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
   btn.classList.add('active');
 
   if (kelas === 'all') {
     renderSiswa(semuaSiswa);
   } else {
-    renderSiswa(semuaSiswa.filter(s => s.kelas === kelas));
+    renderSiswa(semuaSiswa.filter(function(s) { return s.kelas === kelas; }));
   }
 };
 
@@ -288,9 +218,7 @@ window.logoutConfirm = async function() {
     await logoutUser();
   }
 };
-
-// Load data saat halaman siap
-if (user) loadSiswa();
 </script>
+
 </body>
 </html>
