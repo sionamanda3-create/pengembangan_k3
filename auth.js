@@ -1,5 +1,5 @@
 /* ============================================================
-   AUTH.JS — Media K3 Pemesinan
+   AUTH.JS — Media K3 Pemesinan (PASTI SIMPAN KE FIRESTORE)
    ============================================================ */
 
 import {
@@ -13,17 +13,22 @@ import {
 } from "./firebase-config.js";
 
 /* ============================================================
-   REGISTER — DENGAN DEBUG ALERT
+   REGISTER USER — SIMPAN KE AUTH + FIRESTORE
    ============================================================ */
 export async function registerUser({ email, password, nama, role, kelas, nip, nis, mapel, kelasAmpu }) {
   try {
+    // STEP 1: Buat user di Firebase Authentication
     const userCredential = await createUserWithEmailAndPassword(auth, email, password);
     const uid = userCredential.user.uid;
 
+    // STEP 2: Siapkan data user
     const userData = {
-      uid, email, nama, role,
-      createdAt: serverTimestamp(),
-      status: "aktif"
+      uid: uid,
+      email: email,
+      nama: nama,
+      role: role,
+      status: "aktif",
+      createdAt: serverTimestamp()
     };
 
     if (role === "siswa") {
@@ -35,20 +40,29 @@ export async function registerUser({ email, password, nama, role, kelas, nip, ni
       userData.kelasAmpu = kelasAmpu || [];
     }
 
-    await setDoc(doc(db, "users", uid), userData);
+    // STEP 3: Simpan ke Firestore — WAJIB BERHASIL
+    try {
+      await setDoc(doc(db, "users", uid), userData);
+      console.log("✅ Data tersimpan di Firestore:", userData);
+    } catch (firestoreError) {
+      console.error("❌ Gagal simpan ke Firestore:", firestoreError);
+      // Tetap return error karena data utama harus tersimpan
+      return {
+        ok: false,
+        msg: "Gagal simpan ke database: " + firestoreError.message
+      };
+    }
 
-    alert("✅ BERHASIL DAFTAR!\n\nEmail: " + email + "\nRole: " + role + "\n\nSilakan login.");
     return { ok: true, user: userData };
 
   } catch (error) {
-    console.error("REGISTER ERROR:", error);
-    alert("❌ ERROR DAFTAR\n\nCode: " + error.code + "\n\nMessage: " + error.message);
-    return { ok: false, msg: "Error: " + error.code };
+    console.error("❌ REGISTER ERROR:", error);
+    return { ok: false, msg: translateError(error.code) };
   }
 }
 
 /* ============================================================
-   LOGIN — DENGAN DEBUG ALERT
+   LOGIN USER
    ============================================================ */
 export async function loginUser(email, password) {
   try {
@@ -57,19 +71,17 @@ export async function loginUser(email, password) {
 
     const userDoc = await getDoc(doc(db, "users", uid));
     if (!userDoc.exists()) {
-      alert("❌ Data user tidak ada di database");
-      return { ok: false, msg: "Data user tidak ada" };
+      return { ok: false, msg: "Data user tidak ditemukan di database" };
     }
 
-    const userData = { uid, ...userDoc.data() };
+    const userData = { uid: uid, ...userDoc.data() };
     sessionStorage.setItem("userK3", JSON.stringify(userData));
     localStorage.setItem("userK3", JSON.stringify(userData));
 
     return { ok: true, user: userData };
   } catch (error) {
-    console.error("LOGIN ERROR:", error);
-    alert("❌ ERROR LOGIN\n\nCode: " + error.code + "\n\nMessage: " + error.message);
-    return { ok: false, msg: "Error: " + error.code };
+    console.error("❌ LOGIN ERROR:", error);
+    return { ok: false, msg: translateError(error.code) };
   }
 }
 
@@ -91,267 +103,40 @@ export async function logoutUser() {
 export function getCurrentUser() {
   const s = sessionStorage.getItem("userK3") || localStorage.getItem("userK3");
   return s ? JSON.parse(s) : null;
-}/* ============================================================
-   AUTH.JS — DENGAN DEBUG ALERT
-   ============================================================ */
-
-import {
-  auth, db,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  doc, setDoc, getDoc, getDocs,
-  collection, query, where,
-  serverTimestamp
-} from "./firebase-config.js";
-
-export async function registerUser({
-  email, password, nama, role,
-  kelas, nip, nis, mapel, kelasAmpu
-}) {
-  try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const uid = userCredential.user.uid;
-
-    const userData = {
-      uid, email, nama, role,
-      createdAt: serverTimestamp(),
-      status: "aktif"
-    };
-
-    if (role === "siswa") {
-      userData.kelas = kelas;
-      userData.nis = nis;
-    } else if (role === "guru") {
-      userData.nip = nip;
-      userData.mapel = mapel || "K3 Teknik Pemesinan";
-      userData.kelasAmpu = kelasAmpu || [];
-    }
-
-    await setDoc(doc(db, "users", uid), userData);
-
-    alert("✅ BERHASIL DAFTAR!\n\nUID: " + uid + "\nEmail: " + email);
-    return { ok: true, user: userData };
-
-  } catch (error) {
-    console.error("REGISTER ERROR:", error);
-    alert("❌ ERROR DAFTAR:\n\nCODE: " + error.code + "\n\nMESSAGE: " + error.message);
-    return { ok: false, msg: "Error: " + error.code };
-  }
 }
-
-export async function loginUser(email, password) {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const uid = userCredential.user.uid;
-
-    const userDoc = await getDoc(doc(db, "users", uid));
-    if (!userDoc.exists()) {
-      alert("❌ Data user tidak ditemukan di Firestore");
-      return { ok: false, msg: "Data user tidak ditemukan" };
-    }
-
-    const userData = { uid, ...userDoc.data() };
-    sessionStorage.setItem("userK3", JSON.stringify(userData));
-    localStorage.setItem("userK3", JSON.stringify(userData));
-
-    return { ok: true, user: userData };
-  } catch (error) {
-    console.error("LOGIN ERROR:", error);
-    alert("❌ ERROR LOGIN:\n\nCODE: " + error.code + "\n\nMESSAGE: " + error.message);
-    return { ok: false, msg: "Error: " + error.code };
-  }
-}
-
-export async function logoutUser() {
-  try {
-    await signOut(auth);
-    sessionStorage.removeItem("userK3");
-    localStorage.removeItem("userK3");
-    window.location.href = "index.html";
-  } catch (error) { console.error(error); }
-}
-
-export function getCurrentUser() {
-  const s = sessionStorage.getItem("userK3") || localStorage.getItem("userK3");
-  return s ? JSON.parse(s) : null;
-}
-
-export function requireLogin(expectedRole = null) {
-  const user = getCurrentUser();
-  if (!user) { window.location.href = "index.html"; return null; }
-  if (expectedRole && user.role !== expectedRole) {
-    alert("Akses ditolak");
-    window.location.href = "index.html";
-    return null;
-  }
-  return user;
-}
-
-export async function getUserData(uid) {
-  const userDoc = await getDoc(doc(db, "users", uid));
-  return userDoc.exists() ? userDoc.data() : null;
-}
-
-export async function getAllSiswa() {
-  const q = query(collection(db, "users"), where("role", "==", "siswa"));
-  const snapshot = await getDocs(q);
-  return snapshot.docs.map(d => ({ uid: d.id, ...d.data() }));
-}
-
-export async function getSiswaByKelas(kelas) {
-  const q = query(
-    collection(db, "users"),
-    where("role", "==", "siswa"),
-    where("kelas", "==", kelas)
-  );
-  const snapshot = await getDocs(q);
-  return snapshot.docs.map(d => ({ uid: d.id, ...d.data() }));
-}
-
-export async function updateUserData(uid, data) {
-  try {
-    await setDoc(doc(db, "users", uid), data, { merge: true });
-    return { ok: true };
-  } catch (error) {
-    return { ok: false, msg: error.code };
-  }
-}/* ============================================================
-   AUTH.JS — DENGAN DEBUG ALERT
-   ============================================================ */
-
-import {
-  auth, db,
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-  signOut,
-  onAuthStateChanged,
-  doc, setDoc, getDoc, getDocs,
-  collection, query, where,
-  serverTimestamp
-} from "./firebase-config.js";
 
 /* ============================================================
-   REGISTER USER — DENGAN DEBUG
+   AMBIL SEMUA SISWA (untuk dashboard guru)
    ============================================================ */
-export async function registerUser({
-  email, password, nama, role,
-  kelas, nip, nis, mapel, kelasAmpu
-}) {
+export async function getAllSiswa() {
   try {
-    // STEP 1: Auth
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-    const uid = userCredential.user.uid;
-
-    // STEP 2: Data user
-    const userData = {
-      uid, email, nama, role,
-      createdAt: serverTimestamp(),
-      status: "aktif"
-    };
-
-    if (role === "siswa") {
-      userData.kelas = kelas;
-      userData.nis = nis;
-    } else if (role === "guru") {
-      userData.nip = nip;
-      userData.mapel = mapel || "K3 Teknik Pemesinan";
-      userData.kelasAmpu = kelasAmpu || [];
-    }
-
-    // STEP 3: Firestore
-    await setDoc(doc(db, "users", uid), userData);
-
-    // ✅ SUKSES
-    alert("✅ BERHASIL!\n\nUID: " + uid + "\nEmail: " + email);
-    return { ok: true, user: userData };
-
+    const q = query(collection(db, "users"), where("role", "==", "siswa"));
+    const snapshot = await getDocs(q);
+    const list = snapshot.docs.map(d => ({ uid: d.id, ...d.data() }));
+    console.log("✅ Siswa ditemukan:", list.length);
+    return list;
   } catch (error) {
-    // ❌ DEBUG — Tampilkan error asli
-    console.error("REGISTER ERROR:", error);
-    alert("❌ ERROR:\n\nCODE: " + error.code + "\n\nMESSAGE: " + error.message);
-    return { ok: false, msg: "Error: " + error.code };
+    console.error("❌ Gagal ambil siswa:", error);
+    throw error;
   }
 }
 
 /* ============================================================
-   LOGIN USER
+   TRANSLATE ERROR
    ============================================================ */
-export async function loginUser(email, password) {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const uid = userCredential.user.uid;
-
-    const userDoc = await getDoc(doc(db, "users", uid));
-    if (!userDoc.exists()) {
-      alert("❌ Data user tidak ditemukan di Firestore");
-      return { ok: false, msg: "Data user tidak ditemukan" };
-    }
-
-    const userData = { uid, ...userDoc.data() };
-    sessionStorage.setItem("userK3", JSON.stringify(userData));
-    localStorage.setItem("userK3", JSON.stringify(userData));
-
-    return { ok: true, user: userData };
-  } catch (error) {
-    console.error("LOGIN ERROR:", error);
-    alert("❌ LOGIN ERROR:\n\nCODE: " + error.code + "\n\nMESSAGE: " + error.message);
-    return { ok: false, msg: "Error: " + error.code };
-  }
-}
-
-export async function logoutUser() {
-  try {
-    await signOut(auth);
-    sessionStorage.removeItem("userK3");
-    localStorage.removeItem("userK3");
-    window.location.href = "index.html";
-  } catch (error) { console.error(error); }
-}
-
-export function getCurrentUser() {
-  const s = sessionStorage.getItem("userK3") || localStorage.getItem("userK3");
-  return s ? JSON.parse(s) : null;
-}
-
-export function requireLogin(expectedRole = null) {
-  const user = getCurrentUser();
-  if (!user) { window.location.href = "index.html"; return null; }
-  if (expectedRole && user.role !== expectedRole) {
-    alert("Akses ditolak");
-    window.location.href = "index.html";
-    return null;
-  }
-  return user;
-}
-
-export async function getUserData(uid) {
-  const userDoc = await getDoc(doc(db, "users", uid));
-  return userDoc.exists() ? userDoc.data() : null;
-}
-
-export async function getAllSiswa() {
-  const q = query(collection(db, "users"), where("role", "==", "siswa"));
-  const snapshot = await getDocs(q);
-  return snapshot.docs.map(d => ({ uid: d.id, ...d.data() }));
-}
-
-export async function getSiswaByKelas(kelas) {
-  const q = query(
-    collection(db, "users"),
-    where("role", "==", "siswa"),
-    where("kelas", "==", kelas)
-  );
-  const snapshot = await getDocs(q);
-  return snapshot.docs.map(d => ({ uid: d.id, ...d.data() }));
-}
-
-export async function updateUserData(uid, data) {
-  try {
-    await setDoc(doc(db, "users", uid), data, { merge: true });
-    return { ok: true };
-  } catch (error) {
-    return { ok: false, msg: error.code };
-  }
+function translateError(code) {
+  const errors = {
+    "auth/email-already-in-use": "Email sudah terdaftar",
+    "auth/invalid-email": "Format email tidak valid",
+    "auth/weak-password": "Password minimal 6 karakter",
+    "auth/user-not-found": "Email atau password salah",
+    "auth/wrong-password": "Email atau password salah",
+    "auth/invalid-credential": "Email atau password salah",
+    "auth/too-many-requests": "Terlalu banyak percobaan",
+    "auth/network-request-failed": "Gagal terhubung ke server",
+    "auth/unauthorized-domain": "Domain belum diotorisasi",
+    "auth/operation-not-allowed": "Metode login belum aktif",
+    "permission-denied": "Izin Firestore ditolak"
+  };
+  return errors[code] || ("Error: " + code);
 }
