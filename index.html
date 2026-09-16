@@ -10,7 +10,10 @@
 </head>
 <body class="login-body">
 
-<div id="loader"><div class="loader-spinner"></div><p>Memuat...</p></div>
+<div id="loader">
+  <div class="loader-spinner"></div>
+  <p>Memuat...</p>
+</div>
 
 <header class="main-header">
   <div class="header-content">
@@ -27,6 +30,7 @@
 
 <section class="login-section">
   <div class="login-wrapper">
+
     <div class="login-info-panel">
       <div class="login-info-content">
         <div class="login-info-icon"><i class="fas fa-shield-alt"></i></div>
@@ -54,17 +58,17 @@
 
       <form class="login-form active" id="formSiswa" onsubmit="event.preventDefault(); loginSiswa();">
         <h3><i class="fas fa-user-graduate"></i> Login Siswa</h3>
-        <p class="login-subtitle">Masuk sebagai siswa</p>
+        <p class="login-subtitle">Masuk sebagai siswa Teknik Pemesinan</p>
 
         <div class="login-field">
           <label><i class="fas fa-envelope"></i> Email</label>
-          <input type="email" id="siswaEmail" placeholder="email@contoh.com">
+          <input type="email" id="siswaEmail" placeholder="email@contoh.com" autocomplete="username">
         </div>
 
         <div class="login-field">
           <label><i class="fas fa-lock"></i> Password</label>
           <div class="login-password-wrapper">
-            <input type="password" id="siswaPassword" placeholder="Password">
+            <input type="password" id="siswaPassword" placeholder="Password" autocomplete="current-password">
             <button type="button" class="toggle-password" onclick="togglePassword('siswaPassword', this)">
               <i class="fas fa-eye"></i>
             </button>
@@ -84,17 +88,17 @@
 
       <form class="login-form" id="formGuru" onsubmit="event.preventDefault(); loginGuru();">
         <h3><i class="fas fa-chalkboard-teacher"></i> Login Guru</h3>
-        <p class="login-subtitle">Masuk sebagai guru</p>
+        <p class="login-subtitle">Masuk sebagai guru pengampu K3</p>
 
         <div class="login-field">
           <label><i class="fas fa-envelope"></i> Email</label>
-          <input type="email" id="guruEmail" placeholder="email@contoh.com">
+          <input type="email" id="guruEmail" placeholder="email@contoh.com" autocomplete="username">
         </div>
 
         <div class="login-field">
           <label><i class="fas fa-lock"></i> Password</label>
           <div class="login-password-wrapper">
-            <input type="password" id="guruPassword" placeholder="Password">
+            <input type="password" id="guruPassword" placeholder="Password" autocomplete="current-password">
             <button type="button" class="toggle-password" onclick="togglePassword('guruPassword', this)">
               <i class="fas fa-eye"></i>
             </button>
@@ -119,18 +123,21 @@
   <div class="footer-content">
     <div class="footer-col">
       <h4><i class="fas fa-graduation-cap"></i> Media K3 Pemesinan</h4>
-      <p>Media Pembelajaran K3 untuk Siswa SMK Negeri 2 Medan.</p>
+      <p>Media Pembelajaran K3 untuk Siswa Teknik Pemesinan SMK Negeri 2 Medan.</p>
     </div>
     <div class="footer-col">
-      <h4>Menu</h4>
-      <a href="register.html">Daftar Akun</a>
+      <h4>Menu Cepat</h4>
+      <a href="register.html">Daftar Akun Baru</a>
     </div>
     <div class="footer-col">
       <h4>Kontak</h4>
       <p><i class="fas fa-school"></i> SMK Negeri 2 Medan</p>
+      <p><i class="fas fa-envelope"></i> info@smkn2medan.sch.id</p>
     </div>
   </div>
-  <div class="footer-bottom">&copy; 2025 — Media K3 Pemesinan</div>
+  <div class="footer-bottom">
+    &copy; 2025 — Media K3 Pemesinan | Skripsi R&D SMK N 2 Medan
+  </div>
 </footer>
 
 <script type="module">
@@ -140,6 +147,20 @@ window.addEventListener('load', function() {
   const loader = document.getElementById('loader');
   if (loader) setTimeout(function() { loader.classList.add('hide'); }, 400);
 });
+
+// Kalau sudah login → langsung ke dashboard
+(function() {
+  const user = sessionStorage.getItem('userK3') || localStorage.getItem('userK3');
+  if (user) {
+    try {
+      const u = JSON.parse(user);
+      window.location.href = u.role === 'siswa' ? 'siswa-dashboard.html' : 'guru-dashboard.html';
+    } catch (e) {
+      sessionStorage.removeItem('userK3');
+      localStorage.removeItem('userK3');
+    }
+  }
+})();
 
 window.switchTab = function(tab) {
   document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
@@ -220,5 +241,6 @@ window.loginGuru = async function() {
   setTimeout(function() { window.location.href = 'guru-dashboard.html'; }, 800);
 };
 </script>
+
 </body>
 </html>
